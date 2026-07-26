@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wattlas — itinéraires électriques, même hors ligne</title>
+<meta name="description" content="Planificateur d'itinéraire pour voiture électrique en France : bornes de recharge, coût réel, péages — et un calcul qui fonctionne sans réseau.">
+<style>
+  :root{
+    --ink:#1A1714;--coral:#EE7259;--coral-ink:#BF4A34;--cream:#F3EFE9;
+    --bg:#FCFBF9;--s2:#F1EDE7;--line:#DAD4CB;--muted:#6B645E;--text:#1A1714;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#141210;--s2:#262220;--line:#3D3733;--muted:#A69D95;--text:#F3EFE9;--coral-ink:#FF8E74;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:64px 22px 80px}
+  .mark{display:flex;align-items:center;gap:16px;margin-bottom:34px}
+  .mark svg{flex:none}
+  h1{font-size:clamp(30px,7vw,44px);letter-spacing:-.03em;line-height:1;margin:0}
+  .tag{color:var(--muted);font-size:15px;margin:6px 0 0}
+  .lede{font-size:19px;margin:0 0 30px;max-width:56ch}
+  h2{font-size:17px;letter-spacing:-.01em;margin:30px 0 6px}
+  p{margin:0 0 14px}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:9px}
+  li::marker{color:var(--coral-ink)}
+  strong{color:var(--coral-ink)}
+  .soon{background:var(--s2);border-radius:16px;padding:18px 20px;margin:28px 0}
+  .soon p{margin:0;font-size:15px}
+  footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13.5px}
+  a{color:var(--coral-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="mark">
+    <svg width="64" height="64" viewBox="0 0 108 108" aria-label="Wattlas">
+      <rect width="108" height="108" rx="24" fill="#1A1714"/>
+      <g stroke="#F3EFE9" stroke-width="1.7" fill="none" opacity=".22">
+        <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
+        <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
+        <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
+      </g>
+      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#EE7259"/>
+      <g stroke="#1A1714" stroke-width="2.6" stroke-linecap="round" opacity=".85">
+        <path d="M54.61 35.02l-3.34 5.17M48.83 44.89l-3.34 5.17M58.55 62.35l-3.34 5.17M52.79 72.23l-3.34 5.17"/>
+      </g>
+    </svg>
+    <div>
+      <h1>Wattlas</h1>
+      <p class="tag">Itinéraires électriques, même hors ligne</p>
+    </div>
+  </div>
+
+  <p class="lede">
+    Un planificateur d'itinéraire pour voiture électrique, pensé pour la France
+    et pour les trajets qu'on fait vraiment.
+  </p>
+
+  <h2>Ce qu'il fait</h2>
+  <ul>
+    <li><strong>Il calcule sans réseau.</strong> Carte, routage, bornes de recharge et grilles de péage sont embarqués : le trajet aboutit même sans une barre de signal, là où les autres s'arrêtent.</li>
+    <li><strong>Il compare le prix du péage au temps gagné.</strong> Plusieurs itinéraires, du tout-autoroute au tout-national, avec leur coût réel — et la réponse à la seule question qui compte : le plus rapide pour le budget qu'on se fixe.</li>
+    <li><strong>Il annonce ce que ça coûte vraiment</strong> : recharge au tarif du réseau emprunté, péages au centime, batterie restante à l'arrivée.</li>
+    <li><strong>Il apprend votre voiture.</strong> Après quelques trajets, la consommation utilisée est la vôtre, pas celle du constructeur.</li>
+  </ul>
+
+  <div class="soon">
+    <p>
+      L'application est en développement. Elle sera d'abord ouverte à un petit
+      groupe de conducteurs pour être éprouvée sur de vraies routes, avant une
+      publication plus large.
+    </p>
+  </div>
+
+  <h2>Vie privée</h2>
+  <p>
+    Pas de compte, pas de serveur, pas de publicité, pas de mouchard. Vos
+    réglages et vos destinations restent sur votre téléphone.
+    <a href="/confidentialite.html">Lire la politique de confidentialité</a>.
+  </p>
+
+  <h2>Contact</h2>
+  <p><a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a></p>
+
+  <footer>
+    Données cartographiques © les contributeurs OpenStreetMap (ODbL).
+    Bornes de recharge : Base nationale des IRVE, data.gouv.fr (Licence Ouverte).
+    Tarifs de péage : OpenTollData (ODbL) et grilles officielles des sociétés
+    d'autoroute. Météo : Open-Meteo (CC-BY 4.0).
+  </footer>
+
+</div>
+</body>
+</html>

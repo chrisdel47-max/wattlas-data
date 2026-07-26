@@ -1,0 +1,14 @@
+Le fichier docs/CNAME a été retiré volontairement le 2026-07-26.
+
+Pourquoi : tant que wattlas.fr n'est pas acheté ni pointé vers GitHub, la
+présence d'un CNAME rend le site INACCESSIBLE — y compris à l'adresse
+github.io, qui redirige alors vers un domaine qui n'existe pas.
+
+Or il faut une URL qui marche TOUT DE SUITE : le Play Store exige une
+adresse de politique de confidentialité valide.
+
+À FAIRE le jour où wattlas.fr est acheté et pointé vers GitHub :
+    echo wattlas.fr > docs/CNAME
+    git add docs/CNAME && git commit -m "Site : domaine wattlas.fr" && git push
+puis, dans Réglages du dépôt > Pages, vérifier que le domaine est reconnu
+et cocher « Enforce HTTPS ».

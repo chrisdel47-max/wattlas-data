@@ -1,0 +1,618 @@
+{
+  "generated": "2026-08-02",
+  "source": "Catalogue Wattlas des VE vendus en France — capacités UTILES (nettes) et pics de charge DC d'après les fiches constructeur, consommation de référence dérivée du WLTP (× 0,89) pour correspondre à C_base du modèle d'énergie : plat, 90 km/h, temps doux. « masse » = masse à vide en ordre de marche (norme UE, conducteur de 75 kg inclus), arrondie à 10 kg ; l'appli y ajoute une charge utile forfaitaire. Elle ne sert qu'au relief : ce qu'une montée coûte et ce qu'une descente rend. Valeurs INDICATIVES, toutes modifiables par l'utilisateur, et affinées ensuite par la calibration sur trajets réels. Mise à jour : éditer ce fichier dans wattlas-data, git push — sans republier l'appli.",
+  "vehicles": [
+    {
+      "brand": "Alpine",
+      "model": "A290",
+      "kwh": 52.0,
+      "base": 14.0,
+      "peak": 100,
+      "masse": 1480
+    },
+    {
+      "brand": "Audi",
+      "model": "Q4 40 e-tron",
+      "kwh": 76.6,
+      "base": 16.9,
+      "peak": 135,
+      "masse": 2140
+    },
+    {
+      "brand": "Audi",
+      "model": "Q4 45 e-tron",
+      "kwh": 76.6,
+      "base": 16.5,
+      "peak": 175,
+      "masse": 2150
+    },
+    {
+      "brand": "Audi",
+      "model": "Q6 e-tron",
+      "kwh": 94.9,
+      "base": 17.4,
+      "peak": 260,
+      "masse": 2350
+    },
+    {
+      "brand": "BMW",
+      "model": "i4 eDrive40",
+      "kwh": 80.7,
+      "base": 15.7,
+      "peak": 205,
+      "masse": 2130
+    },
+    {
+      "brand": "BMW",
+      "model": "iX1 xDrive30",
+      "kwh": 64.7,
+      "base": 16.5,
+      "peak": 130,
+      "masse": 2010
+    },
+    {
+      "brand": "BMW",
+      "model": "iX3",
+      "kwh": 74.0,
+      "base": 17.0,
+      "peak": 150,
+      "masse": 2260
+    },
+    {
+      "brand": "BYD",
+      "model": "Atto 3",
+      "kwh": 60.5,
+      "base": 17.8,
+      "peak": 88,
+      "masse": 1750
+    },
+    {
+      "brand": "BYD",
+      "model": "Dolphin",
+      "kwh": 60.4,
+      "base": 14.9,
+      "peak": 88,
+      "masse": 1660
+    },
+    {
+      "brand": "BYD",
+      "model": "Seal AWD",
+      "kwh": 82.5,
+      "base": 16.4,
+      "peak": 150,
+      "masse": 2190
+    },
+    {
+      "brand": "Citroën",
+      "model": "ë-C3",
+      "kwh": 44.0,
+      "base": 15.0,
+      "peak": 100,
+      "masse": 1450
+    },
+    {
+      "brand": "Citroën",
+      "model": "ë-C4",
+      "kwh": 50.0,
+      "base": 15.5,
+      "peak": 100,
+      "masse": 1620
+    },
+    {
+      "brand": "Citroën",
+      "model": "ë-C4 X",
+      "kwh": 50.0,
+      "base": 15.3,
+      "peak": 100,
+      "masse": 1640
+    },
+    {
+      "brand": "Cupra",
+      "model": "Born 58 kWh",
+      "kwh": 58.0,
+      "base": 15.7,
+      "peak": 120,
+      "masse": 1780
+    },
+    {
+      "brand": "Cupra",
+      "model": "Born 77 kWh",
+      "kwh": 77.0,
+      "base": 16.0,
+      "peak": 170,
+      "masse": 1900
+    },
+    {
+      "brand": "Dacia",
+      "model": "Spring",
+      "kwh": 26.8,
+      "base": 12.6,
+      "peak": 30,
+      "masse": 990
+    },
+    {
+      "brand": "Fiat",
+      "model": "500e 42 kWh",
+      "kwh": 37.3,
+      "base": 13.4,
+      "peak": 85,
+      "masse": 1370
+    },
+    {
+      "brand": "Ford",
+      "model": "Explorer EV ER",
+      "kwh": 77.0,
+      "base": 15.8,
+      "peak": 135,
+      "masse": 2170
+    },
+    {
+      "brand": "Ford",
+      "model": "Mustang Mach-E ER",
+      "kwh": 91.0,
+      "base": 17.4,
+      "peak": 150,
+      "masse": 2200
+    },
+    {
+      "brand": "Honda",
+      "model": "e:Ny1",
+      "kwh": 61.9,
+      "base": 16.4,
+      "peak": 78,
+      "masse": 1750
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Ioniq 5 58 kWh",
+      "kwh": 58.0,
+      "base": 15.8,
+      "peak": 175,
+      "masse": 1830
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Ioniq 5 77 kWh",
+      "kwh": 77.4,
+      "base": 16.4,
+      "peak": 233,
+      "masse": 1980
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Ioniq 6 77 kWh",
+      "kwh": 77.4,
+      "base": 13.9,
+      "peak": 233,
+      "masse": 1930
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Kona 65 kWh",
+      "kwh": 65.4,
+      "base": 15.0,
+      "peak": 102,
+      "masse": 1770
+    },
+    {
+      "brand": "Jeep",
+      "model": "Avenger Electric",
+      "kwh": 51.0,
+      "base": 14.6,
+      "peak": 100,
+      "masse": 1540
+    },
+    {
+      "brand": "Kia",
+      "model": "EV3 81 kWh",
+      "kwh": 81.4,
+      "base": 14.8,
+      "peak": 128,
+      "masse": 1890
+    },
+    {
+      "brand": "Kia",
+      "model": "EV6 77 kWh",
+      "kwh": 77.4,
+      "base": 15.8,
+      "peak": 233,
+      "masse": 1990
+    },
+    {
+      "brand": "Kia",
+      "model": "EV9 99 kWh",
+      "kwh": 99.8,
+      "base": 19.0,
+      "peak": 210,
+      "masse": 2610
+    },
+    {
+      "brand": "Kia",
+      "model": "Niro EV",
+      "kwh": 64.8,
+      "base": 14.9,
+      "peak": 80,
+      "masse": 1740
+    },
+    {
+      "brand": "Leapmotor",
+      "model": "C10",
+      "kwh": 69.9,
+      "base": 17.2,
+      "peak": 84,
+      "masse": 1980
+    },
+    {
+      "brand": "Leapmotor",
+      "model": "T03",
+      "kwh": 37.3,
+      "base": 13.4,
+      "peak": 48,
+      "masse": 1190
+    },
+    {
+      "brand": "MG",
+      "model": "MG4 51 kWh",
+      "kwh": 50.8,
+      "base": 14.6,
+      "peak": 117,
+      "alias": "Morris Garages",
+      "masse": 1660
+    },
+    {
+      "brand": "MG",
+      "model": "MG4 64 kWh",
+      "kwh": 61.7,
+      "base": 15.1,
+      "peak": 140,
+      "alias": "Morris Garages",
+      "masse": 1690
+    },
+    {
+      "brand": "MG",
+      "model": "MG5",
+      "kwh": 57.4,
+      "base": 15.6,
+      "peak": 87,
+      "alias": "Morris Garages",
+      "masse": 1620
+    },
+    {
+      "brand": "MG",
+      "model": "ZS EV",
+      "kwh": 68.3,
+      "base": 16.4,
+      "peak": 92,
+      "alias": "Morris Garages",
+      "masse": 1620
+    },
+    {
+      "brand": "Mercedes",
+      "model": "EQA 250",
+      "kwh": 66.5,
+      "base": 15.7,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2040
+    },
+    {
+      "brand": "Mercedes",
+      "model": "EQB 300",
+      "kwh": 66.5,
+      "base": 17.4,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2180
+    },
+    {
+      "brand": "Mini",
+      "model": "Cooper SE",
+      "kwh": 49.2,
+      "base": 13.8,
+      "peak": 95,
+      "masse": 1680
+    },
+    {
+      "brand": "Nissan",
+      "model": "Ariya 87 kWh",
+      "kwh": 87.0,
+      "base": 16.6,
+      "peak": 130,
+      "masse": 2200
+    },
+    {
+      "brand": "Nissan",
+      "model": "Leaf e+ 62 kWh",
+      "kwh": 59.0,
+      "base": 16.0,
+      "peak": 100,
+      "masse": 1740
+    },
+    {
+      "brand": "Opel",
+      "model": "Corsa-e",
+      "kwh": 46.3,
+      "base": 14.6,
+      "peak": 100,
+      "masse": 1530
+    },
+    {
+      "brand": "Opel",
+      "model": "Mokka-e",
+      "kwh": 50.0,
+      "base": 15.3,
+      "peak": 100,
+      "masse": 1600
+    },
+    {
+      "brand": "Peugeot",
+      "model": "e-2008 54 kWh",
+      "kwh": 51.0,
+      "base": 15.1,
+      "peak": 100,
+      "masse": 1610
+    },
+    {
+      "brand": "Peugeot",
+      "model": "e-208 51 kWh",
+      "kwh": 48.1,
+      "base": 13.8,
+      "peak": 100,
+      "masse": 1530
+    },
+    {
+      "brand": "Peugeot",
+      "model": "e-3008 73 kWh",
+      "kwh": 73.0,
+      "base": 15.7,
+      "peak": 160,
+      "masse": 2180
+    },
+    {
+      "brand": "Peugeot",
+      "model": "e-308",
+      "kwh": 51.0,
+      "base": 13.9,
+      "peak": 100,
+      "masse": 1690
+    },
+    {
+      "brand": "Peugeot",
+      "model": "e-5008 73 kWh",
+      "kwh": 73.0,
+      "base": 16.4,
+      "peak": 160,
+      "masse": 2250
+    },
+    {
+      "brand": "Polestar",
+      "model": "2 Long Range",
+      "kwh": 78.0,
+      "base": 15.6,
+      "peak": 205,
+      "masse": 2050
+    },
+    {
+      "brand": "Renault",
+      "model": "4 E-Tech 52 kWh",
+      "kwh": 52.0,
+      "base": 14.2,
+      "peak": 100,
+      "masse": 1460
+    },
+    {
+      "brand": "Renault",
+      "model": "5 E-Tech 52 kWh",
+      "kwh": 52.0,
+      "base": 13.4,
+      "peak": 100,
+      "masse": 1450
+    },
+    {
+      "brand": "Renault",
+      "model": "Mégane E-Tech EV60",
+      "kwh": 60.0,
+      "base": 14.6,
+      "peak": 130,
+      "masse": 1640
+    },
+    {
+      "brand": "Renault",
+      "model": "Scénic E-Tech 87 kWh",
+      "kwh": 87.0,
+      "base": 15.5,
+      "peak": 150,
+      "masse": 1890
+    },
+    {
+      "brand": "Renault",
+      "model": "Twingo E-Tech",
+      "kwh": 27.5,
+      "base": 12.0,
+      "peak": 50,
+      "masse": 1170
+    },
+    {
+      "brand": "Renault",
+      "model": "Zoe R135 52 kWh",
+      "kwh": 52.0,
+      "base": 15.1,
+      "peak": 46,
+      "masse": 1500
+    },
+    {
+      "brand": "Skoda",
+      "model": "Elroq 60",
+      "kwh": 55.0,
+      "base": 14.9,
+      "peak": 165,
+      "masse": 1960
+    },
+    {
+      "brand": "Skoda",
+      "model": "Enyaq 60",
+      "kwh": 58.0,
+      "base": 15.8,
+      "peak": 165,
+      "masse": 2020
+    },
+    {
+      "brand": "Skoda",
+      "model": "Enyaq 85",
+      "kwh": 77.0,
+      "base": 16.0,
+      "peak": 175,
+      "masse": 2130
+    },
+    {
+      "brand": "Smart",
+      "model": "#1",
+      "kwh": 62.0,
+      "base": 16.0,
+      "peak": 150,
+      "masse": 1820
+    },
+    {
+      "brand": "Smart",
+      "model": "#3",
+      "kwh": 62.0,
+      "base": 15.5,
+      "peak": 150,
+      "masse": 1810
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model 3 Grande Aut.",
+      "kwh": 75.0,
+      "base": 13.5,
+      "peak": 250,
+      "masse": 1830
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model 3 Propulsion",
+      "kwh": 57.5,
+      "base": 12.9,
+      "peak": 170,
+      "masse": 1760
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model S",
+      "kwh": 95.0,
+      "base": 15.6,
+      "peak": 250,
+      "masse": 2110
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model X",
+      "kwh": 95.0,
+      "base": 17.8,
+      "peak": 250,
+      "masse": 2350
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model Y Grande Aut.",
+      "kwh": 75.0,
+      "base": 14.4,
+      "peak": 250,
+      "masse": 1990
+    },
+    {
+      "brand": "Tesla",
+      "model": "Model Y Propulsion",
+      "kwh": 57.5,
+      "base": 13.8,
+      "peak": 170,
+      "masse": 1910
+    },
+    {
+      "brand": "Toyota",
+      "model": "bZ4X",
+      "kwh": 64.0,
+      "base": 15.5,
+      "peak": 150,
+      "masse": 1970
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.3 Pro 58 kWh",
+      "kwh": 58.0,
+      "base": 14.9,
+      "peak": 120,
+      "alias": "VW",
+      "masse": 1820
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.3 Pro S 77 kWh",
+      "kwh": 77.0,
+      "base": 15.5,
+      "peak": 170,
+      "alias": "VW",
+      "masse": 1940
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.4 Pro 2023",
+      "kwh": 77.0,
+      "base": 16.5,
+      "peak": 130,
+      "alias": "VW",
+      "masse": 2120
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.5 Pro",
+      "kwh": 77.0,
+      "base": 15.9,
+      "peak": 135,
+      "alias": "VW",
+      "masse": 2140
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.7 Pro 77 kWh",
+      "kwh": 77.0,
+      "base": 14.7,
+      "peak": 175,
+      "alias": "VW",
+      "masse": 2150
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.7 Pro S 86 kWh",
+      "kwh": 86.0,
+      "base": 14.5,
+      "peak": 200,
+      "alias": "VW",
+      "masse": 2220
+    },
+    {
+      "brand": "Volvo",
+      "model": "EX30 ER",
+      "kwh": 64.0,
+      "base": 14.4,
+      "peak": 153,
+      "masse": 1850
+    },
+    {
+      "brand": "Volvo",
+      "model": "EX40 ER",
+      "kwh": 79.0,
+      "base": 16.0,
+      "peak": 200,
+      "masse": 2090
+    },
+    {
+      "brand": "Volvo",
+      "model": "XC40 Recharge ER",
+      "kwh": 78.0,
+      "base": 16.5,
+      "peak": 200,
+      "masse": 2100
+    }
+  ]
+}

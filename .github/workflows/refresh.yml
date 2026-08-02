@@ -42,5 +42,28 @@ jobs:
             echo "Aucun changement."
           else
             git commit -m "refresh $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            # Rebase avant de pousser, et on réessaie.
+            #
+            # Le job récupère `main` puis met une à deux minutes à régénérer
+            # le fichier. Toute poussée humaine pendant cette fenêtre fait
+            # rejeter la sienne — arrivé le 2026-08-02 en publiant
+            # vehicles.json : le trafic n'a pas été rafraîchi de l'heure, et
+            # rien ne le disait côté appli.
+            #
+            # Le conflit est impossible en pratique : personne d'autre
+            # n'écrit traffic.geojson, le rebase ne fait que rejouer ce
+            # commit au-dessus du travail des autres.
+            pousse=0
+            for essai in 1 2 3; do
+              if git pull --rebase --quiet && git push; then
+                pousse=1
+                break
+              fi
+              echo "::warning::Poussée rejetée (essai $essai) — nouvelle tentative."
+              sleep 5
+            done
+            if [ "$pousse" -ne 1 ]; then
+              echo "::error::Poussée impossible après 3 tentatives."
+              exit 1
+            fi
           fi

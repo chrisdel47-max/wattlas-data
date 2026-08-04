@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-02",
+  "generated": "2026-08-04",
   "source": "Catalogue Wattlas des VE vendus en France — capacités UTILES (nettes) et pics de charge DC d'après les fiches constructeur, consommation de référence dérivée du WLTP (× 0,89) pour correspondre à C_base du modèle d'énergie : plat, 90 km/h, temps doux. « masse » = masse à vide en ordre de marche (norme UE, conducteur de 75 kg inclus), arrondie à 10 kg ; l'appli y ajoute une charge utile forfaitaire. Elle ne sert qu'au relief : ce qu'une montée coûte et ce qu'une descente rend. Valeurs INDICATIVES, toutes modifiables par l'utilisateur, et affinées ensuite par la calibration sur trajets réels. Mise à jour : éditer ce fichier dans wattlas-data, git push — sans republier l'appli.",
   "vehicles": [
     {
@@ -251,6 +251,24 @@
       "masse": 1190
     },
     {
+      "brand": "Mercedes",
+      "model": "EQA 250",
+      "kwh": 66.5,
+      "base": 15.7,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2040
+    },
+    {
+      "brand": "Mercedes",
+      "model": "EQB 300",
+      "kwh": 66.5,
+      "base": 17.4,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2180
+    },
+    {
       "brand": "MG",
       "model": "MG4 51 kWh",
       "kwh": 50.8,
@@ -285,24 +303,6 @@
       "peak": 92,
       "alias": "Morris Garages",
       "masse": 1620
-    },
-    {
-      "brand": "Mercedes",
-      "model": "EQA 250",
-      "kwh": 66.5,
-      "base": 15.7,
-      "peak": 100,
-      "alias": "Mercedes-Benz",
-      "masse": 2040
-    },
-    {
-      "brand": "Mercedes",
-      "model": "EQB 300",
-      "kwh": 66.5,
-      "base": 17.4,
-      "peak": 100,
-      "alias": "Mercedes-Benz",
-      "masse": 2180
     },
     {
       "brand": "Mini",
@@ -450,6 +450,14 @@
     },
     {
       "brand": "Skoda",
+      "model": "Elroq 85",
+      "kwh": 77.0,
+      "base": 15.4,
+      "peak": 175,
+      "masse": 2060
+    },
+    {
+      "brand": "Skoda",
       "model": "Enyaq 60",
       "kwh": 58.0,
       "base": 15.8,
@@ -538,6 +546,15 @@
     },
     {
       "brand": "Volkswagen",
+      "model": "ID. Buzz 77 kWh",
+      "kwh": 77.0,
+      "base": 19.5,
+      "peak": 170,
+      "alias": "VW",
+      "masse": 2470
+    },
+    {
+      "brand": "Volkswagen",
       "model": "ID.3 Pro 58 kWh",
       "kwh": 58.0,
       "base": 14.9,
@@ -556,12 +573,48 @@
     },
     {
       "brand": "Volkswagen",
+      "model": "ID.3 Pure 45 kWh",
+      "kwh": 45.0,
+      "base": 14.3,
+      "peak": 110,
+      "alias": "VW",
+      "masse": 1740
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.4 GTX 77 kWh",
+      "kwh": 77.0,
+      "base": 17.6,
+      "peak": 175,
+      "alias": "VW",
+      "masse": 2290
+    },
+    {
+      "brand": "Volkswagen",
       "model": "ID.4 Pro 2023",
       "kwh": 77.0,
       "base": 16.5,
       "peak": 130,
       "alias": "VW",
       "masse": 2120
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.4 Pure 52 kWh",
+      "kwh": 52.0,
+      "base": 16.1,
+      "peak": 110,
+      "alias": "VW",
+      "masse": 2050
+    },
+    {
+      "brand": "Volkswagen",
+      "model": "ID.5 GTX 77 kWh",
+      "kwh": 77.0,
+      "base": 17.0,
+      "peak": 175,
+      "alias": "VW",
+      "masse": 2300
     },
     {
       "brand": "Volkswagen",

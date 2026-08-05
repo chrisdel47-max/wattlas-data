@@ -4,6 +4,10 @@
     "baseUrl":  "https://github.com/chrisdel47-max/wattrip-data/releases/download/graph-v3/",
     "files":  [
                   {
+                      "name":  "wattlas-poi-v1.db",
+                      "bytes":  122421248
+                  },
+                  {
                       "name":  "edges",
                       "bytes":  537919588
                   },

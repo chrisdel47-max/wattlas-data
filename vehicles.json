@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-04",
+  "generated": "2026-08-06",
   "source": "Catalogue Wattlas des VE vendus en France — capacités UTILES (nettes) et pics de charge DC d'après les fiches constructeur, consommation de référence dérivée du WLTP (× 0,89) pour correspondre à C_base du modèle d'énergie : plat, 90 km/h, temps doux. « masse » = masse à vide en ordre de marche (norme UE, conducteur de 75 kg inclus), arrondie à 10 kg ; l'appli y ajoute une charge utile forfaitaire. Elle ne sert qu'au relief : ce qu'une montée coûte et ce qu'une descente rend. Valeurs INDICATIVES, toutes modifiables par l'utilisateur, et affinées ensuite par la calibration sur trajets réels. Mise à jour : éditer ce fichier dans wattlas-data, git push — sans republier l'appli.",
   "vehicles": [
     {
@@ -303,6 +303,69 @@
       "peak": 92,
       "alias": "Morris Garages",
       "masse": 1620
+    },
+    {
+      "brand": "MG",
+      "model": "MG4 77 kWh",
+      "kwh": 74.4,
+      "base": 15.3,
+      "peak": 144,
+      "alias": "Morris Garages",
+      "masse": 1800
+    },
+    {
+      "brand": "MG",
+      "model": "MG4 XPower",
+      "kwh": 61.7,
+      "base": 15.7,
+      "peak": 140,
+      "alias": "Morris Garages",
+      "masse": 1800
+    },
+    {
+      "brand": "MG",
+      "model": "S5 EV 49 kWh",
+      "kwh": 49.1,
+      "base": 13.6,
+      "peak": 120,
+      "alias": "Morris Garages",
+      "masse": 1620
+    },
+    {
+      "brand": "MG",
+      "model": "S5 EV 64 kWh",
+      "kwh": 62.2,
+      "base": 14.2,
+      "peak": 139,
+      "alias": "Morris Garages",
+      "masse": 1700
+    },
+    {
+      "brand": "MG",
+      "model": "ZS EV 51 kWh",
+      "kwh": 49.1,
+      "base": 15.2,
+      "peak": 76,
+      "alias": "Morris Garages",
+      "masse": 1540
+    },
+    {
+      "brand": "MG",
+      "model": "Marvel R",
+      "kwh": 70.0,
+      "base": 17.4,
+      "peak": 92,
+      "alias": "Morris Garages",
+      "masse": 1930
+    },
+    {
+      "brand": "MG",
+      "model": "Cyberster",
+      "kwh": 74.4,
+      "base": 17.3,
+      "peak": 144,
+      "alias": "Morris Garages",
+      "masse": 1985
     },
     {
       "brand": "Mini",

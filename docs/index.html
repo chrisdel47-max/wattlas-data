@@ -3,8 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wattlas — itinéraires électriques, même hors ligne</title>
-<meta name="description" content="Planificateur d'itinéraire pour voiture électrique en France : bornes de recharge, coût réel, péages — et un calcul qui fonctionne sans réseau.">
+<title>Wattlas — planificateur VE : coût réel du trajet, même hors ligne</title>
+<meta name="description" content="Planificateur d'itinéraire pour voiture électrique en France : coût réel du trajet (recharge + péages au centime), calcul possible hors ligne. Beta sur Android — une quinzaine de testeurs recherchés.">
+<link rel="canonical" href="https://wattlas.fr/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wattlas.fr/">
+<meta property="og:site_name" content="Wattlas">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Wattlas — le coût réel de vos trajets en voiture électrique">
+<meta property="og:description" content="Recharge + péages : le prix vrai de chaque itinéraire, calculé même sans réseau. Beta fermée sur Android — une quinzaine de testeurs recherchés en France.">
+<meta property="og:image" content="https://wattlas.fr/og.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
     --ink:#1A1714;--coral:#EE7259;--coral-ink:#BF4A34;--cream:#F3EFE9;
@@ -62,29 +73,32 @@
   </div>
 
   <p class="lede">
-    Un planificateur d'itinéraire pour voiture électrique, pensé pour la France
-    et pour les trajets qu'on fait vraiment.
+    Un planificateur d'itinéraire pour voiture électrique en France,
+    gratuit, qui affiche ce qu'un trajet coûte vraiment — recharge
+    <em>et</em> péages — et qui sait le calculer sans réseau.
   </p>
-
-  <h2>Ce qu'il fait</h2>
-  <ul>
-    <li><strong>Il calcule sans réseau.</strong> Carte, routage, bornes de recharge et grilles de péage sont embarqués : le trajet aboutit même sans une barre de signal, là où les autres s'arrêtent.</li>
-    <li><strong>Il compare le prix du péage au temps gagné.</strong> Plusieurs itinéraires, du tout-autoroute au tout-national, avec leur coût réel — et la réponse à la seule question qui compte : le plus rapide pour le budget qu'on se fixe.</li>
-    <li><strong>Il annonce ce que ça coûte vraiment</strong> : recharge au tarif du réseau emprunté, péages au centime, batterie restante à l'arrivée.</li>
-    <li><strong>Il apprend votre voiture.</strong> Après quelques trajets, la consommation utilisée est la vôtre, pas celle du constructeur.</li>
-  </ul>
+  <p>
+    <a href="#test"><strong>Les inscriptions au test sont ouvertes</strong></a>
+    — une quinzaine de conducteurs recherchés, sur Android.
+  </p>
 
   <div class="soon" id="test">
     <p>
-      <strong>Les inscriptions au test sont ouvertes.</strong> Wattlas cherche
-      une quinzaine de conducteurs de voiture électrique en France pour
-      l'éprouver sur de vraies routes, via le Play Store (Android), pendant
-      quelques semaines.
+      <strong>Les inscriptions au test sont ouvertes — une quinzaine de
+      places.</strong> Wattlas cherche des conducteurs de voiture électrique
+      en France pour l'éprouver sur de vraies routes, via le Play Store
+      (Android uniquement), pendant quelques semaines.
     </p>
     <p>
-      Ce qu'on attend d'un testeur : quelques trajets réels, et dire ce qui
-      cloche — deux phrases par e-mail suffisent. L'accès vous est envoyé dès
-      la validation en cours du Play Store.
+      Ce qu'on attend d'un testeur : garder l'appli installée au moins deux
+      semaines, faire quelques trajets réels en notant la batterie restante,
+      et dire ce qui cloche — deux phrases par e-mail suffisent. Vos retours
+      arrivent directement au développeur.
+    </p>
+    <p>
+      En toute transparence : c'est une beta, France uniquement, et la
+      disponibilité des bornes en temps réel n'y est pas encore. L'accès
+      vous est envoyé dès la validation en cours du Play Store.
     </p>
     <p>
       <a class="btn" href="mailto:contact@wattlas.fr?subject=Je%20veux%20tester%20Wattlas&amp;body=Bonjour%2C%0A%0AJe%20souhaite%20participer%20au%20test%20de%20Wattlas.%0A%0AMa%20voiture%20%C3%A9lectrique%20%3A%20%0AMon%20adresse%20Gmail%20(celle%20du%20Play%20Store)%20%3A%20%0A%0AMerci%20!">
@@ -92,10 +106,25 @@
     </p>
   </div>
 
+  <h2>Ce qu'il fait</h2>
+  <ul>
+    <li><strong>Il annonce ce que ça coûte vraiment</strong> : recharge au tarif du réseau emprunté, péages au centime — les 551 gares françaises sont dans l'appli — et batterie restante à l'arrivée.</li>
+    <li><strong>Il compare le prix du péage au temps gagné.</strong> Avec le pack hors ligne, plusieurs itinéraires du tout-autoroute au tout-national, avec leur coût réel — et la réponse à la seule question qui compte : le plus rapide pour le budget qu'on se fixe. En ligne, un itinéraire calculé et détaillé.</li>
+    <li><strong>Il calcule sans réseau.</strong> Avec le pack France (optionnel, ~3,3 Go, à télécharger en Wi-Fi depuis les réglages), carte, routage, bornes de recharge et grilles de péage vivent sur le téléphone : le trajet aboutit même sans une barre de signal. Sans le pack, l'appli fonctionne avec une connexion internet.</li>
+    <li><strong>Il apprend votre voiture — avec vous.</strong> Après un trajet, vous notez la batterie réellement restante ; l'appli s'en sert pour que la consommation utilisée devienne la vôtre, pas celle du constructeur.</li>
+  </ul>
+  <p>
+    Et ce qu'il ne fait pas — encore : la disponibilité des bornes n'est
+    pas remontée en direct, et les tarifs de recharge sont estimés par
+    réseau, pas relevés borne par borne.
+  </p>
+
   <h2>Vie privée</h2>
   <p>
-    Pas de compte, pas de serveur, pas de publicité, pas de mouchard. Vos
-    réglages et vos destinations restent sur votre téléphone.
+    Pas de compte, pas de publicité, pas de mouchard. Vos réglages et vos
+    destinations restent sur votre téléphone ; en calcul en ligne, le trajet
+    transite par le serveur de routage, sans être conservé. Avec le pack
+    hors ligne, rien ne sort du téléphone.
     <a href="/confidentialite.html">Lire la politique de confidentialité</a>.
   </p>
 

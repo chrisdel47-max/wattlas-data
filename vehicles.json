@@ -93,7 +93,7 @@
     {
       "brand": "Citroën",
       "model": "ë-C4",
-      "kwh": 50.0,
+      "kwh": 46.3,
       "base": 15.5,
       "peak": 100,
       "masse": 1620
@@ -101,7 +101,7 @@
     {
       "brand": "Citroën",
       "model": "ë-C4 X",
-      "kwh": 50.0,
+      "kwh": 46.3,
       "base": 15.3,
       "peak": 100,
       "masse": 1640
@@ -402,7 +402,7 @@
     {
       "brand": "Opel",
       "model": "Mokka-e",
-      "kwh": 50.0,
+      "kwh": 46.3,
       "base": 15.3,
       "peak": 100,
       "masse": 1600

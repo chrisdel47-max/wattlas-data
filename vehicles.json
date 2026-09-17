@@ -92,7 +92,7 @@
     },
     {
       "brand": "Citroën",
-      "model": "ë-C4",
+      "model": "ë-C4 50 kWh",
       "kwh": 46.3,
       "base": 15.5,
       "peak": 100,
@@ -100,8 +100,24 @@
     },
     {
       "brand": "Citroën",
-      "model": "ë-C4 X",
+      "model": "ë-C4 54 kWh",
+      "kwh": 51.0,
+      "base": 15.5,
+      "peak": 100,
+      "masse": 1620
+    },
+    {
+      "brand": "Citroën",
+      "model": "ë-C4 X 50 kWh",
       "kwh": 46.3,
+      "base": 15.3,
+      "peak": 100,
+      "masse": 1640
+    },
+    {
+      "brand": "Citroën",
+      "model": "ë-C4 X 54 kWh",
+      "kwh": 51.0,
       "base": 15.3,
       "peak": 100,
       "masse": 1640
@@ -401,8 +417,16 @@
     },
     {
       "brand": "Opel",
-      "model": "Mokka-e",
+      "model": "Mokka-e 50 kWh",
       "kwh": 46.3,
+      "base": 15.3,
+      "peak": 100,
+      "masse": 1600
+    },
+    {
+      "brand": "Opel",
+      "model": "Mokka Electric 54 kWh",
+      "kwh": 51.0,
       "base": 15.3,
       "peak": 100,
       "masse": 1600

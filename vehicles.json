@@ -409,8 +409,16 @@
     },
     {
       "brand": "Opel",
-      "model": "Corsa-e",
+      "model": "Corsa-e 50 kWh",
       "kwh": 46.3,
+      "base": 14.6,
+      "peak": 100,
+      "masse": 1530
+    },
+    {
+      "brand": "Opel",
+      "model": "Corsa Electric 54 kWh",
+      "kwh": 51.0,
       "base": 14.6,
       "peak": 100,
       "masse": 1530

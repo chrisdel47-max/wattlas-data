@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Wattlas — planificateur VE : coût réel du trajet, même hors ligne</title>
-<meta name="description" content="Planificateur d'itinéraire pour voiture électrique en France : coût réel du trajet (recharge + péages au centime), calcul possible hors ligne. Beta sur Android — une quinzaine de testeurs recherchés.">
+<title>Wattlas — planificateur VE gratuit : le coût réel du trajet, même hors ligne</title>
+<meta name="description" content="Planificateur d'itinéraire pour voiture électrique en France : arrêts de recharge, coût réel du trajet (recharge + péages au centime), calcul possible hors ligne. Gratuit sur Google Play, sans compte ni publicité.">
 <link rel="canonical" href="https://wattlas.fr/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://wattlas.fr/">
 <meta property="og:site_name" content="Wattlas">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="Wattlas — le coût réel de vos trajets en voiture électrique">
-<meta property="og:description" content="Recharge + péages : le prix vrai de chaque itinéraire, calculé même sans réseau. Beta fermée sur Android — une quinzaine de testeurs recherchés en France.">
+<meta property="og:description" content="Recharge + péages : le prix vrai de chaque itinéraire, calculé même sans réseau. Gratuit sur Android, sans compte ni publicité.">
 <meta property="og:image" content="https://wattlas.fr/og.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="500">
@@ -32,7 +32,7 @@
   .mark svg{flex:none}
   h1{font-size:clamp(30px,7vw,44px);letter-spacing:-.03em;line-height:1;margin:0}
   .tag{color:var(--muted);font-size:15px;margin:6px 0 0}
-  .lede{font-size:19px;margin:0 0 30px;max-width:56ch}
+  .lede{font-size:19px;margin:0 0 24px;max-width:56ch}
   h2{font-size:17px;letter-spacing:-.01em;margin:30px 0 6px}
   p{margin:0 0 14px}
   ul{margin:0 0 20px;padding-left:22px}
@@ -46,6 +46,13 @@
   .btn{display:inline-block;background:var(--coral);color:#1A1714;font-weight:600;
        padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
   .btn:hover{filter:brightness(1.05)}
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 22px}
+  .shots figure{margin:0}
+  .shots img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
+  .shots figcaption{color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:8px}
+  @media (max-width:520px){.shots{grid-template-columns:1fr;gap:22px;max-width:320px;margin-inline:auto}}
+  .sources{font-size:14px}
+  .sources li{margin-bottom:6px;word-break:break-word}
   footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
          color:var(--muted);font-size:13.5px}
   a{color:var(--coral-ink)}
@@ -78,49 +85,43 @@
     gratuit, qui affiche ce qu'un trajet coûte vraiment — recharge
     <em>et</em> péages — et qui sait le calculer sans réseau.
   </p>
-  <p>
-    <a href="#test"><strong>Les inscriptions au test sont ouvertes</strong></a>
-    — une quinzaine de conducteurs recherchés, sur Android.
-  </p>
 
-  <div class="soon" id="test">
+  <a id="test"></a>
+  <div class="soon" id="telecharger">
     <p>
-      <strong>Les inscriptions au test sont ouvertes — une quinzaine de
-      places.</strong> Wattlas cherche des conducteurs de voiture électrique
-      en France pour l'éprouver sur de vraies routes, via le Play Store
-      (Android uniquement), pendant quelques semaines.
+      <strong>Wattlas est disponible sur Google Play.</strong> Gratuit, sans
+      compte, sans publicité, sans achat intégré. Android, France.
     </p>
     <p>
-      Ce qu'on attend d'un testeur : garder l'appli installée au moins deux
-      semaines, faire quelques trajets réels en notant la batterie restante,
-      et dire ce qui cloche — deux phrases par e-mail suffisent. Vos retours
-      arrivent directement au développeur.
-    </p>
-    <p>
-      En toute transparence : c'est une beta, France uniquement, et la
-      disponibilité des bornes en temps réel n'y est pas encore. Le test est
-      ouvert : l'inscription se fait juste en dessous, en deux étapes.
-    </p>
-    <p>
-      <a class="btn" href="https://groups.google.com/g/wattlas-testeurs/about">
-        Devenir testeur — rejoindre le groupe</a>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=fr.wattlas">
+        Télécharger sur Google Play</a>
     </p>
     <p class="alt">
-      Deux étapes, avec le compte Google de votre téléphone Android.
-      <strong>1.</strong> Demandez à rejoindre le groupe avec le bouton
-      ci-dessus ; je valide dans la journée. <strong>2.</strong> Inscrivez-vous
-      au test sur
-      <a href="https://play.google.com/apps/testing/fr.wattlas">la page
-      d'inscription Google Play</a>. L'appli s'installe ensuite depuis le Play
-      Store comme n'importe quelle autre.
+      L'appli est née des retours d'une poignée de conducteurs qui l'ont
+      éprouvée sur de vraies routes, et elle continue d'avancer comme ça :
+      si le calcul se trompe sur votre voiture ou si quelque chose coince,
+      écrivez à <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>.
+      Une note sur le Play Store aide aussi — c'est ce qui décide les
+      suivants à l'essayer.
     </p>
-    <p class="alt">
-      Dites-moi aussi quelle voiture vous conduisez, par un mot à
-      <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a> : le calcul de
-      consommation n'est vérifié que sur la mienne, et savoir sur quels
-      modèles il se trompe est exactement ce que je cherche. C'est aussi
-      l'adresse à utiliser si quelque chose coince.
-    </p>
+  </div>
+
+  <div class="shots">
+    <figure>
+      <img src="capture-itineraires.jpg" width="540" height="960" loading="lazy"
+           alt="Écran de Wattlas : quatre itinéraires comparés vers Dijon, avec durée, péage, recharge et batterie à l'arrivée.">
+      <figcaption>Plusieurs itinéraires pour la même destination, chacun avec son temps, son péage et sa recharge.</figcaption>
+    </figure>
+    <figure>
+      <img src="capture-heure-gagnee.jpg" width="540" height="960" loading="lazy"
+           alt="Wattlas chiffre l'heure gagnée : « Mix autoroute » fait gagner 1 h 01 pour 36,19 € de plus, soit 36 € l'heure gagnée.">
+      <figcaption>Le prix de l'heure gagnée entre le plus rapide et le plus économique. Le choix reste le vôtre.</figcaption>
+    </figure>
+    <figure>
+      <img src="capture-detail.jpg" width="540" height="960" loading="lazy"
+           alt="Détail du trajet : courbe de la batterie le long des 572 km, avec les quatre recharges et leur durée.">
+      <figcaption>La batterie le long du trajet, chaque arrêt avec sa durée, son coût et l'énergie ajoutée.</figcaption>
+    </figure>
   </div>
 
   <h2>Ce qu'il fait</h2>
@@ -128,6 +129,8 @@
     <li><strong>Il annonce ce que ça coûte vraiment</strong> : recharge au tarif du réseau emprunté, péages au centime — les 551 gares françaises sont dans l'appli — et batterie restante à l'arrivée.</li>
     <li><strong>Il compare le prix du péage au temps gagné.</strong> Avec le pack hors ligne, plusieurs itinéraires du tout-autoroute au tout-national, avec leur coût réel — et la réponse à la seule question qui compte : le plus rapide pour le budget qu'on se fixe. En ligne, un itinéraire calculé et détaillé.</li>
     <li><strong>Il calcule sans réseau.</strong> Avec le pack France (optionnel, ~3,3 Go, à télécharger en Wi-Fi depuis les réglages), carte, routage, bornes de recharge et grilles de péage vivent sur le téléphone : le trajet aboutit même sans une barre de signal. Sans le pack, l'appli fonctionne avec une connexion internet.</li>
+    <li><strong>Il compte le temps d'arrêt en entier</strong> : la durée annoncée comprend les recharges et les minutes perdues à se garer, brancher et repartir — les cinq minutes que les estimations optimistes oublient.</li>
+    <li><strong>Une borne en panne en arrivant ?</strong> Un appui l'écarte et recalcule le trajet sans elle.</li>
     <li><strong>Il apprend votre voiture — avec vous.</strong> Après un trajet, vous notez la batterie réellement restante ; l'appli s'en sert pour que la consommation utilisée devienne la vôtre, pas celle du constructeur.</li>
   </ul>
   <p>
@@ -143,6 +146,24 @@
     transite par le serveur de routage, sans être conservé. Avec le pack
     hors ligne, rien ne sort du téléphone.
     <a href="/confidentialite.html">Lire la politique de confidentialité</a>.
+  </p>
+
+  <h2>Sources des données publiques</h2>
+  <p class="sources">
+    Wattlas s'appuie sur des données publiques ouvertes, publiées par l'État :
+  </p>
+  <ul class="sources">
+    <li>Bornes de recharge (base nationale IRVE) : <a href="https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques">transport.data.gouv.fr</a></li>
+    <li>Radars : <a href="https://radars.securite-routiere.gouv.fr/">radars.securite-routiere.gouv.fr</a></li>
+    <li>Événements routiers (réseau national non concédé) : <a href="https://transport.data.gouv.fr/datasets/evenements-routiers-sur-le-reseau-routier-national-non-concede">transport.data.gouv.fr</a></li>
+    <li>Prévisions de trafic : <a href="https://www.bison-fute.gouv.fr/">bison-fute.gouv.fr</a></li>
+    <li>Gares de péage : <a href="https://www.data.gouv.fr/fr/datasets/gares-de-peage-du-reseau-routier-national-concede/">data.gouv.fr</a></li>
+    <li>Adresses (Base Adresse Nationale) : <a href="https://adresse.data.gouv.fr/">adresse.data.gouv.fr</a></li>
+  </ul>
+  <p class="sources">
+    Wattlas est une application indépendante. Elle ne représente aucune
+    administration ni aucun organisme public, et n'est affiliée à aucun
+    d'entre eux.
   </p>
 
   <h2>Contact</h2>

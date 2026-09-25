@@ -47,6 +47,15 @@
   .btn{display:inline-block;background:var(--coral);color:#1A1714;font-weight:600;
        padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
   .btn:hover{filter:brightness(1.05)}
+  .pack{border:2px solid var(--coral);border-radius:16px;padding:20px 22px;margin:30px 0}
+  .pack-eyebrow{color:var(--coral-ink);font-size:13px;font-weight:700;letter-spacing:.08em;
+                text-transform:uppercase;margin:0 0 4px}
+  .pack-title{font-size:22px;margin:0 0 10px;letter-spacing:-.02em}
+  .pack p{font-size:15px}
+  .pack ul{margin:14px 0 14px;font-size:15px}
+  .pack li{margin-bottom:6px}
+  .pack-how{color:var(--muted);font-size:14px;margin-bottom:0}
+  .pack-how strong{color:var(--coral-ink)}
   .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 22px}
   .shots figure{margin:0}
   .shots img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
@@ -84,7 +93,8 @@
   <p class="lede">
     Un planificateur d'itinéraire pour voiture électrique en France,
     gratuit, qui affiche ce qu'un trajet coûte vraiment — recharge
-    <em>et</em> péages — et qui sait le calculer sans réseau.
+    <em>et</em> péages — et qui sait le calculer sans réseau,
+    <a href="#pack">avec le pack France</a>.
   </p>
 
   <a id="test"></a>
@@ -104,6 +114,26 @@
       écrivez à <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>.
       Une note sur le Play Store aide aussi — c'est ce qui décide les
       suivants à l'essayer.
+    </p>
+  </div>
+
+  <div class="pack" id="pack">
+    <p class="pack-eyebrow">Une fois l'appli installée</p>
+    <h2 class="pack-title">Téléchargez le pack France</h2>
+    <p>
+      C'est lui qui fait la différence. Sans lui, Wattlas calcule par
+      internet et ne propose <em>qu'un seul</em> itinéraire — et sur un
+      long trajet, il peut ne rien proposer du tout.
+    </p>
+    <ul>
+      <li>Plusieurs itinéraires comparés, du tout-autoroute au sans péage</li>
+      <li>Le calcul aboutit sans réseau, en montagne comme en zone blanche</li>
+      <li>Bornes et grilles de péage à bord, rien à charger en route</li>
+    </ul>
+    <p class="pack-how">
+      <strong>~3,3 Go, en Wi-Fi.</strong> L'appli vous le propose au premier
+      lancement ; sinon, Réglages → Pack hors-ligne. Le téléchargement
+      reprend là où il s'arrête, et se supprime d'un geste.
     </p>
   </div>
 

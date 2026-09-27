@@ -49,7 +49,7 @@
     },
     {
       "id": "octopus-drive-pack",
-      "nom": "Octopus Drive Pack (49,99 €)",
+      "nom": "Octopus Drive Pack",
       "mensuel": 49.99,
       "prix": {
         "powerdot": 0.0,

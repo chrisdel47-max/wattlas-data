@@ -267,22 +267,13 @@
       "masse": 1190
     },
     {
-      "brand": "Mercedes",
-      "model": "EQA 250",
-      "kwh": 66.5,
-      "base": 15.7,
-      "peak": 100,
-      "alias": "Mercedes-Benz",
-      "masse": 2040
-    },
-    {
-      "brand": "Mercedes",
-      "model": "EQB 300",
-      "kwh": 66.5,
-      "base": 17.4,
-      "peak": 100,
-      "alias": "Mercedes-Benz",
-      "masse": 2180
+      "brand": "MG",
+      "model": "Cyberster",
+      "kwh": 74.4,
+      "base": 17.3,
+      "peak": 144,
+      "alias": "Morris Garages",
+      "masse": 1985
     },
     {
       "brand": "MG",
@@ -304,24 +295,6 @@
     },
     {
       "brand": "MG",
-      "model": "MG5",
-      "kwh": 57.4,
-      "base": 15.6,
-      "peak": 87,
-      "alias": "Morris Garages",
-      "masse": 1620
-    },
-    {
-      "brand": "MG",
-      "model": "ZS EV",
-      "kwh": 68.3,
-      "base": 16.4,
-      "peak": 92,
-      "alias": "Morris Garages",
-      "masse": 1620
-    },
-    {
-      "brand": "MG",
       "model": "MG4 77 kWh",
       "kwh": 74.4,
       "base": 15.3,
@@ -337,6 +310,24 @@
       "peak": 140,
       "alias": "Morris Garages",
       "masse": 1800
+    },
+    {
+      "brand": "MG",
+      "model": "MG5",
+      "kwh": 57.4,
+      "base": 15.6,
+      "peak": 87,
+      "alias": "Morris Garages",
+      "masse": 1620
+    },
+    {
+      "brand": "MG",
+      "model": "Marvel R",
+      "kwh": 70.0,
+      "base": 17.4,
+      "peak": 92,
+      "alias": "Morris Garages",
+      "masse": 1930
     },
     {
       "brand": "MG",
@@ -358,6 +349,15 @@
     },
     {
       "brand": "MG",
+      "model": "ZS EV",
+      "kwh": 68.3,
+      "base": 16.4,
+      "peak": 92,
+      "alias": "Morris Garages",
+      "masse": 1620
+    },
+    {
+      "brand": "MG",
       "model": "ZS EV 51 kWh",
       "kwh": 49.1,
       "base": 15.2,
@@ -366,22 +366,46 @@
       "masse": 1540
     },
     {
-      "brand": "MG",
-      "model": "Marvel R",
-      "kwh": 70.0,
-      "base": 17.4,
-      "peak": 92,
-      "alias": "Morris Garages",
-      "masse": 1930
+      "brand": "Mazda",
+      "model": "6e",
+      "kwh": 68.8,
+      "base": 16.0,
+      "peak": 200,
+      "masse": 1900
     },
     {
-      "brand": "MG",
-      "model": "Cyberster",
-      "kwh": 74.4,
-      "base": 17.3,
-      "peak": 144,
-      "alias": "Morris Garages",
-      "masse": 1985
+      "brand": "Mazda",
+      "model": "6e Long Range",
+      "kwh": 80.0,
+      "base": 16.5,
+      "peak": 90,
+      "masse": 2000
+    },
+    {
+      "brand": "Mazda",
+      "model": "MX-30",
+      "kwh": 30.0,
+      "base": 15.5,
+      "peak": 36,
+      "masse": 1720
+    },
+    {
+      "brand": "Mercedes",
+      "model": "EQA 250",
+      "kwh": 66.5,
+      "base": 15.7,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2040
+    },
+    {
+      "brand": "Mercedes",
+      "model": "EQB 300",
+      "kwh": 66.5,
+      "base": 17.4,
+      "peak": 100,
+      "alias": "Mercedes-Benz",
+      "masse": 2180
     },
     {
       "brand": "Mini",
@@ -409,14 +433,6 @@
     },
     {
       "brand": "Opel",
-      "model": "Corsa-e 50 kWh",
-      "kwh": 46.3,
-      "base": 14.6,
-      "peak": 100,
-      "masse": 1530
-    },
-    {
-      "brand": "Opel",
       "model": "Corsa Electric 54 kWh",
       "kwh": 51.0,
       "base": 14.6,
@@ -425,16 +441,24 @@
     },
     {
       "brand": "Opel",
-      "model": "Mokka-e 50 kWh",
+      "model": "Corsa-e 50 kWh",
       "kwh": 46.3,
+      "base": 14.6,
+      "peak": 100,
+      "masse": 1530
+    },
+    {
+      "brand": "Opel",
+      "model": "Mokka Electric 54 kWh",
+      "kwh": 51.0,
       "base": 15.3,
       "peak": 100,
       "masse": 1600
     },
     {
       "brand": "Opel",
-      "model": "Mokka Electric 54 kWh",
-      "kwh": 51.0,
+      "model": "Mokka-e 50 kWh",
+      "kwh": 46.3,
       "base": 15.3,
       "peak": 100,
       "masse": 1600

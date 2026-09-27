@@ -1,0 +1,40 @@
+{
+  "genere": "2026-09-27",
+  "source": "Grilles « Conditions de chargement » Elli / VW We Charge : Basic au 12/05/2026, Go, Plus et Pro au 03/07/2026. Tarifs FRANCE, TVA incluse, frais de session 0 €. Les promotions temporaires ne sont pas modélisées.",
+  "abonnements": [
+    {
+      "id": "wecharge-basic",
+      "nom": "VW We Charge Free / Basic",
+      "mensuel": 0.0,
+      "prix": {},
+      "note": "Prix de l'opérateur, comme sans badge : la grille publique s'applique."
+    },
+    {
+      "id": "wecharge-go",
+      "nom": "VW We Charge Go",
+      "mensuel": 5.99,
+      "prix": { "ionity": 0.43 },
+      "note": "IONITY à 0,43 €/kWh ; les autres réseaux restent au prix de l'opérateur. Au-delà de 60 min branché, 0,10 €/min entre 6 h et 22 h."
+    },
+    {
+      "id": "wecharge-plus",
+      "nom": "VW We Charge Plus",
+      "mensuel": 11.99,
+      "prix": { "ionity": 0.34 },
+      "note": "IONITY à 0,34 €/kWh ; les autres réseaux restent au prix de l'opérateur. Au-delà de 60 min branché, 0,10 €/min entre 6 h et 22 h."
+    },
+    {
+      "id": "wecharge-pro",
+      "nom": "VW We Charge Pro",
+      "mensuel": 17.99,
+      "defaut": 0.53,
+      "prix": {
+        "ionity": 0.34,
+        "powerdot": 0.39,
+        "power dot": 0.39,
+        "zunder": 0.39
+      },
+      "note": "Tarif unique du badge : 0,53 €/kWh en courant continu sur tous les réseaux, sauf IONITY à 0,34 et les partenaires sélectionnés à 0,39. Au-delà de 90 min branché, 0,15 €/min."
+    }
+  ]
+}

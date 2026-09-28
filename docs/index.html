@@ -117,7 +117,7 @@
       et n'appartient à aucun réseau de recharge.
     </p>
     <p>
-      <a class="btn" href="https://play.google.com/store/apps/details?id=fr.wattlas">
+      <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite">
         Télécharger sur Google Play</a>
     </p>
     <p class="alt">
@@ -225,5 +225,29 @@
   </footer>
 
 </div>
+<script>
+// D'OÙ VIENT LE VISITEUR ? La Play Console range tout ce qui n'est pas
+// Google dans un seul bloc « sites tiers ». On étiquette donc le lien de
+// téléchargement avec la provenance, pour distinguer Facebook du forum ou
+// d'un lien direct. Rien n'est stocké, rien n'est envoyé à un tiers :
+// l'étiquette voyage dans l'URL du Play Store, et nulle part ailleurs.
+(function () {
+  var a = document.getElementById('play');
+  if (!a) return;
+  var sources = [
+    ['facebook', /facebook\.com|fb\.(me|com)|m\.facebook/i],
+    ['snapchat', /snapchat\.com|sc-static/i],
+    ['forum-ap', /automobile-propre\.com/i],
+    ['groupe-google', /groups\.google\./i],
+    ['google', /google\./i]
+  ];
+  var ref = document.referrer || '';
+  var from = 'direct';
+  for (var i = 0; i < sources.length; i++) {
+    if (sources[i][1].test(ref)) { from = sources[i][0]; break; }
+  }
+  a.href = a.href + '%26utm_content%3D' + from;
+})();
+</script>
 </body>
 </html>

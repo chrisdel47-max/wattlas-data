@@ -204,11 +204,35 @@
     },
     {
       "brand": "Hyundai",
-      "model": "Kona 65 kWh",
+      "model": "Kona 65 kWh (2023+)",
       "kwh": 65.4,
-      "base": 15.0,
-      "peak": 102,
+      "base": 13.8,
+      "peak": 105,
       "masse": 1770
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Kona 48 kWh (2023+)",
+      "kwh": 48.4,
+      "base": 13.6,
+      "peak": 75,
+      "masse": 1670
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Kona 64 kWh (2018-2023)",
+      "kwh": 64.0,
+      "base": 13.0,
+      "peak": 77,
+      "masse": 1690
+    },
+    {
+      "brand": "Hyundai",
+      "model": "Kona 39 kWh (2018-2023)",
+      "kwh": 39.2,
+      "base": 12.8,
+      "peak": 44,
+      "masse": 1540
     },
     {
       "brand": "Jeep",

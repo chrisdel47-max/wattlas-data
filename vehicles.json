@@ -301,6 +301,14 @@
     },
     {
       "brand": "MG",
+      "model": "MG4 Urban 54 kWh",
+      "kwh": 52.8,
+      "base": 13.7,
+      "peak": 87,
+      "masse": 1520
+    },
+    {
+      "brand": "MG",
       "model": "MG4 51 kWh",
       "kwh": 50.8,
       "base": 14.6,

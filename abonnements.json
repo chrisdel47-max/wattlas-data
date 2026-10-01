@@ -1,6 +1,6 @@
 {
-  "genere": "2026-09-27",
-  "source": "Grilles « Conditions de chargement » Elli / VW We Charge : Basic au 12/05/2026, Go, Plus et Pro au 03/07/2026. Tarifs FRANCE, TVA incluse, frais de session 0 €. Les promotions temporaires ne sont pas modélisées.",
+  "genere": "2026-10-01",
+  "source": "Grilles « Conditions de chargement » Elli / VW We Charge : Basic au 12/05/2026, Go, Plus et Pro au 03/07/2026. Tarifs FRANCE, TVA incluse, frais de session 0 €. Les promotions temporaires ne sont pas modélisées. Ajout du 01/10/2026 — IONITY Motion et Power (ionity.eu/fr/abonnements), Electra+ Essential et Smart (go-electra.com/fr/electra-plus), Fastned Gold (fastnedcharging.com/fr/tarifs), relevés le 01/10/2026. Electra+ est une REMISE sur un prix variable : le prix inscrit = prix Electra de prices.json (0,52) moins la remise — à recalculer si ce prix change.",
   "abonnements": [
     {
       "id": "wecharge-basic",
@@ -56,6 +56,51 @@
         "power dot": 0.0
       },
       "note": "Recharge illimitée sur le réseau Powerdot via Electroverse, et à domicile en charge pilotée : les arrêts Powerdot sont donc comptés à 0 €. Réservé aux maisons individuelles Enedis avec Linky et véhicule éligible, usage non professionnel."
+    },
+    {
+      "id": "ionity-motion",
+      "nom": "IONITY Motion",
+      "mensuel": 5.99,
+      "prix": {
+        "ionity": 0.39
+      },
+      "note": "IONITY à 0,39 €/kWh au lieu de 0,55 ; les autres réseaux restent au prix de l'opérateur. Sans engagement, résiliable chaque mois."
+    },
+    {
+      "id": "ionity-power",
+      "nom": "IONITY Power",
+      "mensuel": 11.99,
+      "prix": {
+        "ionity": 0.31
+      },
+      "note": "IONITY à 0,31 €/kWh au lieu de 0,55 ; les autres réseaux restent au prix de l'opérateur. Sans engagement, résiliable chaque mois."
+    },
+    {
+      "id": "electra-essential",
+      "nom": "Electra+ Essential",
+      "mensuel": 1.99,
+      "prix": {
+        "electra": 0.42
+      },
+      "note": "0,10 €/kWh de remise sur les stations Electra. Le prix Electra varie selon l'heure et l'affluence (0,39 à 0,61 €) : Wattlas compte un prix moyen, 0,42 € avec la remise. Sans engagement."
+    },
+    {
+      "id": "electra-smart",
+      "nom": "Electra+ Smart",
+      "mensuel": 4.99,
+      "prix": {
+        "electra": 0.32
+      },
+      "note": "0,20 €/kWh de remise sur les stations Electra. Le prix Electra varie selon l'heure et l'affluence (0,39 à 0,61 €) : Wattlas compte un prix moyen, 0,32 € avec la remise — moins la nuit, plus aux heures de pointe. Sans engagement."
+    },
+    {
+      "id": "fastned-gold",
+      "nom": "Fastned Gold",
+      "mensuel": 11.99,
+      "prix": {
+        "fastned": 0.43
+      },
+      "note": "Fastned à 0,43 €/kWh au lieu de 0,61 (30 % de remise) ; les autres réseaux restent au prix de l'opérateur. Sans engagement."
     }
   ]
 }

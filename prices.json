@@ -1,13 +1,13 @@
 {
-  "generated": "2026-07-19",
+  "generated": "2026-10-01",
   "source": "Barèmes publics €/kWh DC sans abonnement, curation manuelle Wattrip (mise à jour : éditer ce fichier, git push). Clés = sous-chaînes minuscules du champ opérateur IRVE.",
   "fallback": 0.50,
   "prices": {
-    "ionity": 0.59,
-    "fastned": 0.59,
+    "ionity": 0.55,
+    "fastned": 0.61,
     "tesla": 0.45,
     "electra": 0.52,
-    "totalenergies": 0.52,
+    "totalenergies": 0.65,
     "allego": 0.59,
     "power dot": 0.44,
     "izivia": 0.47,

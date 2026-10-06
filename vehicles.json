@@ -244,6 +244,14 @@
     },
     {
       "brand": "Kia",
+      "model": "EV2 61 kWh",
+      "kwh": 58.0,
+      "base": 14.5,
+      "peak": 115,
+      "masse": 1625
+    },
+    {
+      "brand": "Kia",
       "model": "EV3 81 kWh",
       "kwh": 81.4,
       "base": 14.8,

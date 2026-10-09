@@ -19,12 +19,14 @@
 <meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
-    --ink:#1A1714;--coral:#EE7259;--coral-ink:#BF4A34;--cream:#F3EFE9;
-    --bg:#FCFBF9;--s2:#F1EDE7;--line:#DAD4CB;--muted:#6B645E;--text:#1A1714;
+    /* Palette « Électrique » (09/10/2026). Les variables gardent leur nom
+       d'origine : --coral est désormais le BLEU d'action #2F5BFF. */
+    --ink:#0E1116;--coral:#2F5BFF;--coral-ink:#1F45D9;--cream:#F6F7F9;
+    --bg:#FFFFFF;--s2:#EEF1F6;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   }
   @media (prefers-color-scheme:dark){:root{
-    --bg:#141210;--s2:#262220;--line:#3D3733;--muted:#A69D95;--text:#F3EFE9;--coral-ink:#FF8E74;}}
+    --bg:#0E1116;--s2:#1A1F29;--line:#2C3442;--muted:#9AA3B2;--text:#F6F7F9;--coral-ink:#8FA9FF;}}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
        -webkit-font-smoothing:antialiased}
@@ -44,7 +46,7 @@
   .soon p{margin:0;font-size:15px}
   .soon p+p{margin-top:10px}
   .soon .alt{color:var(--muted);font-size:13.5px;margin-top:10px}
-  .btn{display:inline-block;background:var(--coral);color:#1A1714;font-weight:600;
+  .btn{display:inline-block;background:var(--coral);color:#FFFFFF;font-weight:600;
        padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
   .btn:hover{filter:brightness(1.05)}
   .pack{border:2px solid var(--coral);border-radius:16px;padding:20px 22px;margin:30px 0}
@@ -73,16 +75,13 @@
 
   <div class="mark">
     <svg width="64" height="64" viewBox="0 0 108 108" aria-label="Wattlas">
-      <rect width="108" height="108" rx="24" fill="#1A1714"/>
-      <g stroke="#F3EFE9" stroke-width="1.7" fill="none" opacity=".22">
+      <rect width="108" height="108" rx="24" fill="#2F5BFF"/>
+      <g stroke="#FFFFFF" stroke-width="1.7" fill="none" opacity=".34">
         <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
         <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
         <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
       </g>
-      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#EE7259"/>
-      <g stroke="#1A1714" stroke-width="2.6" stroke-linecap="round" opacity=".85">
-        <path d="M54.61 35.02l-3.34 5.17M48.83 44.89l-3.34 5.17M58.55 62.35l-3.34 5.17M52.79 72.23l-3.34 5.17"/>
-      </g>
+      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#FFFFFF"/>
     </svg>
     <div>
       <h1>Wattlas</h1>

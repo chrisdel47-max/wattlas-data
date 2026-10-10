@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-01",
-  "source": "Barèmes publics €/kWh DC sans abonnement, curation manuelle Wattrip (mise à jour : éditer ce fichier, git push). Clés = sous-chaînes minuscules du champ opérateur IRVE.",
+  "generated": "2026-10-10",
+  "source": "Barèmes publics €/kWh DC sans abonnement, curation manuelle Wattrip (mise à jour : éditer ce fichier, git push). Clés = sous-chaînes minuscules du champ opérateur IRVE. Une clé en plusieurs mots (« izivia fast ») est aussi cherchée dans le NOM de la station, à partir de l'appli 0.4.7 : Izivia Fast (McDonald's) = 0,30 à 0,35 €/kWh selon l'heure, 0,35 retenu, relevé le 10/10/2026.",
   "fallback": 0.50,
   "prices": {
     "ionity": 0.55,
@@ -10,6 +10,7 @@
     "totalenergies": 0.65,
     "allego": 0.59,
     "power dot": 0.44,
+    "izivia fast": 0.35,
     "izivia": 0.47,
     "lidl": 0.39,
     "leclerc": 0.35,

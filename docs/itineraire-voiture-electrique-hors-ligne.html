@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Itinéraire voiture électrique hors ligne, sans réseau</title>
+<meta name="description" content="Calculer un itinéraire en voiture électrique sans réseau mobile : le pack France de Wattlas (~3,5 Go) met carte, bornes et péages sur le téléphone.">
+<link rel="canonical" href="https://wattlas.fr/itineraire-voiture-electrique-hors-ligne.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wattlas.fr/itineraire-voiture-electrique-hors-ligne.html">
+<meta property="og:site_name" content="Wattlas">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Itinéraire voiture électrique hors ligne, sans réseau">
+<meta property="og:description" content="Calculer un itinéraire en voiture électrique sans réseau mobile : le pack France de Wattlas (~3,5 Go) met carte, bornes et péages sur le téléphone.">
+<meta property="og:image" content="https://wattlas.fr/og-facture.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quelle est la taille du pack hors ligne de Wattlas ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Environ 3,5 Go pour la France. Il se télécharge depuis les réglages, de préférence en Wi-Fi, et peut être installé sur une carte SD."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wattlas fonctionne-t-il sans le pack hors ligne ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, avec une connexion internet. Il calcule alors un seul itinéraire, et peut ne rien proposer sur un long trajet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le pack hors ligne envoie-t-il mes trajets quelque part ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Avec le pack, le calcul se fait sur le téléphone et rien n'en sort. Sans compte, sans publicité."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#0E1116;--coral:#2F5BFF;--coral-ink:#1F45D9;--cream:#F6F7F9;
+    --bg:#FFFFFF;--s2:#EEF1F6;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0E1116;--s2:#1A1F29;--line:#2C3442;--muted:#9AA3B2;--text:#F6F7F9;--coral-ink:#8FA9FF;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 22px 80px}
+  .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
+        font-weight:700;letter-spacing:-.01em;margin-bottom:34px}
+  .home svg{flex:none}
+  h1{font-size:clamp(28px,6vw,38px);letter-spacing:-.03em;line-height:1.12;margin:0 0 18px}
+  .lede{font-size:19px;margin:0 0 24px;max-width:56ch}
+  h2{font-size:19px;letter-spacing:-.01em;margin:34px 0 8px}
+  h3{font-size:16px;margin:22px 0 4px}
+  p{margin:0 0 14px}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:9px}
+  li::marker{color:var(--coral-ink)}
+  strong{color:var(--coral-ink)}
+  .soon{background:var(--s2);border-radius:16px;padding:18px 20px;margin:30px 0}
+  .soon p{margin:0;font-size:15px}
+  .soon p+p{margin-top:10px}
+  .btn{display:inline-block;background:var(--coral);color:#FFFFFF;font-weight:600;
+       padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
+  .btn:hover{filter:brightness(1.05)}
+  .calc{border:2px solid var(--coral);border-radius:16px;padding:16px 20px;margin:24px 0}
+  .calc table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  .calc td{padding:6px 0;border-bottom:1px solid var(--line)}
+  .calc td+td{text-align:right;font-weight:600}
+  .calc tr:last-child td{border-bottom:0;padding-top:10px}
+  .calc tr.total td{font-size:18px;color:var(--coral-ink)}
+  .calc .src{color:var(--muted);font-size:13px;margin:10px 0 0}
+  .shot{margin:26px auto;max-width:300px}
+  .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
+  .shot figcaption{color:var(--muted);font-size:13px;line-height:1.45;margin-top:8px}
+  .faq h3{margin-top:20px}
+  .see{font-size:15px}
+  footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13.5px}
+  a{color:var(--coral-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home" href="/">
+    <svg width="36" height="36" viewBox="0 0 108 108" aria-hidden="true">
+      <rect width="108" height="108" rx="24" fill="#2F5BFF"/>
+      <g stroke="#FFFFFF" stroke-width="1.7" fill="none" opacity=".34">
+        <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
+        <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
+        <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
+      </g>
+      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#FFFFFF"/>
+    </svg>
+    Wattlas
+  </a>
+
+  <h1>Planifier un trajet électrique sans réseau mobile</h1>
+
+  <p class="lede">
+    En montagne, en zone blanche ou simplement pour préparer un trajet sans
+    consommer de données : Wattlas calcule l'itinéraire sur le téléphone, sans
+    une barre de réseau.
+  </p>
+
+  <h2>Le pack France</h2>
+  <p>
+    Le pack contient tout ce qu'il faut pour calculer : la carte, le routage,
+    les bornes de recharge et les grilles de péage. Rien n'est chargé en route.
+  </p>
+  <ul>
+    <li><strong>Taille :</strong> environ 3,5 Go.</li>
+    <li><strong>Où le trouver :</strong> l'appli le propose au premier lancement ; sinon, Réglages → Pack hors-ligne.</li>
+    <li><strong>Comment le télécharger :</strong> en Wi-Fi de préférence. Le téléchargement reprend là où il s'arrête.</li>
+    <li><strong>Carte SD :</strong> au téléchargement, Wattlas propose l'emplacement où les 3,5 Go tiennent, carte SD comprise.</li>
+    <li><strong>Mise en route :</strong> une fois téléchargé, le pack est actif tout de suite, sans relancer l'appli.</li>
+    <li><strong>Suppression :</strong> d'un geste, depuis les réglages.</li>
+  </ul>
+
+  <h2>Avec le pack, sans le pack</h2>
+  <h3>Avec le pack</h3>
+  <p>
+    Le calcul aboutit sans réseau. Wattlas compare plusieurs itinéraires, du
+    tout-autoroute au sans péage, avec leur coût réel. Rien ne sort du
+    téléphone.
+  </p>
+  <h3>Sans le pack</h3>
+  <p>
+    Wattlas calcule par internet et propose un seul itinéraire. Le trajet
+    transite par le serveur de routage, sans y être conservé. Sur un long
+    trajet, le calcul en ligne peut ne rien proposer du tout : c'est la
+    principale raison de télécharger le pack.
+  </p>
+
+  <h2>Et pour le guidage</h2>
+  <p>
+    Une fois l'itinéraire choisi, un appui l'envoie à Google Maps, avec la
+    destination et les arrêts de recharge, pour le guidage pendant la conduite,
+    y compris sur l'écran de la voiture.
+  </p>
+
+  <h2>À savoir</h2>
+  <p>
+    Les bornes viennent de la base nationale des IRVE, mise à jour
+    périodiquement. Leur disponibilité n'est pas connue en direct, hors ligne
+    comme en ligne.
+  </p>
+
+  <div class="soon">
+    <p><strong>Wattlas est sur Google Play.</strong> Android, France. Gratuit,
+      sans compte, sans publicité, sans achat intégré.</p>
+    <p><a class="btn" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Ditineraire-voiture-electrique-hors-ligne">Télécharger sur Google Play</a></p>
+  </div>
+
+  <section class="faq">
+  <h2>Questions fréquentes</h2>
+  <h3>Quelle est la taille du pack hors ligne de Wattlas ?</h3>
+  <p>Environ 3,5 Go pour la France. Il se télécharge depuis les réglages, de préférence en Wi-Fi, et peut être installé sur une carte SD.</p>
+  <h3>Wattlas fonctionne-t-il sans le pack hors ligne ?</h3>
+  <p>Oui, avec une connexion internet. Il calcule alors un seul itinéraire, et peut ne rien proposer sur un long trajet.</p>
+  <h3>Le pack hors ligne envoie-t-il mes trajets quelque part ?</h3>
+  <p>Non. Avec le pack, le calcul se fait sur le téléphone et rien n'en sort. Sans compte, sans publicité.</p>
+  </section>
+
+  <h2>Voir aussi</h2>
+  <ul class="see">
+    <li><a href="/cout-trajet-voiture-electrique.html">Combien coûte vraiment un trajet en voiture électrique ?</a></li>
+    <li><a href="/peage-voiture-electrique.html">Péage en voiture électrique : autoroute ou nationale ?</a></li>
+    <li><a href="/recharger-pendant-ses-courses.html">Recharger pendant ses courses : est-ce assez pour rentrer ?</a></li>
+    <li><a href="/">Wattlas, la page d'accueil</a></li>
+  </ul>
+
+  <footer>
+    Données cartographiques © les contributeurs OpenStreetMap (ODbL).
+    Bornes de recharge : Base nationale des IRVE, data.gouv.fr (Licence Ouverte).
+    Tarifs de péage : OpenTollData (ODbL) et grilles officielles des sociétés
+    d'autoroute. Météo : Open-Meteo (CC-BY 4.0).<br>
+    Wattlas est une application indépendante, affiliée à aucun réseau de recharge
+    ni à aucun organisme public. <a href="/confidentialite.html">Confidentialité</a>
+    · <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>
+  </footer>
+
+</div>
+</body>
+</html>

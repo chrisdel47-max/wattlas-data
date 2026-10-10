@@ -29,3 +29,7 @@ contact@wattlas.fr
 - Google Play : https://play.google.com/store/apps/details?id=fr.wattlas
 - Confidentialité : https://wattlas.fr/confidentialite.html
 - Facebook : https://www.facebook.com/wattlas.fr
+- Coût d'un trajet en voiture électrique : https://wattlas.fr/cout-trajet-voiture-electrique.html
+- Péage en voiture électrique : https://wattlas.fr/peage-voiture-electrique.html
+- Itinéraire hors ligne, sans réseau : https://wattlas.fr/itineraire-voiture-electrique-hors-ligne.html
+- Recharger pendant ses courses : https://wattlas.fr/recharger-pendant-ses-courses.html

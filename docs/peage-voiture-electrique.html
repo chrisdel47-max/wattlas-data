@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Péage en voiture électrique : autoroute ou nationale ?</title>
+<meta name="description" content="Comparer autoroute, mixte et sans péage en voiture électrique, avec le prix de l&#x27;heure gagnée. Bordeaux–Dijon : 1 h de moins pour 36 € de plus.">
+<link rel="canonical" href="https://wattlas.fr/peage-voiture-electrique.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wattlas.fr/peage-voiture-electrique.html">
+<meta property="og:site_name" content="Wattlas">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Péage en voiture électrique : autoroute ou nationale ?">
+<meta property="og:description" content="Comparer autoroute, mixte et sans péage en voiture électrique, avec le prix de l&#x27;heure gagnée. Bordeaux–Dijon : 1 h de moins pour 36 € de plus.">
+<meta property="og:image" content="https://wattlas.fr/og-facture.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wattlas affiche-t-il le montant du péage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, au centime. Les grilles des 551 gares de péage françaises sont dans l'appli, et le montant s'affiche pour chaque itinéraire."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Peut-on calculer un trajet électrique sans péage ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Avec le pack hors ligne, Wattlas propose plusieurs itinéraires du tout-autoroute au sans péage, chacun avec son temps, son péage et sa recharge."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment savoir si l'autoroute vaut le coût ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wattlas calcule le prix de l'heure gagnée. Sur un Bordeaux–Dijon, l'autoroute fait gagner 1 h pour 36 € de plus."
+      }
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --ink:#0E1116;--coral:#2F5BFF;--coral-ink:#1F45D9;--cream:#F6F7F9;
+    --bg:#FFFFFF;--s2:#EEF1F6;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0E1116;--s2:#1A1F29;--line:#2C3442;--muted:#9AA3B2;--text:#F6F7F9;--coral-ink:#8FA9FF;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:680px;margin:0 auto;padding:40px 22px 80px}
+  .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
+        font-weight:700;letter-spacing:-.01em;margin-bottom:34px}
+  .home svg{flex:none}
+  h1{font-size:clamp(28px,6vw,38px);letter-spacing:-.03em;line-height:1.12;margin:0 0 18px}
+  .lede{font-size:19px;margin:0 0 24px;max-width:56ch}
+  h2{font-size:19px;letter-spacing:-.01em;margin:34px 0 8px}
+  h3{font-size:16px;margin:22px 0 4px}
+  p{margin:0 0 14px}
+  ul{margin:0 0 20px;padding-left:22px}
+  li{margin-bottom:9px}
+  li::marker{color:var(--coral-ink)}
+  strong{color:var(--coral-ink)}
+  .soon{background:var(--s2);border-radius:16px;padding:18px 20px;margin:30px 0}
+  .soon p{margin:0;font-size:15px}
+  .soon p+p{margin-top:10px}
+  .btn{display:inline-block;background:var(--coral);color:#FFFFFF;font-weight:600;
+       padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
+  .btn:hover{filter:brightness(1.05)}
+  .calc{border:2px solid var(--coral);border-radius:16px;padding:16px 20px;margin:24px 0}
+  .calc table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  .calc td{padding:6px 0;border-bottom:1px solid var(--line)}
+  .calc td+td{text-align:right;font-weight:600}
+  .calc tr:last-child td{border-bottom:0;padding-top:10px}
+  .calc tr.total td{font-size:18px;color:var(--coral-ink)}
+  .calc .src{color:var(--muted);font-size:13px;margin:10px 0 0}
+  .shot{margin:26px auto;max-width:300px}
+  .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
+  .shot figcaption{color:var(--muted);font-size:13px;line-height:1.45;margin-top:8px}
+  .faq h3{margin-top:20px}
+  .see{font-size:15px}
+  footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
+         color:var(--muted);font-size:13.5px}
+  a{color:var(--coral-ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home" href="/">
+    <svg width="36" height="36" viewBox="0 0 108 108" aria-hidden="true">
+      <rect width="108" height="108" rx="24" fill="#2F5BFF"/>
+      <g stroke="#FFFFFF" stroke-width="1.7" fill="none" opacity=".34">
+        <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
+        <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
+        <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
+      </g>
+      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#FFFFFF"/>
+    </svg>
+    Wattlas
+  </a>
+
+  <h1>Péage en voiture électrique : autoroute ou nationale ?</h1>
+
+  <p class="lede">
+    Sur un long trajet en électrique, l'autoroute fait gagner du temps et coûte
+    du péage. La vraie question est le prix de chaque heure gagnée.
+  </p>
+  <p>
+    Sur un Bordeaux–Dijon, Wattlas chiffre près de <strong>28 €</strong> de
+    péage. Il calcule aussi ce que coûte l'heure gagnée à prendre l'autoroute :
+    sur ce trajet, <strong>1 h de moins pour 36 € de plus</strong>. Le choix
+    reste le vôtre, mais vous le faites avec un chiffre.
+  </p>
+
+  <h2>Plusieurs itinéraires, chacun avec son prix</h2>
+  <p>
+    Pour la même destination, Wattlas propose plusieurs itinéraires selon la
+    part de routes à péage : tout autoroute, mixte, sans péage. Chacun affiche
+    son temps de trajet, son péage, sa recharge et la batterie restante à
+    l'arrivée.
+  </p>
+
+  <figure class="shot">
+    <img src="capture-itineraires.jpg" width="540" height="960" loading="lazy"
+         alt="Écran de Wattlas : itinéraires comparés du Lot-et-Garonne à Dijon — autoroute 7 h 48 pour 95,77 €, mix autoroute 8 h 02 pour 73,94 €, péage et recharge détaillés.">
+    <figcaption>Lot-et-Garonne–Dijon : l'itinéraire mixte prend 14 minutes de plus et coûte 21,83 € de moins que le tout-autoroute.</figcaption>
+  </figure>
+
+  <div class="calc">
+    <table>
+      <tr><td>Tout autoroute</td><td>7 h 48 · 95,77 €</td></tr>
+      <tr><td>Mix autoroute</td><td>8 h 02 · 73,94 €</td></tr>
+      <tr class="total"><td>Écart</td><td>14 min · 21,83 €</td></tr>
+    </table>
+    <p class="src">Lot-et-Garonne–Dijon, calcul Wattlas, recharge et péage compris.</p>
+  </div>
+
+  <h2>Le plus rapide pour le budget qu'on se fixe</h2>
+  <p>
+    Comparer les itinéraires répond à une question simple : quel est le trajet
+    le plus rapide sans dépasser le budget prévu ? Si 14 minutes valent
+    21,83 € pour vous, l'autoroute est le bon choix. Sinon, l'itinéraire mixte
+    l'est.
+  </p>
+
+  <h2>Avec ou sans le pack hors ligne</h2>
+  <p>
+    La comparaison de plusieurs itinéraires demande le pack France, à
+    télécharger une fois en Wi-Fi. Sans lui, Wattlas calcule par internet un
+    seul itinéraire, détaillé avec son péage et sa recharge. Tout est expliqué
+    sur la page <a href="/itineraire-voiture-electrique-hors-ligne.html">trajet
+    électrique sans réseau</a>.
+  </p>
+
+  <div class="soon">
+    <p><strong>Wattlas est sur Google Play.</strong> Android, France. Gratuit,
+      sans compte, sans publicité, sans achat intégré.</p>
+    <p><a class="btn" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dpeage-voiture-electrique">Télécharger sur Google Play</a></p>
+  </div>
+
+  <section class="faq">
+  <h2>Questions fréquentes</h2>
+  <h3>Wattlas affiche-t-il le montant du péage ?</h3>
+  <p>Oui, au centime. Les grilles des 551 gares de péage françaises sont dans l'appli, et le montant s'affiche pour chaque itinéraire.</p>
+  <h3>Peut-on calculer un trajet électrique sans péage ?</h3>
+  <p>Oui. Avec le pack hors ligne, Wattlas propose plusieurs itinéraires du tout-autoroute au sans péage, chacun avec son temps, son péage et sa recharge.</p>
+  <h3>Comment savoir si l'autoroute vaut le coût ?</h3>
+  <p>Wattlas calcule le prix de l'heure gagnée. Sur un Bordeaux–Dijon, l'autoroute fait gagner 1 h pour 36 € de plus.</p>
+  </section>
+
+  <h2>Voir aussi</h2>
+  <ul class="see">
+    <li><a href="/cout-trajet-voiture-electrique.html">Combien coûte vraiment un trajet en voiture électrique ?</a></li>
+    <li><a href="/itineraire-voiture-electrique-hors-ligne.html">Planifier un trajet électrique sans réseau mobile</a></li>
+    <li><a href="/recharger-pendant-ses-courses.html">Recharger pendant ses courses : est-ce assez pour rentrer ?</a></li>
+    <li><a href="/">Wattlas, la page d'accueil</a></li>
+  </ul>
+
+  <footer>
+    Données cartographiques © les contributeurs OpenStreetMap (ODbL).
+    Bornes de recharge : Base nationale des IRVE, data.gouv.fr (Licence Ouverte).
+    Tarifs de péage : OpenTollData (ODbL) et grilles officielles des sociétés
+    d'autoroute. Météo : Open-Meteo (CC-BY 4.0).<br>
+    Wattlas est une application indépendante, affiliée à aucun réseau de recharge
+    ni à aucun organisme public. <a href="/confidentialite.html">Confidentialité</a>
+    · <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>
+  </footer>
+
+</div>
+</body>
+</html>

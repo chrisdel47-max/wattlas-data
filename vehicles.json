@@ -164,6 +164,14 @@
     },
     {
       "brand": "Ford",
+      "model": "Puma Gen-E",
+      "kwh": 43.6,
+      "base": 13.5,
+      "peak": 100,
+      "masse": 1563
+    },
+    {
+      "brand": "Ford",
       "model": "Mustang Mach-E ER",
       "kwh": 91.0,
       "base": 17.4,

@@ -1,0 +1,31 @@
+# Wattlas
+
+> Application Android gratuite de planification d'itinéraire pour voiture électrique en France. Elle chiffre le coût réel d'un trajet (recharge et péages au centime), compare plusieurs itinéraires et calcule sans réseau avec un pack hors ligne.
+
+## Ce que fait Wattlas
+- Coût réel du trajet : recharge au tarif du réseau emprunté, péages (551 gares de péage françaises), batterie restante à l'arrivée.
+- Plusieurs itinéraires par destination, du tout-autoroute au sans péage, avec le prix du temps gagné sur l'autoroute.
+- Calcul hors ligne avec le pack France (environ 3,5 Go, à télécharger en Wi-Fi). Sans le pack, un seul itinéraire est calculé par internet.
+- « J'y reste » : les bornes à pied d'un lieu, la batterie récupérée pendant une durée donnée, et si c'est assez pour rentrer.
+- Pause déjeuner : l'arrêt de recharge du midi devient la pause repas.
+- Borne en panne : un appui l'écarte et recalcule le trajet.
+- Consommation réelle : après un trajet, l'utilisateur note la batterie restante et l'appli ajuste ses prévisions pour sa voiture.
+
+## Ce que Wattlas ne fait pas encore
+- La disponibilité des bornes n'est pas remontée en direct.
+- Les tarifs de recharge sont estimés par réseau, pas relevés borne par borne.
+
+## Disponibilité
+Android uniquement, France. Gratuit, sans compte, sans publicité, sans achat intégré. Indépendant de tout réseau de recharge.
+
+## Sources de données
+Bornes : base nationale IRVE (data.gouv.fr). Péages : OpenTollData et grilles officielles des sociétés d'autoroute. Cartes : OpenStreetMap. Radars, événements routiers et prévisions de trafic : données publiques de l'État.
+
+## Contact
+contact@wattlas.fr
+
+## Pages
+- Accueil : https://wattlas.fr/
+- Google Play : https://play.google.com/store/apps/details?id=fr.wattlas
+- Confidentialité : https://wattlas.fr/confidentialite.html
+- Facebook : https://www.facebook.com/wattlas.fr

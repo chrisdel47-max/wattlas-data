@@ -36,222 +36,228 @@
 </script>
 <style>
   :root{
-    /* Palette « Électrique » (09/10/2026). Les variables gardent leur nom
-       d'origine : --coral est désormais le BLEU d'action #2F5BFF. */
-    --ink:#0E1116;--coral:#2F5BFF;--coral-ink:#1F45D9;--cream:#F6F7F9;
-    --bg:#FFFFFF;--s2:#EEF1F6;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;
+    --blue:#2F5BFF;--blue-d:#1F45D9;--violet:#7B5CFF;--cyan:#16C7D9;--green:#18B26B;--amber:#F59E0B;
+    --bg:#FFFFFF;--s1:#F4F6FB;--s2:#E9EEF8;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;--card:#FFFFFF;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   }
   @media (prefers-color-scheme:dark){:root{
-    --bg:#0E1116;--s2:#1A1F29;--line:#2C3442;--muted:#9AA3B2;--text:#F6F7F9;--coral-ink:#8FA9FF;}}
+    --bg:#0B0E14;--s1:#121722;--s2:#1A2130;--line:#2C3442;--muted:#9AA3B2;--text:#F3F5F9;--card:#151B27;}}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
-       -webkit-font-smoothing:antialiased}
-  .wrap{max-width:680px;margin:0 auto;padding:64px 22px 80px}
-  .mark{display:flex;align-items:center;gap:16px;margin-bottom:34px}
-  .mark svg{flex:none}
-  h1{font-size:clamp(30px,7vw,44px);letter-spacing:-.03em;line-height:1;margin:0}
-  .tag{color:var(--muted);font-size:15px;margin:6px 0 0}
-  .lede{font-size:19px;margin:0 0 24px;max-width:56ch}
-  h2{font-size:17px;letter-spacing:-.01em;margin:30px 0 6px}
-  p{margin:0 0 14px}
-  ul{margin:0 0 20px;padding-left:22px}
-  li{margin-bottom:9px}
-  li::marker{color:var(--coral-ink)}
-  strong{color:var(--coral-ink)}
-  .soon{background:var(--s2);border-radius:16px;padding:18px 20px;margin:28px 0}
-  .soon p{margin:0;font-size:15px}
-  .soon p+p{margin-top:10px}
-  .soon .alt{color:var(--muted);font-size:13.5px;margin-top:10px}
-  .btn{display:inline-block;background:var(--coral);color:#FFFFFF;font-weight:600;
-       padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
-  .btn:hover{filter:brightness(1.05)}
-  .pack{border:2px solid var(--coral);border-radius:16px;padding:20px 22px;margin:30px 0}
-  .pack-eyebrow{color:var(--coral-ink);font-size:13px;font-weight:700;letter-spacing:.08em;
-                text-transform:uppercase;margin:0 0 4px}
-  .pack-title{font-size:22px;margin:0 0 10px;letter-spacing:-.02em}
-  .pack p{font-size:15px}
-  .pack ul{margin:14px 0 14px;font-size:15px}
-  .pack li{margin-bottom:6px}
-  .pack-how{color:var(--muted);font-size:14px;margin-bottom:0}
-  .pack-how strong{color:var(--coral-ink)}
-  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0 22px}
-  .shots figure{margin:0}
-  .shots img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
-  .shots figcaption{color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:8px}
-  @media (max-width:520px){.shots{grid-template-columns:1fr;gap:22px;max-width:320px;margin-inline:auto}}
-  .sources{font-size:14px}
-  .sources li{margin-bottom:6px;word-break:break-word}
-  footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
-         color:var(--muted);font-size:13.5px}
-  a{color:var(--coral-ink)}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .in{max-width:1100px;margin:0 auto;padding:0 16px}
+  section{padding:60px 0}
+  h2{font-size:clamp(26px,4.2vw,38px);letter-spacing:-.025em;line-height:1.12;margin:0 0 10px}
+  .sub{color:var(--muted);margin:0 0 30px;font-size:17.5px;max-width:62ch}
+
+  /* Bandeau */
+  .hero{background:linear-gradient(135deg,#1F45D9 0%,#2F5BFF 40%,#7B5CFF 78%,#16C7D9 125%);color:#fff;padding:22px 0 70px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;
+               background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);pointer-events:none}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:48px;flex-wrap:wrap;position:relative;z-index:1}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none}
+  .nav{display:flex;gap:18px;font-size:15px;font-weight:600;opacity:.92}
+  .nav a{text-decoration:none}
+  .hgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center;position:relative;z-index:1}
+  .hero h1{font-size:clamp(34px,6.4vw,64px);line-height:1.02;letter-spacing:-.035em;margin:0 0 18px}
+  .hero .lede{font-size:clamp(17px,2.3vw,21px);opacity:.93;margin:0 0 28px;max-width:44ch}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--blue-d);font-weight:800;
+       padding:15px 24px;border-radius:14px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+  .trust{margin-top:16px;font-size:14px;opacity:.9}
+  .phone{justify-self:center;width:min(300px,100%);border-radius:30px;padding:9px;background:rgba(255,255,255,.18);
+         border:1px solid rgba(255,255,255,.35);box-shadow:0 30px 60px rgba(10,20,60,.35)}
+  .phone img{display:block;width:100%;height:auto;border-radius:22px}
+
+  /* Facture */
+  .bill{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+  .tile{border-radius:22px;padding:22px;background:var(--s1);border:1px solid var(--line)}
+  .tile .k{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .tile .v{font-size:clamp(34px,5vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:8px 0 4px}
+  .tile .d{font-size:14.5px;color:var(--muted)}
+  .tile.charge .v{color:var(--blue)} .tile.toll .v{color:var(--amber)}
+  .tile.total{background:linear-gradient(135deg,var(--blue),var(--violet));color:#fff;border:0}
+  .tile.total .k,.tile.total .d{color:rgba(255,255,255,.88)}
+  .others{margin-top:16px;font-size:15px;color:var(--muted)}
+
+  /* Fonctions */
+  .feats{background:var(--s1)}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .f{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px}
+  .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;margin-bottom:14px;color:#fff}
+  .f h3{font-size:18px;margin:0 0 6px;letter-spacing:-.01em}
+  .f p{margin:0;color:var(--muted);font-size:15px}
+  .limit{margin-top:18px;font-size:14px;color:var(--muted)}
+
+  /* Captures */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .shot{margin:0;text-align:center}
+  .shot img{width:100%;max-width:280px;height:auto;border-radius:24px;border:1px solid var(--line);box-shadow:0 18px 40px rgba(14,17,22,.12)}
+  .shot figcaption{margin-top:12px;font-size:14.5px;color:var(--muted);max-width:280px;margin-inline:auto}
+  .shot figcaption b{color:var(--text);display:block;font-size:16px;margin-bottom:2px}
+
+  /* Pack */
+  .pack{background:linear-gradient(160deg,#0E2A5C,#1B3F8F 55%,#3A5BD9);color:#fff}
+  .pack .sub{color:rgba(255,255,255,.86)}
+  .pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:18px}
+  .pcard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:20px}
+  .pcard b{display:block;font-size:18px;margin-bottom:4px}
+  .pcard span{opacity:.86;font-size:15px}
+  .how{font-size:15px;opacity:.9}
+
+  /* Articles */
+  .reads{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .read{display:block;text-decoration:none;border-radius:20px;padding:20px;background:var(--s1);border:1px solid var(--line)}
+  .read small{display:block;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+  .read span{font-weight:700;font-size:16.5px;line-height:1.35}
+  .read:hover{border-color:var(--blue)}
+
+  /* Téléchargement */
+  .dl{background:linear-gradient(135deg,var(--violet),var(--blue));color:#fff;border-radius:28px;padding:36px 30px;
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px}
+  .dl h2{color:#fff;margin:0 0 8px}
+  .dl p{margin:0;opacity:.93;max-width:56ch}
+
+  .small{font-size:14.5px;color:var(--muted)}
+  .small a,.legal a{color:var(--blue)}
+  .legal{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+  .legal h3{font-size:17px;margin:0 0 8px}
+  .legal ul{margin:0;padding-left:18px;font-size:14px;color:var(--muted)}
+  .legal li{margin-bottom:5px;word-break:break-word}
+  footer{padding:28px 0 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  @media (max-width:760px){.hgrid{grid-template-columns:1fr}.phone{width:min(260px,80%)}.nav{display:none}
+    .shots{grid-template-columns:1fr;gap:34px}}
+  @media (max-width:520px){section{padding:44px 0}.hero{padding-bottom:50px}.top{margin-bottom:32px}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="mark">
-    <svg width="64" height="64" viewBox="0 0 108 108" aria-label="Wattlas">
-      <rect width="108" height="108" rx="24" fill="#2F5BFF"/>
-      <g stroke="#FFFFFF" stroke-width="1.7" fill="none" opacity=".34">
-        <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
-        <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
-        <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
-      </g>
-      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#FFFFFF"/>
-    </svg>
-    <div>
-      <h1>Wattlas</h1>
-      <p class="tag">Itinéraires électriques, même hors ligne</p>
+<header class="hero">
+  <div class="in">
+    <div class="top">
+      <a class="brand" href="/">
+        <svg width="38" height="38" viewBox="0 0 108 108" aria-label="Wattlas"><rect width="108" height="108" rx="24" fill="#FFFFFF"/><path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#2F5BFF"/></svg>
+        Wattlas
+      </a>
+      <nav class="nav"><a href="#facture">Le vrai prix</a><a href="#fonctions">Fonctions</a><a href="#pack">Hors ligne</a><a href="#lire">Guides</a></nav>
+    </div>
+    <div class="hgrid">
+      <div>
+        <h1>Ce trajet va vous coûter combien, vraiment ?</h1>
+        <p class="lede">Wattlas planifie vos trajets en voiture électrique et vous donne la facture complète avant de partir : les recharges <b>et</b> le péage, au centime. Même sans réseau.</p>
+        <a class="cta" id="play" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite">▶ Télécharger sur Google Play</a>
+        <p class="trust">Gratuit · sans compte · sans publicité · Android · France</p>
+      </div>
+      <div class="phone"><img src="capture-itineraires.jpg" width="540" height="960" alt="Écran de Wattlas : itinéraires comparés du Lot-et-Garonne à Dijon — autoroute 7 h 48 pour 95,77 €, mix autoroute 8 h 02 pour 73,94 €, péage et recharge détaillés."></div>
     </div>
   </div>
+</header>
 
-  <p class="lede">
-    Avant de partir en électrique, une question reste sans réponse :
-    <strong>ce trajet va me coûter combien, vraiment ?</strong>
-  </p>
-  <p>
-    Les planificateurs d'itinéraire chiffrent la recharge et s'arrêtent là.
-    Le péage, ils le signalent d'un pictogramme, sans montant. Sur un
-    Bordeaux–Dijon, ce sont près de <strong>28 €</strong> qui n'apparaissent
-    nulle part et qu'on paie quand même à l'arrivée.
-  </p>
-  <p>
-    Wattlas calcule les deux. Il propose plusieurs itinéraires pour la même
-    destination — tout autoroute, mixte, sans péage — chacun avec son temps,
-    son péage, sa recharge et la batterie restante. Et il dit ce que coûte
-    l'heure gagnée à prendre l'autoroute : sur ce même trajet,
-    <strong>1 h de moins pour 36 € de plus</strong>. Le choix reste le vôtre,
-    mais vous le faites avec un chiffre.
-  </p>
-
-  <a id="test"></a>
-  <div class="soon" id="telecharger">
-    <p>
-      <strong>Wattlas est sur Google Play.</strong> Android, France. Gratuit,
-      sans compte, sans publicité, sans achat intégré — l'appli ne vend rien
-      et n'appartient à aucun réseau de recharge.
-    </p>
-    <p>
-      <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite">
-        Télécharger sur Google Play</a>
-    </p>
-    <p class="alt">
-      L'appli est née des retours d'une poignée de conducteurs qui l'ont
-      éprouvée sur de vraies routes, et elle continue d'avancer comme ça :
-      si le calcul se trompe sur votre voiture ou si quelque chose coince,
-      écrivez à <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>.
-      Une note sur le Play Store aide aussi.
-    </p>
+<section id="facture">
+  <div class="in">
+    <h2>Le péage que les autres oublient</h2>
+    <p class="sub">Les planificateurs chiffrent la recharge et s'arrêtent là : le péage, ils le signalent d'un pictogramme, sans montant. Exemple sur un Bordeaux → Dijon :</p>
+    <div class="bill">
+      <div class="tile charge"><div class="k">Recharge</div><div class="v">45 €</div><div class="d">ce que tout le monde affiche</div></div>
+      <div class="tile toll"><div class="k">Péage</div><div class="v">28 €</div><div class="d">ce qu'on découvre à l'arrivée</div></div>
+      <div class="tile total"><div class="k">Avec Wattlas</div><div class="v">73 €</div><div class="d">la facture complète, avant de partir</div></div>
+    </div>
+    <p class="others">Et pour chaque destination, plusieurs itinéraires comparés, du tout-autoroute au sans péage. Sur ce trajet : <b>1 h de moins pour 36 € de plus</b> par l'autoroute. Le choix reste le vôtre, mais avec un chiffre.</p>
   </div>
+</section>
 
-  <div class="pack" id="pack">
-    <p class="pack-eyebrow">Une fois l'appli installée</p>
-    <h2 class="pack-title">Téléchargez le pack France</h2>
-    <p>
-      C'est lui qui fait la différence. Sans lui, Wattlas calcule par
-      internet et ne propose <em>qu'un seul</em> itinéraire — et sur un
-      long trajet, il peut ne rien proposer du tout.
-    </p>
-    <ul>
-      <li>Plusieurs itinéraires comparés, du tout-autoroute au sans péage</li>
-      <li>Le calcul aboutit sans réseau, en montagne comme en zone blanche</li>
-      <li>Bornes et grilles de péage à bord, rien à charger en route</li>
-    </ul>
-    <p class="pack-how">
-      <strong>~3,5 Go, en Wi-Fi.</strong> L'appli vous le propose au premier
-      lancement ; sinon, Réglages → Pack hors-ligne. Le téléchargement
-      reprend là où il s'arrête, et se supprime d'un geste.
-    </p>
+<section class="feats" id="fonctions">
+  <div class="in">
+    <h2>Tout ce qu'il calcule pour vous</h2>
+    <p class="sub">Une appli faite par un conducteur, améliorée avec les retours de ceux qui l'utilisent sur de vraies routes.</p>
+    <div class="fgrid">
+      <div class="f"><div class="ic" style="background:var(--blue)">€</div><h3>Le vrai coût</h3><p>Recharge au tarif du réseau emprunté, péages au centime (les 551 gares françaises sont dans l'appli), batterie restante à l'arrivée.</p></div>
+      <div class="f"><div class="ic" style="background:var(--amber)">⇄</div><h3>Le prix de l'heure gagnée</h3><p>Plusieurs itinéraires du tout-autoroute au tout-national, et le plus rapide pour le budget que vous vous fixez.</p></div>
+      <div class="f"><div class="ic" style="background:#0E9DAD">⌁</div><h3>Sans réseau</h3><p>Avec le pack France, carte, routes, bornes et péages vivent sur le téléphone : le trajet se calcule sans une barre de signal.</p></div>
+      <div class="f"><div class="ic" style="background:var(--green)">⌂</div><h3>« J'y reste »</h3><p>Deux heures de courses ou un restaurant : les bornes à pied, ce que la batterie aura récupéré, et si c'est assez pour rentrer.</p></div>
+      <div class="f"><div class="ic" style="background:var(--violet)">◷</div><h3>La pause déjeuner</h3><p>L'arrêt recharge de midi devient le repas, avec ce qu'il y a à manger à moins de 300 m.</p></div>
+      <div class="f"><div class="ic" style="background:#E5484D">✕</div><h3>Borne en panne ?</h3><p>Un appui l'écarte et recalcule le trajet sans elle. Les arrêts comptent aussi le temps de se garer et de brancher.</p></div>
+      <div class="f"><div class="ic" style="background:#0F766E">↺</div><h3>Il apprend votre voiture</h3><p>Après un trajet, vous notez la batterie restante : la consommation devient la vôtre, pas celle du constructeur.</p></div>
+    </div>
+    <p class="limit">Ce qu'il ne fait pas, encore : la disponibilité des bornes n'est pas remontée en direct, et les tarifs de recharge sont estimés par réseau, pas relevés borne par borne.</p>
   </div>
+</section>
 
-  <div class="shots">
-    <figure>
-      <img src="capture-itineraires.jpg" width="540" height="960" loading="lazy"
-           alt="Écran de Wattlas : itinéraires comparés du Lot-et-Garonne à Dijon — autoroute 7 h 48 pour 95,77 €, mix autoroute 8 h 02 pour 73,94 €, péage et recharge détaillés.">
-      <figcaption>Plusieurs itinéraires pour la même destination, chacun avec son temps, son péage et sa recharge.</figcaption>
-    </figure>
-    <figure>
-      <img src="capture-jy-reste.jpg" width="540" height="960" loading="lazy"
-           alt="« J'y reste » au Leroy Merlin d'Agen, 2 h : suffisant pour rentrer, deux bornes à 300 m à pied, +57 % de batterie.">
-      <figcaption>« J'y reste » : deux heures de courses, les bornes à pied, et assez pour rentrer.</figcaption>
-    </figure>
-    <figure>
-      <img src="capture-dejeuner.jpg" width="540" height="960" loading="lazy"
-           alt="Pause déjeuner : l'arrêt recharge de 13 h 29 sur l'aire du Bourbonnais devient la pause repas, 45 minutes, restaurant à moins de 300 m.">
-      <figcaption>La pause déjeuner : l'arrêt de midi devient le repas, sans compter comme un arrêt subi.</figcaption>
-    </figure>
+<section>
+  <div class="in">
+    <h2>En images</h2>
+    <p class="sub">Trois écrans, trois situations de tous les jours.</p>
+    <div class="shots">
+      <figure class="shot"><img src="capture-itineraires.jpg" width="540" height="960" loading="lazy" alt="Écran de Wattlas : itinéraires comparés du Lot-et-Garonne à Dijon — autoroute 7 h 48 pour 95,77 €, mix autoroute 8 h 02 pour 73,94 €, péage et recharge détaillés."><figcaption><b>Itinéraires comparés</b>Chacun avec son temps, son péage et sa recharge.</figcaption></figure>
+      <figure class="shot"><img src="capture-jy-reste.jpg" width="540" height="960" loading="lazy" alt="« J'y reste » au Leroy Merlin d'Agen, 2 h : suffisant pour rentrer, deux bornes à 300 m à pied, +57 % de batterie."><figcaption><b>« J'y reste »</b>Deux heures de courses, les bornes à pied, et assez pour rentrer.</figcaption></figure>
+      <figure class="shot"><img src="capture-dejeuner.jpg" width="540" height="960" loading="lazy" alt="Pause déjeuner : l'arrêt recharge de 13 h 29 sur l'aire du Bourbonnais devient la pause repas, 45 minutes, restaurant à moins de 300 m."><figcaption><b>La pause déjeuner</b>L'arrêt de midi devient le repas.</figcaption></figure>
+    </div>
   </div>
+</section>
 
-  <h2>Ce qu'il fait</h2>
-  <ul>
-    <li><strong>Il annonce ce que ça coûte vraiment</strong> : recharge au tarif du réseau emprunté, péages au centime — les 551 gares françaises sont dans l'appli — et batterie restante à l'arrivée.</li>
-    <li><strong>Il compare le prix du péage au temps gagné.</strong> Avec le pack hors ligne, plusieurs itinéraires du tout-autoroute au tout-national, avec leur coût réel — et la réponse à la seule question qui compte : le plus rapide pour le budget qu'on se fixe. En ligne, un itinéraire calculé et détaillé.</li>
-    <li><strong>Il calcule sans réseau.</strong> Avec le pack France (optionnel, ~3,5 Go, à télécharger en Wi-Fi depuis les réglages), carte, routage, bornes de recharge et grilles de péage vivent sur le téléphone : le trajet aboutit même sans une barre de signal. Sans le pack, l'appli fonctionne avec une connexion internet.</li>
-    <li><strong>« J'y reste » : recharger pendant qu'on fait autre chose.</strong> Deux heures de courses, un rendez-vous, un restaurant : Wattlas liste les bornes à pied du lieu, ce que la batterie aura récupéré à votre retour, et si c'est assez pour rentrer.</li>
-    <li><strong>La pause déjeuner.</strong> Sur un long trajet, l'arrêt recharge qui tombe entre midi et deux devient la pause repas — avec ce qu'il y a à manger à moins de 300 m. Ces minutes-là ne comptent pas comme un arrêt subi.</li>
-    <li><strong>Il compte le temps d'arrêt en entier</strong> : la durée annoncée comprend les recharges et les minutes perdues à se garer, brancher et repartir — les cinq minutes que les estimations optimistes oublient.</li>
-    <li><strong>Une borne en panne en arrivant ?</strong> Un appui l'écarte et recalcule le trajet sans elle.</li>
-    <li><strong>Il apprend votre voiture — avec vous.</strong> Après un trajet, vous notez la batterie réellement restante ; l'appli s'en sert pour que la consommation utilisée devienne la vôtre, pas celle du constructeur.</li>
-  </ul>
-  <p>
-    Et ce qu'il ne fait pas — encore : la disponibilité des bornes n'est
-    pas remontée en direct, et les tarifs de recharge sont estimés par
-    réseau, pas relevés borne par borne.
-  </p>
+<section class="pack" id="pack">
+  <div class="in">
+    <h2>Le pack France : à télécharger une fois installée</h2>
+    <p class="sub">C'est lui qui fait la différence. Sans lui, Wattlas calcule par internet et ne propose qu'un seul itinéraire, et sur un long trajet il peut ne rien proposer du tout.</p>
+    <div class="pgrid">
+      <div class="pcard"><b>Plusieurs itinéraires</b><span>du tout-autoroute au sans péage, comparés</span></div>
+      <div class="pcard"><b>Calcul sans réseau</b><span>en montagne comme en zone blanche</span></div>
+      <div class="pcard"><b>Tout à bord</b><span>bornes et grilles de péage, rien à charger en route</span></div>
+    </div>
+    <p class="how"><b>Environ 3,5 Go, en Wi-Fi.</b> L'appli le propose au premier lancement, sinon Réglages → Pack hors-ligne. Le téléchargement reprend là où il s'arrête, et se supprime d'un geste.</p>
+  </div>
+</section>
 
-  <h2>Pour aller plus loin</h2>
-  <ul>
-    <li><a href="/cout-trajet-voiture-electrique.html">Combien coûte vraiment un trajet en voiture électrique ?</a></li>
-    <li><a href="/peage-voiture-electrique.html">Péage en voiture électrique : l'autoroute vaut-elle son prix ?</a></li>
-    <li><a href="/itineraire-voiture-electrique-hors-ligne.html">Planifier un trajet électrique sans réseau mobile</a></li>
-    <li><a href="/recharger-pendant-ses-courses.html">Recharger pendant ses courses : est-ce assez pour rentrer ?</a></li>
-    <li><a href="/voitures/renault-megane-e-tech-ev60.html">Mégane E-Tech : autonomie sur autoroute et coût réel d'un long trajet</a></li>
-  </ul>
+<section id="lire">
+  <div class="in">
+    <h2>Pour aller plus loin</h2>
+    <p class="sub">Des réponses chiffrées aux questions qu'on se pose avant un long trajet.</p>
+    <div class="reads">
+      <a class="read" href="/cout-trajet-voiture-electrique.html"><small>Coût</small><span>Combien coûte vraiment un trajet en voiture électrique ?</span></a>
+      <a class="read" href="/peage-voiture-electrique.html"><small>Péage</small><span>Péage en voiture électrique : l'autoroute vaut-elle son prix ?</span></a>
+      <a class="read" href="/itineraire-voiture-electrique-hors-ligne.html"><small>Hors ligne</small><span>Planifier un trajet électrique sans réseau mobile</span></a>
+      <a class="read" href="/recharger-pendant-ses-courses.html"><small>Au quotidien</small><span>Recharger pendant ses courses : est-ce assez pour rentrer ?</span></a>
+      <a class="read" href="/voitures/renault-megane-e-tech-ev60.html"><small>Par voiture</small><span>Mégane E-Tech : autonomie sur autoroute et coût réel d'un long trajet</span></a>
+    </div>
+  </div>
+</section>
 
-  <h2>Vie privée</h2>
-  <p>
-    Pas de compte, pas de publicité, pas de mouchard. Vos réglages et vos
-    destinations restent sur votre téléphone ; en calcul en ligne, le trajet
-    transite par le serveur de routage, sans être conservé. Avec le pack
-    hors ligne, rien ne sort du téléphone.
-    <a href="/confidentialite.html">Lire la politique de confidentialité</a>.
-  </p>
+<section style="padding-top:0">
+  <div class="in">
+    <div class="dl">
+      <div><h2>Partez avec la facture en poche</h2><p>Gratuit, sans compte, sans publicité, sans achat intégré. L'appli ne vend rien et n'appartient à aucun réseau de recharge. Un calcul vous paraît faux ? Écrivez à <a href="mailto:contact@wattlas.fr" style="color:#fff">contact@wattlas.fr</a>.</p></div>
+      <a class="cta" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dbas-accueil">▶ Google Play</a>
+    </div>
+  </div>
+</section>
 
-  <h2>Sources des données publiques</h2>
-  <p class="sources">
-    Wattlas s'appuie sur des données publiques ouvertes, publiées par l'État :
-  </p>
-  <ul class="sources">
-    <li>Bornes de recharge (base nationale IRVE) : <a href="https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques">transport.data.gouv.fr</a></li>
-    <li>Radars : <a href="https://radars.securite-routiere.gouv.fr/">radars.securite-routiere.gouv.fr</a></li>
-    <li>Événements routiers (réseau national non concédé) : <a href="https://transport.data.gouv.fr/datasets/evenements-routiers-sur-le-reseau-routier-national-non-concede">transport.data.gouv.fr</a></li>
-    <li>Prévisions de trafic : <a href="https://www.bison-fute.gouv.fr/">bison-fute.gouv.fr</a></li>
-    <li>Gares de péage : <a href="https://www.data.gouv.fr/fr/datasets/gares-de-peage-du-reseau-routier-national-concede/">data.gouv.fr</a></li>
-    <li>Adresses (Base Adresse Nationale) : <a href="https://adresse.data.gouv.fr/">adresse.data.gouv.fr</a></li>
-  </ul>
-  <p class="sources">
-    Wattlas est une application indépendante. Elle ne représente aucune
-    administration ni aucun organisme public, et n'est affiliée à aucun
-    d'entre eux.
-  </p>
+<section style="padding-top:0">
+  <div class="in legal">
+    <div>
+      <h3>Vie privée</h3>
+      <p class="small">Pas de compte, pas de publicité, pas de mouchard. Vos réglages et vos destinations restent sur votre téléphone ; en calcul en ligne, le trajet transite par le serveur de routage, sans être conservé. Avec le pack hors ligne, rien ne sort du téléphone. <a href="/confidentialite.html">Politique de confidentialité</a>.</p>
+      <h3 style="margin-top:20px">Contact</h3>
+      <p class="small"><a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a> — un bug, une idée, un calcul qui vous paraît faux. Les nouveautés sont annoncées sur <a href="https://www.facebook.com/wattlas.fr">la page Facebook</a>.</p>
+    </div>
+    <div>
+      <h3>Sources des données publiques</h3>
+      <ul>
+        <li>Bornes de recharge (base nationale IRVE) : <a href="https://transport.data.gouv.fr/datasets/fichier-consolide-des-bornes-de-recharge-pour-vehicules-electriques">transport.data.gouv.fr</a></li>
+        <li>Radars : <a href="https://radars.securite-routiere.gouv.fr/">radars.securite-routiere.gouv.fr</a></li>
+        <li>Événements routiers (réseau national non concédé) : <a href="https://transport.data.gouv.fr/datasets/evenements-routiers-sur-le-reseau-routier-national-non-concede">transport.data.gouv.fr</a></li>
+        <li>Prévisions de trafic : <a href="https://www.bison-fute.gouv.fr/">bison-fute.gouv.fr</a></li>
+        <li>Gares de péage : <a href="https://www.data.gouv.fr/fr/datasets/gares-de-peage-du-reseau-routier-national-concede/">data.gouv.fr</a></li>
+        <li>Adresses (Base Adresse Nationale) : <a href="https://adresse.data.gouv.fr/">adresse.data.gouv.fr</a></li>
+      </ul>
+      <p class="small" style="margin-top:10px">Wattlas est une application indépendante. Elle ne représente aucune administration ni aucun organisme public, et n'est affiliée à aucun d'entre eux.</p>
+    </div>
+  </div>
+</section>
 
-  <h2>Contact</h2>
-  <p>
-    <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a> — pour un bug,
-    une idée, ou un calcul qui vous paraît faux.<br>
-    Les nouveautés sont annoncées sur
-    <a href="https://www.facebook.com/wattlas.fr">la page Facebook</a>.
-  </p>
-
-  <footer>
-    Données cartographiques © les contributeurs OpenStreetMap (ODbL).
-    Bornes de recharge : Base nationale des IRVE, data.gouv.fr (Licence Ouverte).
-    Tarifs de péage : OpenTollData (ODbL) et grilles officielles des sociétés
-    d'autoroute. Météo : Open-Meteo (CC-BY 4.0).
-  </footer>
-
-</div>
+<footer>
+  <div class="in">
+    Données cartographiques © les contributeurs OpenStreetMap (ODbL). Bornes de recharge : Base nationale des IRVE, data.gouv.fr (Licence Ouverte). Tarifs de péage : OpenTollData (ODbL) et grilles officielles des sociétés d'autoroute. Météo : Open-Meteo (CC-BY 4.0).
+  </div>
+</footer>
 <script>
 // D'OÙ VIENT LE VISITEUR ? La Play Console range tout ce qui n'est pas
 // Google dans un seul bloc « sites tiers ». On étiquette donc le lien de

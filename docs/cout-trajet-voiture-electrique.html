@@ -50,73 +50,93 @@
 </script>
 <style>
   :root{
-    --ink:#0E1116;--coral:#2F5BFF;--coral-ink:#1F45D9;--cream:#F6F7F9;
-    --bg:#FFFFFF;--s2:#EEF1F6;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;
+    --blue:#2F5BFF;--blue-d:#1F45D9;--violet:#7B5CFF;--cyan:#16C7D9;--green:#18B26B;--amber:#F59E0B;
+    --bg:#FFFFFF;--s1:#F4F6FB;--s2:#E9EEF8;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;--card:#FFFFFF;
     --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,monospace;
   }
   @media (prefers-color-scheme:dark){:root{
-    --bg:#0E1116;--s2:#1A1F29;--line:#2C3442;--muted:#9AA3B2;--text:#F6F7F9;--coral-ink:#8FA9FF;}}
+    --bg:#0B0E14;--s1:#121722;--s2:#1A2130;--line:#2C3442;--muted:#9AA3B2;--text:#F3F5F9;--card:#151B27;--blue-d:#8FA9FF;}}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;
-       -webkit-font-smoothing:antialiased}
-  .wrap{max-width:680px;margin:0 auto;padding:40px 22px 80px}
-  .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
-        font-weight:700;letter-spacing:-.01em;margin-bottom:34px}
-  .home svg{flex:none}
-  h1{font-size:clamp(28px,6vw,38px);letter-spacing:-.03em;line-height:1.12;margin:0 0 18px}
-  .lede{font-size:19px;margin:0 0 24px;max-width:56ch}
-  h2{font-size:19px;letter-spacing:-.01em;margin:34px 0 8px}
-  h3{font-size:16px;margin:22px 0 4px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue-d)}
+  .in{max-width:1100px;margin:0 auto;padding:0 16px}
+
+  .hero{background:linear-gradient(135deg,#1F45D9 0%,#2F5BFF 40%,#7B5CFF 78%,#16C7D9 125%);color:#fff;padding:22px 0 56px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;
+               background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);pointer-events:none}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:40px;flex-wrap:wrap;position:relative;z-index:1}
+  .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none;color:#fff}
+  .back{color:#fff;text-decoration:none;font-weight:600;font-size:14.5px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:7px 14px;border-radius:999px}
+  .hero h1{font-size:clamp(30px,5.6vw,52px);line-height:1.05;letter-spacing:-.035em;margin:0 0 16px;max-width:20ch;position:relative;z-index:1}
+  .hero .lede{font-size:clamp(17px,2.2vw,20px);opacity:.93;margin:0;max-width:52ch;position:relative;z-index:1}
+  .hero .maj{opacity:.85;font-size:14px;margin:6px 0 0;position:relative;z-index:1}
+
+  .wrap{max-width:760px;margin:0 auto;padding:44px 16px 70px;font-size:17px}
+  .wrap h2{font-size:clamp(22px,3.4vw,28px);letter-spacing:-.02em;line-height:1.2;margin:44px 0 10px}
+  .wrap h3{font-size:18px;margin:24px 0 6px}
   p{margin:0 0 14px}
   ul{margin:0 0 20px;padding-left:22px}
   li{margin-bottom:9px}
-  li::marker{color:var(--coral-ink)}
-  strong{color:var(--coral-ink)}
-  .soon{background:var(--s2);border-radius:16px;padding:18px 20px;margin:30px 0}
-  .soon p{margin:0;font-size:15px}
-  .soon p+p{margin-top:10px}
-  .btn{display:inline-block;background:var(--coral);color:#FFFFFF;font-weight:600;
-       padding:10px 18px;border-radius:12px;text-decoration:none;margin-top:4px}
-  .btn:hover{filter:brightness(1.05)}
-  .calc{border:2px solid var(--coral);border-radius:16px;padding:16px 20px;margin:24px 0}
+  li::marker{color:var(--blue)}
+  strong{color:var(--blue-d)}
+
+  .calc{background:linear-gradient(135deg,rgba(47,91,255,.09),rgba(123,92,255,.09));border:1px solid rgba(47,91,255,.22);border-radius:22px;padding:20px 22px;margin:26px 0}
   .calc table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
-  .calc td{padding:6px 0;border-bottom:1px solid var(--line)}
-  .calc td+td{text-align:right;font-weight:600}
-  .calc tr:last-child td{border-bottom:0;padding-top:10px}
-  .calc tr.total td{font-size:18px;color:var(--coral-ink)}
-  .calc .src{color:var(--muted);font-size:13px;margin:10px 0 0}
-  .shot{margin:26px auto;max-width:300px}
-  .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px}
-  .shot figcaption{color:var(--muted);font-size:13px;line-height:1.45;margin-top:8px}
-  .faq h3{margin-top:20px}
-  .see{font-size:15px}
-  footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);
-         color:var(--muted);font-size:13.5px}
-  a{color:var(--coral-ink)}
+  .calc td{padding:8px 0;border-bottom:1px dashed rgba(47,91,255,.3)}
+  .calc td+td{text-align:right;font-weight:700}
+  .calc tr:last-child td{border-bottom:0;padding-top:12px}
+  .calc tr.total td{font-size:22px;font-weight:800;color:var(--blue-d)}
+  .calc .src,.src{color:var(--muted);font-size:13.5px;margin:10px 0 0}
+
+  .soon{background:linear-gradient(135deg,var(--violet),var(--blue));color:#fff;border-radius:24px;padding:26px 26px;margin:40px 0}
+  .soon p{margin:0;font-size:16px}
+  .soon p+p{margin-top:14px}
+  .soon strong,.soon a{color:#fff}
+  .btn{display:inline-block;background:#fff;color:var(--blue-d) !important;font-weight:800;padding:12px 20px;border-radius:14px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.16)}
+
+  .shot{margin:30px auto;max-width:300px;text-align:center}
+  .shot img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 40px rgba(14,17,22,.12)}
+  .shot figcaption{color:var(--muted);font-size:14px;line-height:1.45;margin-top:10px}
+
+  .faq{background:var(--s1);border:1px solid var(--line);border-radius:24px;padding:6px 24px 14px;margin:44px 0}
+  .faq h2{margin-top:22px}
+  .faq h3{font-size:17px}
+  .faq p{color:var(--muted);font-size:15.5px}
+
+  .see{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .see li{margin:0}
+  .see a{display:block;height:100%;text-decoration:none;color:var(--text);font-weight:700;background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:16px 18px;line-height:1.35}
+  .see a:hover{border-color:var(--blue)}
+
+  .box{background:var(--s1);border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin:0 0 18px}
+  .box p:last-child{margin-bottom:0}
+  code{font-family:var(--mono);font-size:13px;background:var(--s2);padding:2px 6px;border-radius:5px}
+  .scroll{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  .scroll table{min-width:520px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+
+  footer{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px}
+  @media (max-width:520px){.hero{padding-bottom:42px}.top{margin-bottom:28px}.wrap{padding-top:32px;font-size:16.5px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <a class="home" href="/">
-    <svg width="36" height="36" viewBox="0 0 108 108" aria-hidden="true">
-      <rect width="108" height="108" rx="24" fill="#2F5BFF"/>
-      <g stroke="#FFFFFF" stroke-width="1.7" fill="none" opacity=".34">
-        <ellipse cx="54" cy="54" rx="30.4" ry="30.4"/>
-        <ellipse cx="54" cy="54" rx="12.15" ry="30.4"/>
-        <path d="M25.25 44.13h57.5M25.25 63.87h57.5"/>
-      </g>
-      <path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#FFFFFF"/>
-    </svg>
-    Wattlas
-  </a>
-
-  <h1>Combien coûte vraiment un trajet en voiture électrique ?</h1>
-
-  <p class="lede">
+<header class="hero">
+  <div class="in">
+    <div class="top">
+      <a class="brand" href="/"><svg width="34" height="34" viewBox="0 0 108 108" aria-hidden="true"><rect width="108" height="108" rx="24" fill="#FFFFFF"/><path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#2F5BFF"/></svg>Wattlas</a>
+      <a class="back" href="/">← Accueil</a>
+    </div>
+    <h1>Combien coûte vraiment un trajet en voiture électrique ?</h1>
+    <p class="lede">
     Un trajet en électrique se paie deux fois : à la borne et au péage.
     La plupart des planificateurs d'itinéraire n'affichent que la première ligne.
   </p>
+  </div>
+</header>
+<main class="wrap">
   <p>
     Le péage est souvent signalé par un pictogramme, sans montant. Il est
     pourtant payé en route. Sur un Bordeaux–Dijon, il représente plus de la
@@ -200,6 +220,6 @@
     · <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>
   </footer>
 
-</div>
+</main>
 </body>
 </html>

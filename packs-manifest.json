@@ -1,0 +1,222 @@
+{
+    "packs":  [
+                  {
+                      "pays":  "FR",
+                      "libelle":  "France",
+                      "version":  "v3",
+                      "baseUrl":  "https://github.com/chrisdel47-max/wattrip-data/releases/download/graph-v3/",
+                      "bytes":  3466372772,
+                      "files":  [
+                                    {
+                                        "name":  "wattlas-poi-v1.db",
+                                        "bytes":  122421248
+                                    },
+                                    {
+                                        "name":  "edges",
+                                        "bytes":  537919588
+                                    },
+                                    {
+                                        "name":  "geometry",
+                                        "bytes":  477102180
+                                    },
+                                    {
+                                        "name":  "location_index",
+                                        "bytes":  81789028
+                                    },
+                                    {
+                                        "name":  "nodes",
+                                        "bytes":  186646628
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car",
+                                        "bytes":  93323364
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll050",
+                                        "bytes":  93323364
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll065",
+                                        "bytes":  93323364
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll080",
+                                        "bytes":  93323364
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll090",
+                                        "bytes":  93323364
+                                    },
+                                    {
+                                        "name":  "properties",
+                                        "bytes":  32868
+                                    },
+                                    {
+                                        "name":  "shortcuts_car",
+                                        "bytes":  286261348
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll050",
+                                        "bytes":  308281444
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll065",
+                                        "bytes":  309330020
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll080",
+                                        "bytes":  308281444
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll090",
+                                        "bytes":  309330020
+                                    },
+                                    {
+                                        "name":  "string_index_keys",
+                                        "bytes":  8292
+                                    },
+                                    {
+                                        "name":  "string_index_vals",
+                                        "bytes":  72351844
+                                    }
+                                ],
+                      "profils":  [
+                                      {
+                                          "nom":  "car",
+                                          "poids":  "fastest"
+                                      },
+                                      {
+                                          "nom":  "car_toll090",
+                                          "poids":  "custom",
+                                          "peage":  0.9,
+                                          "fichier":  "toll_090.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll080",
+                                          "poids":  "custom",
+                                          "peage":  0.8,
+                                          "fichier":  "toll_080.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll065",
+                                          "poids":  "custom",
+                                          "peage":  0.65,
+                                          "fichier":  "toll_065.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll050",
+                                          "poids":  "custom",
+                                          "peage":  0.5,
+                                          "fichier":  "toll_050.yml"
+                                      }
+                                  ]
+                  },
+                  {
+                      "pays":  "CH",
+                      "libelle":  "Suisse",
+                      "version":  "ch-v2",
+                      "baseUrl":  "https://github.com/chrisdel47-max/wattlas-data/releases/download/graph-ch-v2/",
+                      "bytes":  363898532,
+                      "files":  [
+                                    {
+                                        "name":  "edges",
+                                        "bytes":  66060388
+                                    },
+                                    {
+                                        "name":  "geometry",
+                                        "bytes":  52428900
+                                    },
+                                    {
+                                        "name":  "location_index",
+                                        "bytes":  10485860
+                                    },
+                                    {
+                                        "name":  "nodes",
+                                        "bytes":  25165924
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car",
+                                        "bytes":  12583012
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll050",
+                                        "bytes":  12583012
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll065",
+                                        "bytes":  12583012
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll080",
+                                        "bytes":  12583012
+                                    },
+                                    {
+                                        "name":  "nodes_ch_car_toll090",
+                                        "bytes":  12583012
+                                    },
+                                    {
+                                        "name":  "properties",
+                                        "bytes":  32868
+                                    },
+                                    {
+                                        "name":  "shortcuts_car",
+                                        "bytes":  26214500
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll050",
+                                        "bytes":  28311652
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll065",
+                                        "bytes":  28311652
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll080",
+                                        "bytes":  28311652
+                                    },
+                                    {
+                                        "name":  "shortcuts_car_toll090",
+                                        "bytes":  28311652
+                                    },
+                                    {
+                                        "name":  "string_index_keys",
+                                        "bytes":  8292
+                                    },
+                                    {
+                                        "name":  "string_index_vals",
+                                        "bytes":  7340132
+                                    }
+                                ],
+                      "profils":  [
+                                      {
+                                          "nom":  "car",
+                                          "poids":  "fastest"
+                                      },
+                                      {
+                                          "nom":  "car_toll090",
+                                          "poids":  "custom",
+                                          "peage":  1.0,
+                                          "fichier":  "ch_sans_penalite.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll080",
+                                          "poids":  "custom",
+                                          "peage":  1.0,
+                                          "fichier":  "ch_sans_penalite.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll065",
+                                          "poids":  "custom",
+                                          "peage":  1.0,
+                                          "fichier":  "ch_sans_penalite.yml"
+                                      },
+                                      {
+                                          "nom":  "car_toll050",
+                                          "poids":  "custom",
+                                          "peage":  0.5,
+                                          "fichier":  "toll_050.yml"
+                                      }
+                                  ]
+                  }
+              ]
+}

@@ -274,6 +274,18 @@ def peage_mots(o: dict) -> str:
     return eur(o["peage_eur"]) if o["peage_exact"] else "environ " + eur(o["peage_eur"])
 
 
+def raisons(o: dict, fr: dict) -> str:
+    """Pourquoi une option bat l'autoroute : seulement ce que les chiffres montrent."""
+    r = []
+    if o["peage_eur"] < fr["peage_eur"]:
+        r.append(f"{eur(fr['peage_eur'] - o['peage_eur'])} de péage en moins")
+    if o["recharge_eur"] < fr["recharge_eur"]:
+        r.append(f"{eur(fr['recharge_eur'] - o['recharge_eur'])} de recharge en moins")
+    if o["charge_min"] < fr["charge_min"]:
+        r.append(f"{duree(ent(fr['charge_min']) - ent(o['charge_min']))} de charge en moins")
+    return (" : " + ", ".join(r)) if r else ""
+
+
 def classe_option(o: dict) -> str:
     if o["tier"] == "FREE":
         return "opt"
@@ -345,10 +357,10 @@ class Page:
         cands = [
             f"{self.nom} : autonomie sur autoroute et coût d'un trajet",
             f"{self.nom} : {km} km à 130 km/h, coût d'un long trajet",
-            f"Autonomie {self.nom} sur autoroute : {km} km à 130",
+            f"Autonomie {self.nom} sur autoroute : {km} km à 130 km/h",
         ]
         if pl:
-            cands.append(f"{self.nom} : Paris–Lyon à {eur(pl['total_eur'])}, autonomie")
+            cands.append(f"{self.nom} : autonomie autoroute et Paris–Lyon à {eur(pl['total_eur'])}")
         cands = [t for t in cands if len(t) <= 66] or [f"{self.nom} : autonomie et coût trajet"]
         return self.c("titre", cands)
 
@@ -417,7 +429,9 @@ class Page:
             s = self.c("sa", [
                 "Plus on roule vite et plus il fait froid, plus elle fond.",
                 f"Plus on roule vite et plus il fait froid, plus elle fond : de {km} km à 130 km/h par temps doux, elle passe à {kmf} km à 0 °C.",
-                f"À 130 km/h, elle se place au-dessus de {r['pct_auto']} % des voitures du catalogue Wattlas ; le froid lui retire {km - kmf} km.",
+                (f"À 130 km/h, elle se place au-dessus de {r['pct_auto']} % des voitures du catalogue Wattlas ; le froid lui retire {km - kmf} km."
+                 if 10 <= r['pct_auto'] <= 90 else
+                 f"À 130 km/h, le froid lui retire {km - kmf} km : {km} km par temps doux, {kmf} km à 0 °C."),
             ])
         return f"{base} {s}"
 
@@ -527,6 +541,12 @@ class Page:
         fr = autoroute(ete)
         eco = option(ete, "ECO")
         km = ent(fr["km"])
+        mix_mieux = [o for o in ete["options"] if o["tier"] not in ("FREE", "ECO")
+                     and ent(o["total_min"]) < ent(fr["total_min"]) and o["total_eur"] < fr["total_eur"]]
+        if mix_mieux and not self.c.fige:
+            o = mix_mieux[0]
+            return (f"{km} km par l'autoroute. Ici, l'option {o['label'].lower()} arrive {duree(ent(fr['total_min']) - ent(o['total_min']))} "
+                    f"plus tôt et coûte {ent(fr['total_eur'] - o['total_eur'])} € de moins" + raisons(o, fr) + ".")
         if k == "lyon":
             if eco and eco is not fr and ent(eco["total_min"]) > ent(fr["total_min"]):
                 gain = duree(ent(eco["total_min"]) - ent(fr["total_min"]))

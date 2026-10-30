@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autonomie et coût de trajet de 100 voitures électriques</title>
+<meta name="description" content="Autonomie sur autoroute et coût d&#x27;un Paris–Lyon pour 100 voitures électriques, marque par marque. Chiffres calculés par le moteur Wattlas.">
+<link rel="canonical" href="https://wattlas.fr/voitures/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wattlas.fr/voitures/">
+<meta property="og:site_name" content="Wattlas">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="100 voitures électriques : autonomie sur autoroute et coût réel d’un trajet">
+<meta property="og:description" content="Autonomie sur autoroute et coût d&#x27;un Paris–Lyon pour 100 voitures électriques, marque par marque. Chiffres calculés par le moteur Wattlas.">
+<meta property="og:image" content="https://wattlas.fr/og-facture.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --blue:#2F5BFF;--blue-d:#1F45D9;--violet:#7B5CFF;--cyan:#16C7D9;--green:#18B26B;
+    --ice:#8FD3FF;
+    --bg:#FFFFFF;--s1:#F4F6FB;--s2:#E9EEF8;--line:#D5DAE3;--muted:#5B6472;--text:#0E1116;--card:#FFFFFF;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0B0E14;--s1:#121722;--s2:#1A2130;--line:#2C3442;--muted:#9AA3B2;--text:#F3F5F9;--card:#151B27;}}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .in{max-width:1100px;margin:0 auto;padding:0 16px}
+  section{padding:56px 0}
+  h2{font-size:clamp(24px,4vw,34px);letter-spacing:-.02em;line-height:1.15;margin:0 0 8px}
+  .sub{color:var(--muted);margin:0 0 28px;font-size:17px;max-width:60ch}
+
+  .hero{background:linear-gradient(135deg,#1F45D9 0%,#2F5BFF 40%,#7B5CFF 78%,#16C7D9 125%);color:#fff;padding:22px 0 64px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+               background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);pointer-events:none}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:44px;flex-wrap:wrap}
+  .home{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;font-size:18px}
+  .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600}
+  .hero h1{font-size:clamp(32px,6.5vw,60px);line-height:1.04;letter-spacing:-.035em;margin:0 0 16px;max-width:15ch}
+  .hero p{font-size:clamp(17px,2.4vw,21px);opacity:.92;margin:0 0 30px;max-width:46ch}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;position:relative;z-index:1}
+  .kpi{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);border-radius:20px;padding:18px 20px}
+  .kpi b{display:block;font-size:clamp(30px,5vw,44px);letter-spacing:-.03em;line-height:1.05}
+  .kpi span{font-size:14px;opacity:.9}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--blue-d);font-weight:800;
+       padding:14px 22px;border-radius:14px;text-decoration:none;margin-top:28px;box-shadow:0 10px 30px rgba(0,0,0,.18);position:relative;z-index:1}
+
+  .bars{display:grid;gap:14px}
+  .bar{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+  .bar .l{display:flex;justify-content:space-between;gap:10px;font-weight:700;margin-bottom:10px}
+  .bar .l em{font-style:normal;color:var(--muted);font-weight:700}
+  .track{height:16px;background:var(--s2);border-radius:999px;overflow:hidden}
+  .fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+  .fill.cold{background:linear-gradient(90deg,var(--ice),var(--violet))}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .chip{background:var(--s1);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px}
+  .chip b{color:var(--blue)}
+
+  .trips{background:var(--s1)}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+  .tabs a{text-decoration:none;font-weight:700;padding:9px 16px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+  .trip{margin-bottom:44px}
+  .trip h3{font-size:clamp(20px,3vw,26px);letter-spacing:-.02em;margin:0 0 4px}
+  .trip .sub{margin-bottom:18px;font-size:15.5px}
+  .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .opt{--c:#2F5BFF;--t:rgba(47,91,255,.08);background:var(--t);border:1px solid color-mix(in srgb,var(--c) 22%,transparent);border-radius:22px;padding:20px 22px}
+  .opt.mix{--c:#0E9DAD;--t:rgba(22,199,217,.10)} .opt.eco{--c:#13995B;--t:rgba(24,178,107,.10)}
+  .opt .tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+            color:#fff;background:var(--c);padding:5px 11px;border-radius:999px}
+  .opt .price{font-size:40px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin:12px 0 2px;color:var(--c)}
+  @media (prefers-color-scheme:dark){.opt .price{color:var(--text)}}
+  .opt .time{font-weight:700;margin-bottom:12px}
+  .opt dl{display:grid;grid-template-columns:1fr auto;gap:4px 10px;margin:0;font-size:14.5px;padding-top:10px;border-top:1px dashed color-mix(in srgb,var(--c) 30%,transparent)}
+  .opt dt{color:var(--muted)} .opt dd{margin:0;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+  .note{font-size:13.5px;color:var(--muted);margin-top:12px}
+
+  .winter{background:linear-gradient(160deg,#0E2A5C,#1B3F8F 55%,#3A5BD9);color:#fff}
+  .winter .sub{color:rgba(255,255,255,.85)}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .wcard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:18px 20px}
+  .wcard h4{margin:0 0 10px;font-size:17px}
+  .wcard .big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .wcard .vs{opacity:.85;font-size:14px}
+
+  .dl{background:linear-gradient(135deg,var(--violet),var(--blue));color:#fff;border-radius:28px;padding:34px 28px;
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
+  .dl h2{color:#fff;margin:0 0 6px}
+  .dl p{margin:0;opacity:.92;max-width:52ch}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:700}
+  details p{color:var(--muted);font-size:15px;margin:10px 0 0}
+  .more a{color:var(--blue)}
+  footer{padding:30px 0 50px;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+  footer a{color:var(--blue)}
+  @media (max-width:520px){section{padding:40px 0}.hero{padding-bottom:44px}.top{margin-bottom:30px}.opt .price{font-size:34px}}
+</style>
+<style>
+  .brands{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+  .brands a{text-decoration:none;font-weight:700;padding:7px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px}
+  .brand{margin-bottom:34px;scroll-margin-top:16px}
+  .brand h3{font-size:22px;letter-spacing:-.02em;margin:0 0 12px}
+  .cars{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+  .car{display:block;text-decoration:none;background:var(--t,rgba(47,91,255,.07));border:1px solid color-mix(in srgb,#2F5BFF 18%,transparent);border-radius:16px;padding:14px 16px}
+  .car b{display:block;font-size:16.5px;margin-bottom:2px}
+  .car span{color:var(--muted);font-size:14px}
+  .car:hover{border-color:var(--blue)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="in">
+    <div class="top">
+      <a class="home" href="/">
+        <svg width="34" height="34" viewBox="0 0 108 108" aria-hidden="true"><rect width="108" height="108" rx="24" fill="#FFFFFF"/><path d="M60.83 23.62 L37.30 59.32 L51.27 59.32 L46.40 84.38 L70.70 47.92 L56.43 47.92 Z" fill="#2F5BFF"/></svg>
+        Wattlas
+      </a>
+      <span class="pill">100 voitures</span>
+    </div>
+    <h1>Votre voiture, sur autoroute</h1>
+    <p>Pour chaque modèle du catalogue Wattlas : autonomie à 110 et 130 km/h, temps de charge, et prix de trois trajets types, recharge et péage compris.</p>
+    <a class="cta" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dvoitures-index">▶ Calculer mon trajet, gratuit</a>
+  </div>
+</header>
+
+<section>
+  <div class="in">
+    <h2>Par marque</h2>
+    <p class="sub">Autonomie de 100 à 10 % à 130 km/h par temps doux, et coût d'un Paris → Lyon par l'autoroute au départ batterie pleine.</p>
+    <nav class="brands"><a href="#alpine">Alpine</a><a href="#audi">Audi</a><a href="#bmw">BMW</a><a href="#byd">BYD</a><a href="#citroen">Citroën</a><a href="#cupra">Cupra</a><a href="#dacia">Dacia</a><a href="#fiat">Fiat</a><a href="#ford">Ford</a><a href="#honda">Honda</a><a href="#hyundai">Hyundai</a><a href="#jeep">Jeep</a><a href="#kia">Kia</a><a href="#leapmotor">Leapmotor</a><a href="#mazda">Mazda</a><a href="#mercedes">Mercedes</a><a href="#mg">MG</a><a href="#mini">Mini</a><a href="#nissan">Nissan</a><a href="#opel">Opel</a><a href="#peugeot">Peugeot</a><a href="#polestar">Polestar</a><a href="#renault">Renault</a><a href="#skoda">Skoda</a><a href="#smart">Smart</a><a href="#tesla">Tesla</a><a href="#toyota">Toyota</a><a href="#volkswagen">Volkswagen</a><a href="#volvo">Volvo</a></nav>
+
+    <div class="brand" id="alpine">
+      <h3>Alpine</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/alpine-a290.html"><b>A290</b><span>216 km à 130 km/h · 52 kWh · Paris → Lyon 86,13 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="audi">
+      <h3>Audi</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/audi-q4-40-e-tron.html"><b>Q4 40 e-tron</b><span>263 km à 130 km/h · 76,6 kWh · Paris → Lyon 66,72 €</span></a>
+        <a class="car" href="/voitures/audi-q4-45-e-tron.html"><b>Q4 45 e-tron</b><span>270 km à 130 km/h · 76,6 kWh · Paris → Lyon 66,06 €</span></a>
+        <a class="car" href="/voitures/audi-q6-e-tron.html"><b>Q6 e-tron</b><span>317 km à 130 km/h · 94,9 kWh · Paris → Lyon 61,24 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="bmw">
+      <h3>BMW</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/bmw-i4-edrive40.html"><b>i4 eDrive40</b><span>298 km à 130 km/h · 80,7 kWh · Paris → Lyon 61,48 €</span></a>
+        <a class="car" href="/voitures/bmw-ix1-xdrive30.html"><b>iX1 xDrive30</b><span>228 km à 130 km/h · 64,7 kWh · Paris → Lyon 76,13 €</span></a>
+        <a class="car" href="/voitures/bmw-ix3.html"><b>iX3</b><span>253 km à 130 km/h · 74 kWh · Paris → Lyon 75,95 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="byd">
+      <h3>BYD</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/byd-atto-3.html"><b>Atto 3</b><span>197 km à 130 km/h · 60,5 kWh · Paris → Lyon 79,70 €</span></a>
+        <a class="car" href="/voitures/byd-dolphin.html"><b>Dolphin</b><span>235 km à 130 km/h · 60,4 kWh · Paris → Lyon 72,81 €</span></a>
+        <a class="car" href="/voitures/byd-seal-awd.html"><b>Seal AWD</b><span>292 km à 130 km/h · 82,5 kWh · Paris → Lyon 62,99 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="citroen">
+      <h3>Citroën</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/citroen-e-c3.html"><b>ë-C3</b><span>170 km à 130 km/h · 44 kWh · Paris → Lyon 72,18 €</span></a>
+        <a class="car" href="/voitures/citroen-e-c4-50-kwh.html"><b>ë-C4 50 kWh</b><span>173 km à 130 km/h · 46,3 kWh · Paris → Lyon 73,87 €</span></a>
+        <a class="car" href="/voitures/citroen-e-c4-54-kwh.html"><b>ë-C4 54 kWh</b><span>191 km à 130 km/h · 51 kWh · Paris → Lyon 75,88 €</span></a>
+        <a class="car" href="/voitures/citroen-e-c4-x-50-kwh.html"><b>ë-C4 X 50 kWh</b><span>176 km à 130 km/h · 46,3 kWh · Paris → Lyon 73,26 €</span></a>
+        <a class="car" href="/voitures/citroen-e-c4-x-54-kwh.html"><b>ë-C4 X 54 kWh</b><span>194 km à 130 km/h · 51 kWh · Paris → Lyon 75,33 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="cupra">
+      <h3>Cupra</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/cupra-born-58-kwh.html"><b>Born 58 kWh</b><span>215 km à 130 km/h · 58 kWh · Paris → Lyon 91,56 €</span></a>
+        <a class="car" href="/voitures/cupra-born-77-kwh.html"><b>Born 77 kWh</b><span>279 km à 130 km/h · 77 kWh · Paris → Lyon 63,53 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="dacia">
+      <h3>Dacia</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/dacia-spring.html"><b>Spring</b><span>124 km à 130 km/h · 26,8 kWh · Paris → Lyon 80,82 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="fiat">
+      <h3>Fiat</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/fiat-500e-42-kwh.html"><b>500e 42 kWh</b><span>162 km à 130 km/h · 37,3 kWh · Paris → Lyon 74,29 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="ford">
+      <h3>Ford</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/ford-explorer-ev-extended-range.html"><b>Explorer EV Extended Range</b><span>283 km à 130 km/h · 77 kWh · Paris → Lyon 63,88 €</span></a>
+        <a class="car" href="/voitures/ford-mustang-mach-e-extended-range.html"><b>Mustang Mach-E Extended Range</b><span>304 km à 130 km/h · 91 kWh · Paris → Lyon 56,57 €</span></a>
+        <a class="car" href="/voitures/ford-puma-gen-e.html"><b>Puma Gen-E</b><span>188 km à 130 km/h · 43,6 kWh · Paris → Lyon 72,39 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="honda">
+      <h3>Honda</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/honda-e-ny1.html"><b>e:Ny1</b><span>219 km à 130 km/h · 61,9 kWh · Paris → Lyon 78,99 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="hyundai">
+      <h3>Hyundai</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/hyundai-ioniq-5-58-kwh.html"><b>Ioniq 5 58 kWh</b><span>213 km à 130 km/h · 58 kWh · Paris → Lyon 92,24 €</span></a>
+        <a class="car" href="/voitures/hyundai-ioniq-5-77-kwh.html"><b>Ioniq 5 77 kWh</b><span>274 km à 130 km/h · 77,4 kWh · Paris → Lyon 64,36 €</span></a>
+        <a class="car" href="/voitures/hyundai-ioniq-6-77-kwh.html"><b>Ioniq 6 77 kWh</b><span>323 km à 130 km/h · 77,4 kWh · Paris → Lyon 56,89 €</span></a>
+        <a class="car" href="/voitures/hyundai-kona-39-kwh-2018-2023.html"><b>Kona 39 kWh (2018-2023)</b><span>178 km à 130 km/h · 39,2 kWh · Paris → Lyon 68,61 €</span></a>
+        <a class="car" href="/voitures/hyundai-kona-48-kwh-2023-plus.html"><b>Kona 48 kWh (2023+)</b><span>207 km à 130 km/h · 48,4 kWh · Paris → Lyon 71,16 €</span></a>
+        <a class="car" href="/voitures/hyundai-kona-64-kwh-2018-2023.html"><b>Kona 64 kWh (2018-2023)</b><span>286 km à 130 km/h · 64 kWh · Paris → Lyon 59,42 €</span></a>
+        <a class="car" href="/voitures/hyundai-kona-65-kwh-2023-plus.html"><b>Kona 65 kWh (2023+)</b><span>275 km à 130 km/h · 65,4 kWh · Paris → Lyon 61,48 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="jeep">
+      <h3>Jeep</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/jeep-avenger-electric.html"><b>Avenger Electric</b><span>203 km à 130 km/h · 51 kWh · Paris → Lyon 72,77 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="kia">
+      <h3>Kia</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/kia-ev2-61-kwh.html"><b>EV2 61 kWh</b><span>232 km à 130 km/h · 58 kWh · Paris → Lyon 70,77 €</span></a>
+        <a class="car" href="/voitures/kia-ev3-81-kwh.html"><b>EV3 81 kWh</b><span>319 km à 130 km/h · 81,4 kWh · Paris → Lyon 57,71 €</span></a>
+        <a class="car" href="/voitures/kia-ev6-77-kwh.html"><b>EV6 77 kWh</b><span>284 km à 130 km/h · 77,4 kWh · Paris → Lyon 62,62 €</span></a>
+        <a class="car" href="/voitures/kia-ev9-99-kwh.html"><b>EV9 99 kWh</b><span>305 km à 130 km/h · 99,8 kWh · Paris → Lyon 64,77 €</span></a>
+        <a class="car" href="/voitures/kia-niro-ev.html"><b>Niro EV</b><span>253 km à 130 km/h · 64,8 kWh · Paris → Lyon 64,59 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="leapmotor">
+      <h3>Leapmotor</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/leapmotor-c10.html"><b>C10</b><span>236 km à 130 km/h · 69,9 kWh · Paris → Lyon 77,73 €</span></a>
+        <a class="car" href="/voitures/leapmotor-t03.html"><b>T03</b><span>162 km à 130 km/h · 37,3 kWh · Paris → Lyon 73,52 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="mazda">
+      <h3>Mazda</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/mazda-6e.html"><b>6e</b><span>250 km à 130 km/h · 68,8 kWh · Paris → Lyon 73,42 €</span></a>
+        <a class="car" href="/voitures/mazda-6e-long-range.html"><b>6e Long Range</b><span>282 km à 130 km/h · 80 kWh · Paris → Lyon 64,09 €</span></a>
+        <a class="car" href="/voitures/mazda-mx-30.html"><b>MX-30</b><span>112 km à 130 km/h · 30 kWh · Paris → Lyon 81,51 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="mercedes">
+      <h3>Mercedes</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/mercedes-eqa-250.html"><b>EQA 250</b><span>246 km à 130 km/h · 66,5 kWh · Paris → Lyon 74,17 €</span></a>
+        <a class="car" href="/voitures/mercedes-eqb-300.html"><b>EQB 300</b><span>222 km à 130 km/h · 66,5 kWh · Paris → Lyon 96,11 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="mg">
+      <h3>MG</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/mg-cyberster.html"><b>Cyberster</b><span>250 km à 130 km/h · 74,4 kWh · Paris → Lyon 75,65 €</span></a>
+        <a class="car" href="/voitures/mg-marvel-r.html"><b>Marvel R</b><span>234 km à 130 km/h · 70 kWh · Paris → Lyon 76,14 €</span></a>
+        <a class="car" href="/voitures/mg-mg4-51-kwh.html"><b>MG4 51 kWh</b><span>202 km à 130 km/h · 50,8 kWh · Paris → Lyon 73,29 €</span></a>
+        <a class="car" href="/voitures/mg-mg4-64-kwh.html"><b>MG4 64 kWh</b><span>237 km à 130 km/h · 61,7 kWh · Paris → Lyon 72,98 €</span></a>
+        <a class="car" href="/voitures/mg-mg4-77-kwh.html"><b>MG4 77 kWh</b><span>282 km à 130 km/h · 74,4 kWh · Paris → Lyon 62,21 €</span></a>
+        <a class="car" href="/voitures/mg-mg4-urban-54-kwh.html"><b>MG4 Urban 54 kWh</b><span>224 km à 130 km/h · 52,8 kWh · Paris → Lyon 70,26 €</span></a>
+        <a class="car" href="/voitures/mg-mg5.html"><b>MG5</b><span>214 km à 130 km/h · 57,4 kWh · Paris → Lyon 90,68 €</span></a>
+        <a class="car" href="/voitures/mg-s5-ev-49-kwh.html"><b>S5 EV 49 kWh</b><span>210 km à 130 km/h · 49,1 kWh · Paris → Lyon 54,76 €</span></a>
+        <a class="car" href="/voitures/mg-s5-ev-64-kwh.html"><b>S5 EV 64 kWh</b><span>254 km à 130 km/h · 62,2 kWh · Paris → Lyon 63,49 €</span></a>
+        <a class="car" href="/voitures/mg-zs-ev.html"><b>ZS EV</b><span>242 km à 130 km/h · 68,3 kWh · Paris → Lyon 73,97 €</span></a>
+        <a class="car" href="/voitures/mg-zs-ev-51-kwh.html"><b>ZS EV 51 kWh</b><span>188 km à 130 km/h · 49,1 kWh · Paris → Lyon 75,42 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="mini">
+      <h3>Mini</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/mini-cooper-se.html"><b>Cooper SE</b><span>207 km à 130 km/h · 49,2 kWh · Paris → Lyon 71,50 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="nissan">
+      <h3>Nissan</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/nissan-ariya-87-kwh.html"><b>Ariya 87 kWh</b><span>304 km à 130 km/h · 87 kWh · Paris → Lyon 61,71 €</span></a>
+        <a class="car" href="/voitures/nissan-leaf-e-plus-62-kwh.html"><b>Leaf e+ 62 kWh</b><span>214 km à 130 km/h · 59 kWh · Paris → Lyon 92,10 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="opel">
+      <h3>Opel</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/opel-corsa-electric-54-kwh.html"><b>Corsa Electric 54 kWh</b><span>203 km à 130 km/h · 51 kWh · Paris → Lyon 72,73 €</span></a>
+        <a class="car" href="/voitures/opel-corsa-e-50-kwh.html"><b>Corsa-e 50 kWh</b><span>184 km à 130 km/h · 46,3 kWh · Paris → Lyon 77,72 €</span></a>
+        <a class="car" href="/voitures/opel-mokka-electric-54-kwh.html"><b>Mokka Electric 54 kWh</b><span>194 km à 130 km/h · 51 kWh · Paris → Lyon 75,18 €</span></a>
+        <a class="car" href="/voitures/opel-mokka-e-50-kwh.html"><b>Mokka-e 50 kWh</b><span>176 km à 130 km/h · 46,3 kWh · Paris → Lyon 73,10 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="peugeot">
+      <h3>Peugeot</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/peugeot-e-2008-54-kwh.html"><b>e-2008 54 kWh</b><span>196 km à 130 km/h · 51 kWh · Paris → Lyon 74,59 €</span></a>
+        <a class="car" href="/voitures/peugeot-e-208-51-kwh.html"><b>e-208 51 kWh</b><span>202 km à 130 km/h · 48,1 kWh · Paris → Lyon 71,40 €</span></a>
+        <a class="car" href="/voitures/peugeot-e-3008-73-kwh.html"><b>e-3008 73 kWh</b><span>270 km à 130 km/h · 73 kWh · Paris → Lyon 65,32 €</span></a>
+        <a class="car" href="/voitures/peugeot-e-308.html"><b>e-308</b><span>213 km à 130 km/h · 51 kWh · Paris → Lyon 87,28 €</span></a>
+        <a class="car" href="/voitures/peugeot-e-5008-73-kwh.html"><b>e-5008 73 kWh</b><span>258 km à 130 km/h · 73 kWh · Paris → Lyon 67,34 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="polestar">
+      <h3>Polestar</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/polestar-2-long-range.html"><b>2 Long Range</b><span>290 km à 130 km/h · 78 kWh · Paris → Lyon 62,06 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="renault">
+      <h3>Renault</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/renault-4-e-tech-52-kwh.html"><b>4 E-Tech 52 kWh</b><span>213 km à 130 km/h · 52 kWh · Paris → Lyon 86,89 €</span></a>
+        <a class="car" href="/voitures/renault-5-e-tech-52-kwh.html"><b>5 E-Tech 52 kWh</b><span>225 km à 130 km/h · 52 kWh · Paris → Lyon 69,28 €</span></a>
+        <a class="car" href="/voitures/renault-megane-e-tech-ev60.html"><b>Mégane E-Tech EV60</b><span>239 km à 130 km/h · 60 kWh · Paris → Lyon 71,80 €</span></a>
+        <a class="car" href="/voitures/renault-scenic-e-tech-87-kwh.html"><b>Scénic E-Tech 87 kWh</b><span>326 km à 130 km/h · 87 kWh · Paris → Lyon 57,39 €</span></a>
+        <a class="car" href="/voitures/renault-twingo-e-tech.html"><b>Twingo E-Tech</b><span>133 km à 130 km/h · 27,5 kWh · Paris → Lyon 79,01 €</span></a>
+        <a class="car" href="/voitures/renault-zoe-r135-52-kwh.html"><b>Zoe R135 52 kWh</b><span>200 km à 130 km/h · 52 kWh · Paris → Lyon 73,78 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="skoda">
+      <h3>Skoda</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/skoda-elroq-60.html"><b>Elroq 60</b><span>214 km à 130 km/h · 55 kWh · Paris → Lyon 75,30 €</span></a>
+        <a class="car" href="/voitures/skoda-elroq-85.html"><b>Elroq 85</b><span>290 km à 130 km/h · 77 kWh · Paris → Lyon 61,86 €</span></a>
+        <a class="car" href="/voitures/skoda-enyaq-60.html"><b>Enyaq 60</b><span>213 km à 130 km/h · 58 kWh · Paris → Lyon 77,22 €</span></a>
+        <a class="car" href="/voitures/skoda-enyaq-85.html"><b>Enyaq 85</b><span>279 km à 130 km/h · 77 kWh · Paris → Lyon 64,33 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="smart">
+      <h3>Smart</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/smart-1.html"><b>#1</b><span>225 km à 130 km/h · 62 kWh · Paris → Lyon 74,95 €</span></a>
+        <a class="car" href="/voitures/smart-3.html"><b>#3</b><span>232 km à 130 km/h · 62 kWh · Paris → Lyon 73,05 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="tesla">
+      <h3>Tesla</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/tesla-model-3-grande-autonomie.html"><b>Model 3 Grande Autonomie</b><span>323 km à 130 km/h · 75 kWh · Paris → Lyon 56,38 €</span></a>
+        <a class="car" href="/voitures/tesla-model-3-propulsion.html"><b>Model 3 Propulsion</b><span>259 km à 130 km/h · 57,5 kWh · Paris → Lyon 61,87 €</span></a>
+        <a class="car" href="/voitures/tesla-model-s.html"><b>Model S</b><span>354 km à 130 km/h · 95 kWh · Paris → Lyon 54,20 €</span></a>
+        <a class="car" href="/voitures/tesla-model-x.html"><b>Model X</b><span>310 km à 130 km/h · 95 kWh · Paris → Lyon 62,37 €</span></a>
+        <a class="car" href="/voitures/tesla-model-y-grande-autonomie.html"><b>Model Y Grande Autonomie</b><span>302 km à 130 km/h · 75 kWh · Paris → Lyon 59,59 €</span></a>
+        <a class="car" href="/voitures/tesla-model-y-propulsion.html"><b>Model Y Propulsion</b><span>242 km à 130 km/h · 57,5 kWh · Paris → Lyon 71,34 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="toyota">
+      <h3>Toyota</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/toyota-bz4x.html"><b>bZ4X</b><span>240 km à 130 km/h · 64 kWh · Paris → Lyon 74,48 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="volkswagen">
+      <h3>Volkswagen</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/volkswagen-id-buzz-77-kwh.html"><b>ID. Buzz 77 kWh</b><span>229 km à 130 km/h · 77 kWh · Paris → Lyon 82,38 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-3-pro-58-kwh.html"><b>ID.3 Pro 58 kWh</b><span>226 km à 130 km/h · 58 kWh · Paris → Lyon 73,11 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-3-pro-s-77-kwh.html"><b>ID.3 Pro S 77 kWh</b><span>288 km à 130 km/h · 77 kWh · Paris → Lyon 61,81 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-3-pure-45-kwh.html"><b>ID.3 Pure 45 kWh</b><span>183 km à 130 km/h · 45 kWh · Paris → Lyon 83,07 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-4-gtx-77-kwh.html"><b>ID.4 GTX 77 kWh</b><span>254 km à 130 km/h · 77 kWh · Paris → Lyon 76,71 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-4-pro-2023.html"><b>ID.4 Pro 2023</b><span>271 km à 130 km/h · 77 kWh · Paris → Lyon 65,78 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-4-pure-52-kwh.html"><b>ID.4 Pure 52 kWh</b><span>188 km à 130 km/h · 52 kWh · Paris → Lyon 87,37 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-5-gtx-77-kwh.html"><b>ID.5 GTX 77 kWh</b><span>263 km à 130 km/h · 77 kWh · Paris → Lyon 67,40 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-5-pro.html"><b>ID.5 Pro</b><span>281 km à 130 km/h · 77 kWh · Paris → Lyon 64,07 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-7-pro-77-kwh.html"><b>ID.7 Pro 77 kWh</b><span>304 km à 130 km/h · 77 kWh · Paris → Lyon 60,17 €</span></a>
+        <a class="car" href="/voitures/volkswagen-id-7-pro-s-86-kwh.html"><b>ID.7 Pro S 86 kWh</b><span>344 km à 130 km/h · 86 kWh · Paris → Lyon 60,29 €</span></a>
+      </div>
+    </div>
+    <div class="brand" id="volvo">
+      <h3>Volvo</h3>
+      <div class="cars">
+        <a class="car" href="/voitures/volvo-ex30-extended-range.html"><b>EX30 Extended Range</b><span>258 km à 130 km/h · 64 kWh · Paris → Lyon 63,49 €</span></a>
+        <a class="car" href="/voitures/volvo-ex40-extended-range.html"><b>EX40 Extended Range</b><span>287 km à 130 km/h · 79 kWh · Paris → Lyon 62,88 €</span></a>
+        <a class="car" href="/voitures/volvo-xc40-recharge-extended-range.html"><b>XC40 Recharge Extended Range</b><span>274 km à 130 km/h · 78 kWh · Paris → Lyon 64,81 €</span></a>
+      </div>
+    </div>
+    <p class="note">Calcul du 30/10/2026 par le moteur de l'appli. Recharge au tarif public sans abonnement de chaque réseau (relevé du 10/10/2026), bornes de la base nationale des IRVE du 19/10/2026, péage selon les grilles 2026.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="in">
+    Données cartographiques © les contributeurs OpenStreetMap (ODbL). Bornes : Base nationale des IRVE, data.gouv.fr (Licence Ouverte). Péages : OpenTollData (ODbL) et grilles officielles des sociétés d'autoroute.<br>
+    Les noms de marques et de modèles appartiennent à leurs propriétaires. Wattlas est une application indépendante, affiliée à aucun constructeur, réseau de recharge ou organisme public.
+    <a href="/confidentialite.html">Confidentialité</a> · <a href="mailto:contact@wattlas.fr">contact@wattlas.fr</a>
+  </div>
+</footer>
+</body>
+</html>

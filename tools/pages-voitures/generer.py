@@ -663,7 +663,7 @@ class Page:
             if fe and not fh and trop_d_arrets(hiv) and plus_rapide(hiv):
                 alt = plus_rapide(hiv)
                 cartes.append(f'      <div class="wcard"><h4>{de} → {a}</h4><div class="big">+ de 8 arrêts</div>'
-                              f'<div class="vs">par l'autoroute, au lieu de {fe["arrets"]} · option {esc(alt["label"].lower())} : '
+                              f'<div class="vs">par l\'autoroute, au lieu de {fe["arrets"]} · option {esc(alt["label"].lower())} : '
                               f'{duree(alt["total_min"])}, {arrets(alt["arrets"])}</div></div>')
                 continue
             if not fe or not fh:

@@ -70,7 +70,10 @@ class Verif(HTMLParser):
 def anomalies() -> int:
     """Plans du moteur qui sauteront aux yeux d'un lecteur : à revoir côté moteur
     avant publication. Ne modifie rien."""
-    d = json.loads((Path(__file__).resolve().parent / "calculs.json").read_text(encoding="utf-8"))
+    src = Path(__file__).resolve().parent / "calculs.json"
+    if "--calculs" in sys.argv:
+        src = Path(sys.argv[sys.argv.index("--calculs") + 1])
+    d = json.loads(src.read_text(encoding="utf-8"))
     court = {}
     for v in d["vehicles"]:
         for t in v["trajets"]:

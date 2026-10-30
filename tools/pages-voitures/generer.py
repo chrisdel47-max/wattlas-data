@@ -566,7 +566,7 @@ class Page:
                      and ent(o["total_min"]) < ent(fr["total_min"]) and o["total_eur"] < fr["total_eur"]]
         if mix_mieux and not self.c.fige:
             o = mix_mieux[0]
-            return (f"{km} km par l'autoroute. Ici, l'option {o['label'].lower()} arrive {duree(ent(fr['total_min']) - ent(o['total_min']))} "
+            return (f"{km} km par l'autoroute. Ici, l'option « {o['label']} » arrive {duree(ent(fr['total_min']) - ent(o['total_min']))} "
                     f"plus tôt et coûte {ent(fr['total_eur'] - o['total_eur'])} € de moins" + raisons(o, fr) + ".")
         if k == "lyon":
             if eco and eco is not fr and ent(eco["total_min"]) > ent(fr["total_min"]):
@@ -663,7 +663,7 @@ class Page:
             if fe and not fh and trop_d_arrets(hiv) and plus_rapide(hiv):
                 alt = plus_rapide(hiv)
                 cartes.append(f'      <div class="wcard"><h4>{de} → {a}</h4><div class="big">+ de 8 arrêts</div>'
-                              f'<div class="vs">par l\'autoroute, au lieu de {fe["arrets"]} · option {esc(alt["label"].lower())} : '
+                              f'<div class="vs">par l\'autoroute, au lieu de {fe["arrets"]} · option « {esc(alt["label"])} » : '
                               f'{duree(alt["total_min"])}, {arrets(alt["arrets"])}</div></div>')
                 continue
             if not fe or not fh:
@@ -748,7 +748,7 @@ class Page:
                                f"Paris–Marseille en {f} : combien d'arrêts ?",
                                f"Combien de fois recharger une {f} entre Paris et Marseille ?"])
             out.append((q3, f"Par l'autoroute, il faudrait plus de huit arrêts, même par temps doux : Wattlas ne le propose pas. "
-                            f"L'option {alt['label'].lower()} demande {en_lettres(alt['arrets'])} arrêts, {duree(alt['charge_min'])} de charge "
+                            f"L'option « {alt['label']} » demande {en_lettres(alt['arrets'])} arrêts, {duree(alt['charge_min'])} de charge "
                             f"et {duree(alt['total_min'])} de trajet, pour {eur(alt['total_eur'])}."))
         if fe:
             q3 = self.c("q3", [f"Combien d'arrêts recharge pour un Paris–Marseille en {f} ?",

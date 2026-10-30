@@ -67,7 +67,50 @@ class Verif(HTMLParser):
             self.cur += data
 
 
+def anomalies() -> int:
+    """Plans du moteur qui sauteront aux yeux d'un lecteur : à revoir côté moteur
+    avant publication. Ne modifie rien."""
+    d = json.loads((Path(__file__).resolve().parent / "calculs.json").read_text(encoding="utf-8"))
+    court = {}
+    for v in d["vehicles"]:
+        for t in v["trajets"]:
+            for o in t.get("options", []):
+                k = (t["de"], t["a"])
+                court[k] = min(court.get(k, 1e9), o["km"])
+    par_voiture = {}
+    for v in d["vehicles"]:
+        notes = []
+        for t in v["trajets"]:
+            k = (t["de"], t["a"])
+            saison = "été" if t["t"] == 20.0 else "0 °C"
+            opts = t.get("options", [])
+            if not opts:
+                notes.append(f"{k[0]}→{k[1]} {saison} : aucune option")
+            for o in opts:
+                for s_ in o["stops"]:
+                    if s_["min"] < 3:
+                        notes.append(f"{k[0]}→{k[1]} {saison} {o['label']} : arrêt de {s_['min']:.1f} min ({s_['de']:.0f}→{s_['a']:.0f} %)")
+                if o["tier"] == "FREE" and o["km"] > court[k] * 1.05:
+                    notes.append(f"{k[0]}→{k[1]} {saison} {o['label']} : {o['km']:.0f} km (plus court du catalogue {court[k]:.0f})")
+            fr = [o for o in opts if o["tier"] == "FREE"]
+            if fr:
+                pass
+            elif any(e.startswith("FREE:") for e in t.get("ecartes", [])) and opts and min(o["arrets"] for o in opts) <= 6:
+                notes.append(f"{k[0]}→{k[1]} {saison} : autoroute écartée (> 8 arrêts) alors qu'une autre option en fait {min(o['arrets'] for o in opts)}")
+        if notes:
+            par_voiture[f"{v['brand']} {v['model']}"] = notes
+    n = sum(len(x) for x in par_voiture.values())
+    print(f"{len(par_voiture)} voitures / {len(d['vehicles'])} avec au moins une anomalie de plan, {n} au total")
+    for nom, notes in par_voiture.items():
+        print(f"- {nom}")
+        for x in notes:
+            print(f"    {x}")
+    return 0
+
+
 def main() -> int:
+    if "--anomalies" in sys.argv:
+        return anomalies()
     pages = sorted((DOCS / "voitures").glob("*.html"))
     problemes, titres, descs = [], {}, {}
     for f in pages:

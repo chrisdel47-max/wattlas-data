@@ -148,6 +148,12 @@ def modele_affiche(model: str) -> str:
     return out
 
 
+def nom_complet(brand: str, model: str) -> str:
+    """« MG MG4 64 kWh » → « MG4 64 kWh » : pas de marque répétée."""
+    mod = modele_affiche(model)
+    return mod if mod.startswith(brand) else f"{brand} {mod}"
+
+
 def famille_auto(brand: str, model: str) -> tuple[str, str]:
     """(famille, familier) quand FAMILLE ne dit rien."""
     if model in FAMILLE:
@@ -260,10 +266,19 @@ def option(t: dict | None, tier: str) -> dict | None:
 
 
 def autoroute(t: dict | None) -> dict | None:
-    """L'option « Autoroute » (palier FREE), sinon la plus rapide."""
-    if not t:
+    """L'option « Autoroute » (palier FREE) ; None si le moteur l'a écartée."""
+    return option(t, "FREE")
+
+
+def plus_rapide(t: dict | None) -> dict | None:
+    if not t or not t.get("options"):
         return None
-    return option(t, "FREE") or min(t["options"], key=lambda o: o["total_min"])
+    return min(t["options"], key=lambda o: o["total_min"])
+
+
+def trop_d_arrets(t: dict | None) -> bool:
+    """Vrai si le moteur a écarté l'autoroute parce qu'il faudrait plus de 8 arrêts."""
+    return bool(t) and any(e.startswith("FREE:") and "arrêts nécessaires" in e for e in t.get("ecartes", []))
 
 
 def peage_txt(o: dict) -> str:
@@ -310,7 +325,7 @@ class Page:
         self.slug = v["slug"]
         self.c = Choix(self.slug)
         self.mod = modele_affiche(self.model)
-        self.nom = f"{self.brand} {self.mod}"
+        self.nom = nom_complet(self.brand, self.model)
         fam, self.familier = famille_auto(self.brand, self.model)
         self.famille = fam
         # « une Mégane E-Tech EV60 » : sans la marque si le nom du modèle se suffit.
@@ -540,6 +555,12 @@ class Page:
     def sous_trajet(self, k: str, ete: dict) -> str:
         fr = autoroute(ete)
         eco = option(ete, "ECO")
+        if not fr:
+            alt = plus_rapide(ete)
+            if trop_d_arrets(ete):
+                return (f"{ent(alt['km'])} km. Par l'autoroute, il faudrait plus de huit arrêts, au-delà de ce que Wattlas propose : "
+                        f"restent les itinéraires plus lents, où la voiture consomme moins.")
+            return f"{ent(alt['km'])} km, {arrets(alt['arrets'])} par l'itinéraire le plus rapide retenu."
         km = ent(fr["km"])
         mix_mieux = [o for o in ete["options"] if o["tier"] not in ("FREE", "ECO")
                      and ent(o["total_min"]) < ent(fr["total_min"]) and o["total_eur"] < fr["total_eur"]]
@@ -605,7 +626,7 @@ class Page:
                     f'          <dl><dt>Recharge</dt><dd>{eur(o["recharge_eur"])}</dd><dt>Péage</dt><dd>{peage_txt(o)}</dd></dl></div>')
             note = ""
             if i == len(presents) - 1:
-                maison = ent(autoroute(ete)["domicile_kwh"] * PRIX_DOMICILE)
+                maison = ent((autoroute(ete) or plus_rapide(ete))["domicile_kwh"] * PRIX_DOMICILE)
                 note = (f'\n      <p class="note">Départ batterie pleine, arrivée avec 15 % au moins, temps doux. '
                         f"Le plein de départ à la maison s'ajoute (environ {maison} €). ≈ : péage estimé sur une partie du trajet.</p>")
             blocs.append(f"""
@@ -639,6 +660,12 @@ class Page:
         for de, a, k in TRAJETS:
             ete, hiv = self.t[k]
             fe, fh = autoroute(ete), autoroute(hiv)
+            if fe and not fh and trop_d_arrets(hiv) and plus_rapide(hiv):
+                alt = plus_rapide(hiv)
+                cartes.append(f'      <div class="wcard"><h4>{de} → {a}</h4><div class="big">+ de 8 arrêts</div>'
+                              f'<div class="vs">par l'autoroute, au lieu de {fe["arrets"]} · option {esc(alt["label"].lower())} : '
+                              f'{duree(alt["total_min"])}, {arrets(alt["arrets"])}</div></div>')
+                continue
             if not fe or not fh:
                 continue
             if fh["arrets"] != fe["arrets"]:
@@ -715,6 +742,14 @@ class Page:
 
         ete, hiv = self.t["pm"]
         fe, fh = autoroute(ete), autoroute(hiv)
+        if not fe and trop_d_arrets(ete) and plus_rapide(ete):
+            alt = plus_rapide(ete)
+            q3 = self.c("q3", [f"Combien d'arrêts recharge pour un Paris–Marseille en {f} ?",
+                               f"Paris–Marseille en {f} : combien d'arrêts ?",
+                               f"Combien de fois recharger une {f} entre Paris et Marseille ?"])
+            out.append((q3, f"Par l'autoroute, il faudrait plus de huit arrêts, même par temps doux : Wattlas ne le propose pas. "
+                            f"L'option {alt['label'].lower()} demande {en_lettres(alt['arrets'])} arrêts, {duree(alt['charge_min'])} de charge "
+                            f"et {duree(alt['total_min'])} de trajet, pour {eur(alt['total_eur'])}."))
         if fe:
             q3 = self.c("q3", [f"Combien d'arrêts recharge pour un Paris–Marseille en {f} ?",
                                f"Paris–Marseille en {f} : combien d'arrêts ?",
@@ -723,6 +758,8 @@ class Page:
             tete = "Aucun arrêt" if n == 0 else ("Un arrêt" if n == 1 else f"{cap(en_lettres(n))} arrêts")
             r3 = (f"{tete} par l'autoroute par temps doux, pour {duree(fe['charge_min'])} de charge et "
                   f"{duree(fe['total_min'])} de trajet au total.")
+            if not fh and trop_d_arrets(hiv):
+                r3 += " À 0 °C, il en faudrait plus de huit par l'autoroute : Wattlas propose alors un itinéraire plus lent."
             if fh:
                 if fh["arrets"] != n:
                     r3 += f" À 0 °C, Wattlas en prévoit {en_lettres(fh['arrets'])}, pour {duree(fh['charge_min'])} de charge."
@@ -750,7 +787,7 @@ class Page:
 
     def bloc_faq(self) -> str:
         det = "\n".join(f"    <details><summary>{esc(q)}</summary><p>{esc(r)}</p></details>" for q, r in self.faq())
-        prox = " · ".join(f'<a href="/voitures/{p["slug"]}.html">{esc(p["brand"] + " " + modele_affiche(p["model"]))}</a>' for p in self.proches)
+        prox = " · ".join(f'<a href="/voitures/{p["slug"]}.html">{esc(nom_complet(p["brand"], p["model"]))}</a>' for p in self.proches)
         prox_l = f'\n    <p class="more" style="margin-top:10px;font-size:15px">Autonomie voisine : {prox} · <a href="/voitures/">toutes les voitures</a></p>' if prox else ""
         return f"""
 <section style="padding-top:0">

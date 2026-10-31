@@ -277,8 +277,17 @@ def plus_rapide(t: dict | None) -> dict | None:
 
 
 def trop_d_arrets(t: dict | None) -> bool:
-    """Vrai si le moteur a écarté l'autoroute parce qu'il faudrait plus de 8 arrêts."""
+    """Vrai si le moteur a écarté l'autoroute parce qu'il faudrait trop d'arrêts."""
     return bool(t) and any(e.startswith("FREE:") and "arrêts nécessaires" in e for e in t.get("ecartes", []))
+
+
+def limite_arrets(t: dict) -> int:
+    """Limite d'arrêts du moteur pour ce trajet (elle suit la distance depuis le 31/10)."""
+    for e in t.get("ecartes", []):
+        m = re.search(r"Plus de (\d+) arrêts", e)
+        if e.startswith("FREE:") and m:
+            return int(m.group(1))
+    return 8
 
 
 def peage_txt(o: dict) -> str:
@@ -558,7 +567,7 @@ class Page:
         if not fr:
             alt = plus_rapide(ete)
             if trop_d_arrets(ete):
-                return (f"{ent(alt['km'])} km. Par l'autoroute, il faudrait plus de huit arrêts, au-delà de ce que Wattlas propose : "
+                return (f"{ent(alt['km'])} km. Par l'autoroute, il faudrait plus de {en_lettres(limite_arrets(ete))} arrêts, au-delà de ce que Wattlas propose : "
                         f"restent les itinéraires plus lents, où la voiture consomme moins.")
             return f"{ent(alt['km'])} km, {arrets(alt['arrets'])} par l'itinéraire le plus rapide retenu."
         km = ent(fr["km"])
@@ -662,7 +671,7 @@ class Page:
             fe, fh = autoroute(ete), autoroute(hiv)
             if fe and not fh and trop_d_arrets(hiv) and plus_rapide(hiv):
                 alt = plus_rapide(hiv)
-                cartes.append(f'      <div class="wcard"><h4>{de} → {a}</h4><div class="big">+ de 8 arrêts</div>'
+                cartes.append(f'      <div class="wcard"><h4>{de} → {a}</h4><div class="big">+ de {limite_arrets(hiv)} arrêts</div>'
                               f'<div class="vs">par l\'autoroute, au lieu de {fe["arrets"]} · option « {esc(alt["label"])} » : '
                               f'{duree(alt["total_min"])}, {arrets(alt["arrets"])}</div></div>')
                 continue
@@ -747,7 +756,7 @@ class Page:
             q3 = self.c("q3", [f"Combien d'arrêts recharge pour un Paris–Marseille en {f} ?",
                                f"Paris–Marseille en {f} : combien d'arrêts ?",
                                f"Combien de fois recharger une {f} entre Paris et Marseille ?"])
-            out.append((q3, f"Par l'autoroute, il faudrait plus de huit arrêts, même par temps doux : Wattlas ne le propose pas. "
+            out.append((q3, f"Par l'autoroute, il faudrait plus de {en_lettres(limite_arrets(ete))} arrêts, même par temps doux : Wattlas ne le propose pas. "
                             f"L'option « {alt['label']} » demande {en_lettres(alt['arrets'])} arrêts, {duree(alt['charge_min'])} de charge "
                             f"et {duree(alt['total_min'])} de trajet, pour {eur(alt['total_eur'])}."))
         if fe:
@@ -759,7 +768,7 @@ class Page:
             r3 = (f"{tete} par l'autoroute par temps doux, pour {duree(fe['charge_min'])} de charge et "
                   f"{duree(fe['total_min'])} de trajet au total.")
             if not fh and trop_d_arrets(hiv):
-                r3 += " À 0 °C, il en faudrait plus de huit par l'autoroute : Wattlas propose alors un itinéraire plus lent."
+                r3 += f" À 0 °C, il en faudrait plus de {en_lettres(limite_arrets(hiv))} par l'autoroute : Wattlas propose alors un itinéraire plus lent."
             if fh:
                 if fh["arrets"] != n:
                     r3 += f" À 0 °C, Wattlas en prévoit {en_lettres(fh['arrets'])}, pour {duree(fh['charge_min'])} de charge."

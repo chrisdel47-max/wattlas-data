@@ -99,15 +99,45 @@
   @media (max-width:520px){section{padding:40px 0}.hero{padding-bottom:44px}.top{margin-bottom:30px}.opt .price{font-size:34px}}
 </style>
 <style>
-  .brands{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
-  .brands a{text-decoration:none;font-weight:700;padding:7px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px}
-  .brand{margin-bottom:34px;scroll-margin-top:16px}
-  .brand h3{font-size:22px;letter-spacing:-.02em;margin:0 0 12px}
-  .cars{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
-  .car{display:block;text-decoration:none;background:var(--t,rgba(47,91,255,.07));border:1px solid color-mix(in srgb,#2F5BFF 18%,transparent);border-radius:16px;padding:14px 16px}
-  .car b{display:block;font-size:16.5px;margin-bottom:2px}
-  .car span{color:var(--muted);font-size:14px}
-  .car:hover{border-color:var(--blue)}
+  .list{background:var(--s1)}
+  .tools{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--s1) 92%,transparent);backdrop-filter:blur(8px);
+         margin:0 -16px 22px;padding:12px 16px;border-bottom:1px solid var(--line)}
+  .search{width:100%;font:inherit;font-size:16px;padding:12px 16px 12px 44px;border-radius:14px;border:1px solid var(--line);
+          background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%235B6472' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Cpath d='m14 14 4 4'/%3E%3C/svg%3E") no-repeat 14px center;color:var(--text)}
+  .search:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+  .brands{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:2px;scrollbar-width:none}
+  .brands::-webkit-scrollbar{display:none}
+  .brands a{flex:none;text-decoration:none;font-weight:600;font-size:13.5px;padding:5px 11px;border-radius:999px;color:var(--muted);
+            background:var(--card);border:1px solid var(--line)}
+  .brands a:hover{color:var(--blue);border-color:var(--blue)}
+  .legend{display:flex;justify-content:flex-end;gap:18px;font-size:12.5px;color:var(--muted);margin:0 4px 10px;font-weight:600}
+  .legend .lk{display:inline-flex;align-items:center;gap:6px}
+  .legend .lk::before{content:"";width:18px;height:6px;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+  .grid{columns:2 440px;column-gap:18px}
+  .bcard{break-inside:avoid;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 6px 8px;margin-bottom:18px;
+         scroll-margin-top:130px;box-shadow:0 1px 2px rgba(14,17,22,.04)}
+  .bh{display:flex;align-items:baseline;justify-content:space-between;padding:12px 14px 8px}
+  .bh h3{margin:0;font-size:19px;letter-spacing:-.02em}
+  .bh span{font-size:12.5px;color:var(--muted);font-weight:600}
+  .row{display:grid;grid-template-columns:minmax(0,1fr) 72px 62px 78px;align-items:center;gap:12px;padding:10px 14px;
+       border-radius:13px;text-decoration:none;font-variant-numeric:tabular-nums}
+  .row + .row{box-shadow:inset 0 1px 0 var(--s2)}
+  .row:hover{background:var(--s1);box-shadow:none}
+  .row:hover + .row{box-shadow:none}
+  .m{min-width:0;display:flex;flex-direction:column;line-height:1.25}
+  .m b{font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .m small{color:var(--muted);font-size:12.5px}
+  .r{height:6px;background:var(--s2);border-radius:9px;overflow:hidden}
+  .r i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}
+  .k{text-align:right;font-weight:700;font-size:14.5px}
+  .p{text-align:right;font-weight:800;font-size:14.5px;color:var(--blue)}
+  @media (prefers-color-scheme:dark){.p{color:var(--ice)}}
+  .none{display:none;text-align:center;color:var(--muted);padding:30px 0}
+  @media (max-width:520px){
+    .row{grid-template-columns:minmax(0,1fr) 58px 72px;gap:10px}
+    .row .r{display:none}
+    .legend .lk::before{display:none}
+  }
 </style>
 </head>
 <body>
@@ -123,264 +153,232 @@
     </div>
     <h1>Votre voiture, sur autoroute</h1>
     <p>Pour chaque modèle du catalogue Wattlas : autonomie à 110 et 130 km/h, temps de charge, et prix de trois trajets types, recharge et péage compris.</p>
+    <div class="kpis">
+      <div class="kpi"><b>100</b><span>voitures électriques, 29 marques</span></div>
+      <div class="kpi"><b>112 à 354 km</b><span>d'autonomie à 130 km/h, de 100 à 10 %</span></div>
+      <div class="kpi"><b>dès 48,59 €</b><span>Paris → Lyon par l'autoroute, recharge + péage</span></div>
+    </div>
     <a class="cta" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dvoitures-index">▶ Calculer mon trajet, gratuit</a>
   </div>
 </header>
 
-<section>
+<section class="list">
   <div class="in">
-    <h2>Par marque</h2>
-    <p class="sub">Autonomie de 100 à 10 % à 130 km/h par temps doux, et coût d'un Paris → Lyon par l'autoroute au départ batterie pleine.</p>
-    <nav class="brands"><a href="#alpine">Alpine</a><a href="#audi">Audi</a><a href="#bmw">BMW</a><a href="#byd">BYD</a><a href="#citroen">Citroën</a><a href="#cupra">Cupra</a><a href="#dacia">Dacia</a><a href="#fiat">Fiat</a><a href="#ford">Ford</a><a href="#honda">Honda</a><a href="#hyundai">Hyundai</a><a href="#jeep">Jeep</a><a href="#kia">Kia</a><a href="#leapmotor">Leapmotor</a><a href="#mazda">Mazda</a><a href="#mercedes">Mercedes</a><a href="#mg">MG</a><a href="#mini">Mini</a><a href="#nissan">Nissan</a><a href="#opel">Opel</a><a href="#peugeot">Peugeot</a><a href="#polestar">Polestar</a><a href="#renault">Renault</a><a href="#skoda">Skoda</a><a href="#smart">Smart</a><a href="#tesla">Tesla</a><a href="#toyota">Toyota</a><a href="#volkswagen">Volkswagen</a><a href="#volvo">Volvo</a></nav>
-
-    <div class="brand" id="alpine">
-      <h3>Alpine</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/alpine-a290.html"><b>A290</b><span>216 km à 130 km/h · 52 kWh · Paris → Lyon 73,69 €</span></a>
+    <h2>Trouvez votre modèle</h2>
+    <p class="sub">Autonomie de 100 à 10 % à 130 km/h par temps doux, et prix d'un Paris → Lyon par l'autoroute au départ batterie pleine.</p>
+    <div class="tools">
+      <input class="search" type="search" placeholder="Chercher : Megane, Model Y, ID.3…" aria-label="Chercher un modèle" autocomplete="off">
+      <nav class="brands" aria-label="Marques"><a href="#alpine">Alpine</a><a href="#audi">Audi</a><a href="#bmw">BMW</a><a href="#byd">BYD</a><a href="#citroen">Citroën</a><a href="#cupra">Cupra</a><a href="#dacia">Dacia</a><a href="#fiat">Fiat</a><a href="#ford">Ford</a><a href="#honda">Honda</a><a href="#hyundai">Hyundai</a><a href="#jeep">Jeep</a><a href="#kia">Kia</a><a href="#leapmotor">Leapmotor</a><a href="#mazda">Mazda</a><a href="#mercedes">Mercedes</a><a href="#mg">MG</a><a href="#mini">Mini</a><a href="#nissan">Nissan</a><a href="#opel">Opel</a><a href="#peugeot">Peugeot</a><a href="#polestar">Polestar</a><a href="#renault">Renault</a><a href="#skoda">Skoda</a><a href="#smart">Smart</a><a href="#tesla">Tesla</a><a href="#toyota">Toyota</a><a href="#volkswagen">Volkswagen</a><a href="#volvo">Volvo</a></nav>
+    </div>
+    <div class="legend"><span class="lk">Autonomie à 130 km/h</span><span>Paris → Lyon</span></div>
+    <div class="grid">
+      <div class="bcard" id="alpine">
+        <div class="bh"><h3>Alpine</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/alpine-a290.html" data-q="alpine a290"><span class="m"><b>A290</b><small>52 kWh</small></span><span class="r"><i style="width:61%"></i></span><span class="k">216&nbsp;km</span><span class="p">73,69&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="audi">
+        <div class="bh"><h3>Audi</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/audi-q4-40-e-tron.html" data-q="audi q4 40 e-tron"><span class="m"><b>Q4 40 e-tron</b><small>76,6 kWh</small></span><span class="r"><i style="width:74%"></i></span><span class="k">263&nbsp;km</span><span class="p">66,72&nbsp;€</span></a>
+        <a class="row" href="/voitures/audi-q4-45-e-tron.html" data-q="audi q4 45 e-tron"><span class="m"><b>Q4 45 e-tron</b><small>76,6 kWh</small></span><span class="r"><i style="width:76%"></i></span><span class="k">270&nbsp;km</span><span class="p">65,58&nbsp;€</span></a>
+        <a class="row" href="/voitures/audi-q6-e-tron.html" data-q="audi q6 e-tron"><span class="m"><b>Q6 e-tron</b><small>94,9 kWh</small></span><span class="r"><i style="width:90%"></i></span><span class="k">317&nbsp;km</span><span class="p">61,24&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="bmw">
+        <div class="bh"><h3>BMW</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/bmw-i4-edrive40.html" data-q="bmw i4 edrive40"><span class="m"><b>i4 eDrive40</b><small>80,7 kWh</small></span><span class="r"><i style="width:84%"></i></span><span class="k">298&nbsp;km</span><span class="p">61,48&nbsp;€</span></a>
+        <a class="row" href="/voitures/bmw-ix1-xdrive30.html" data-q="bmw ix1 xdrive30"><span class="m"><b>iX1 xDrive30</b><small>64,7 kWh</small></span><span class="r"><i style="width:64%"></i></span><span class="k">228&nbsp;km</span><span class="p">76,02&nbsp;€</span></a>
+        <a class="row" href="/voitures/bmw-ix3.html" data-q="bmw ix3"><span class="m"><b>iX3</b><small>74 kWh</small></span><span class="r"><i style="width:71%"></i></span><span class="k">253&nbsp;km</span><span class="p">75,95&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="byd">
+        <div class="bh"><h3>BYD</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/byd-atto-3.html" data-q="byd atto 3"><span class="m"><b>Atto 3</b><small>60,5 kWh</small></span><span class="r"><i style="width:56%"></i></span><span class="k">197&nbsp;km</span><span class="p">79,70&nbsp;€</span></a>
+        <a class="row" href="/voitures/byd-dolphin.html" data-q="byd dolphin"><span class="m"><b>Dolphin</b><small>60,4 kWh</small></span><span class="r"><i style="width:67%"></i></span><span class="k">235&nbsp;km</span><span class="p">72,81&nbsp;€</span></a>
+        <a class="row" href="/voitures/byd-seal-awd.html" data-q="byd seal awd"><span class="m"><b>Seal AWD</b><small>82,5 kWh</small></span><span class="r"><i style="width:83%"></i></span><span class="k">292&nbsp;km</span><span class="p">62,99&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="citroen">
+        <div class="bh"><h3>Citroën</h3><span>5 modèles</span></div>
+        <a class="row" href="/voitures/citroen-e-c3.html" data-q="citroen e-c3"><span class="m"><b>ë-C3</b><small>44 kWh</small></span><span class="r"><i style="width:48%"></i></span><span class="k">170&nbsp;km</span><span class="p">77,51&nbsp;€</span></a>
+        <a class="row" href="/voitures/citroen-e-c4-50-kwh.html" data-q="citroen e-c4 50 kwh"><span class="m"><b>ë-C4 50 kWh</b><small>46,3 kWh</small></span><span class="r"><i style="width:49%"></i></span><span class="k">173&nbsp;km</span><span class="p">77,61&nbsp;€</span></a>
+        <a class="row" href="/voitures/citroen-e-c4-54-kwh.html" data-q="citroen e-c4 54 kwh"><span class="m"><b>ë-C4 54 kWh</b><small>51 kWh</small></span><span class="r"><i style="width:54%"></i></span><span class="k">191&nbsp;km</span><span class="p">75,88&nbsp;€</span></a>
+        <a class="row" href="/voitures/citroen-e-c4-x-50-kwh.html" data-q="citroen e-c4 x 50 kwh"><span class="m"><b>ë-C4 X 50 kWh</b><small>46,3 kWh</small></span><span class="r"><i style="width:50%"></i></span><span class="k">176&nbsp;km</span><span class="p">77,00&nbsp;€</span></a>
+        <a class="row" href="/voitures/citroen-e-c4-x-54-kwh.html" data-q="citroen e-c4 x 54 kwh"><span class="m"><b>ë-C4 X 54 kWh</b><small>51 kWh</small></span><span class="r"><i style="width:55%"></i></span><span class="k">194&nbsp;km</span><span class="p">75,33&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="cupra">
+        <div class="bh"><h3>Cupra</h3><span>2 modèles</span></div>
+        <a class="row" href="/voitures/cupra-born-58-kwh.html" data-q="cupra born 58 kwh"><span class="m"><b>Born 58 kWh</b><small>58 kWh</small></span><span class="r"><i style="width:61%"></i></span><span class="k">215&nbsp;km</span><span class="p">78,23&nbsp;€</span></a>
+        <a class="row" href="/voitures/cupra-born-77-kwh.html" data-q="cupra born 77 kwh"><span class="m"><b>Born 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:79%"></i></span><span class="k">279&nbsp;km</span><span class="p">63,07&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="dacia">
+        <div class="bh"><h3>Dacia</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/dacia-spring.html" data-q="dacia spring"><span class="m"><b>Spring</b><small>26,8 kWh</small></span><span class="r"><i style="width:35%"></i></span><span class="k">124&nbsp;km</span><span class="p">77,26&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="fiat">
+        <div class="bh"><h3>Fiat</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/fiat-500e-42-kwh.html" data-q="fiat 500e 42 kwh"><span class="m"><b>500e 42 kWh</b><small>37,3 kWh</small></span><span class="r"><i style="width:46%"></i></span><span class="k">162&nbsp;km</span><span class="p">70,49&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="ford">
+        <div class="bh"><h3>Ford</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/ford-explorer-ev-extended-range.html" data-q="ford explorer ev extended range"><span class="m"><b>Explorer EV Extended Range</b><small>77 kWh</small></span><span class="r"><i style="width:80%"></i></span><span class="k">283&nbsp;km</span><span class="p">63,42&nbsp;€</span></a>
+        <a class="row" href="/voitures/ford-mustang-mach-e-extended-range.html" data-q="ford mustang mach-e extended range"><span class="m"><b>Mustang Mach-E Extended Range</b><small>91 kWh</small></span><span class="r"><i style="width:86%"></i></span><span class="k">304&nbsp;km</span><span class="p">62,37&nbsp;€</span></a>
+        <a class="row" href="/voitures/ford-puma-gen-e.html" data-q="ford puma gen-e"><span class="m"><b>Puma Gen-E</b><small>43,6 kWh</small></span><span class="r"><i style="width:53%"></i></span><span class="k">188&nbsp;km</span><span class="p">76,75&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="honda">
+        <div class="bh"><h3>Honda</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/honda-e-ny1.html" data-q="honda e:ny1"><span class="m"><b>e:Ny1</b><small>61,9 kWh</small></span><span class="r"><i style="width:62%"></i></span><span class="k">219&nbsp;km</span><span class="p">78,63&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="hyundai">
+        <div class="bh"><h3>Hyundai</h3><span>7 modèles</span></div>
+        <a class="row" href="/voitures/hyundai-ioniq-5-58-kwh.html" data-q="hyundai ioniq 5 58 kwh"><span class="m"><b>Ioniq 5 58 kWh</b><small>58 kWh</small></span><span class="r"><i style="width:60%"></i></span><span class="k">213&nbsp;km</span><span class="p">78,84&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-ioniq-5-77-kwh.html" data-q="hyundai ioniq 5 77 kwh"><span class="m"><b>Ioniq 5 77 kWh</b><small>77,4 kWh</small></span><span class="r"><i style="width:77%"></i></span><span class="k">274&nbsp;km</span><span class="p">64,36&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-ioniq-6-77-kwh.html" data-q="hyundai ioniq 6 77 kwh"><span class="m"><b>Ioniq 6 77 kWh</b><small>77,4 kWh</small></span><span class="r"><i style="width:91%"></i></span><span class="k">323&nbsp;km</span><span class="p">56,89&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-kona-39-kwh-2018-2023.html" data-q="hyundai kona 39 kwh (2018-2023)"><span class="m"><b>Kona 39 kWh (2018-2023)</b><small>39,2 kWh</small></span><span class="r"><i style="width:50%"></i></span><span class="k">178&nbsp;km</span><span class="p">48,59&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-kona-48-kwh-2023-plus.html" data-q="hyundai kona 48 kwh (2023+)"><span class="m"><b>Kona 48 kWh (2023+)</b><small>48,4 kWh</small></span><span class="r"><i style="width:58%"></i></span><span class="k">207&nbsp;km</span><span class="p">71,16&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-kona-64-kwh-2018-2023.html" data-q="hyundai kona 64 kwh (2018-2023)"><span class="m"><b>Kona 64 kWh (2018-2023)</b><small>64 kWh</small></span><span class="r"><i style="width:81%"></i></span><span class="k">286&nbsp;km</span><span class="p">59,02&nbsp;€</span></a>
+        <a class="row" href="/voitures/hyundai-kona-65-kwh-2023-plus.html" data-q="hyundai kona 65 kwh (2023+)"><span class="m"><b>Kona 65 kWh (2023+)</b><small>65,4 kWh</small></span><span class="r"><i style="width:78%"></i></span><span class="k">275&nbsp;km</span><span class="p">61,06&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="jeep">
+        <div class="bh"><h3>Jeep</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/jeep-avenger-electric.html" data-q="jeep avenger electric"><span class="m"><b>Avenger Electric</b><small>51 kWh</small></span><span class="r"><i style="width:57%"></i></span><span class="k">203&nbsp;km</span><span class="p">72,77&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="kia">
+        <div class="bh"><h3>Kia</h3><span>5 modèles</span></div>
+        <a class="row" href="/voitures/kia-ev2-61-kwh.html" data-q="kia ev2 61 kwh"><span class="m"><b>EV2 61 kWh</b><small>58 kWh</small></span><span class="r"><i style="width:66%"></i></span><span class="k">232&nbsp;km</span><span class="p">70,68&nbsp;€</span></a>
+        <a class="row" href="/voitures/kia-ev3-81-kwh.html" data-q="kia ev3 81 kwh"><span class="m"><b>EV3 81 kWh</b><small>81,4 kWh</small></span><span class="r"><i style="width:90%"></i></span><span class="k">319&nbsp;km</span><span class="p">57,71&nbsp;€</span></a>
+        <a class="row" href="/voitures/kia-ev6-77-kwh.html" data-q="kia ev6 77 kwh"><span class="m"><b>EV6 77 kWh</b><small>77,4 kWh</small></span><span class="r"><i style="width:80%"></i></span><span class="k">284&nbsp;km</span><span class="p">62,62&nbsp;€</span></a>
+        <a class="row" href="/voitures/kia-ev9-99-kwh.html" data-q="kia ev9 99 kwh"><span class="m"><b>EV9 99 kWh</b><small>99,8 kWh</small></span><span class="r"><i style="width:86%"></i></span><span class="k">305&nbsp;km</span><span class="p">64,77&nbsp;€</span></a>
+        <a class="row" href="/voitures/kia-niro-ev.html" data-q="kia niro ev"><span class="m"><b>Niro EV</b><small>64,8 kWh</small></span><span class="r"><i style="width:71%"></i></span><span class="k">253&nbsp;km</span><span class="p">64,75&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="leapmotor">
+        <div class="bh"><h3>Leapmotor</h3><span>2 modèles</span></div>
+        <a class="row" href="/voitures/leapmotor-c10.html" data-q="leapmotor c10"><span class="m"><b>C10</b><small>69,9 kWh</small></span><span class="r"><i style="width:67%"></i></span><span class="k">236&nbsp;km</span><span class="p">77,73&nbsp;€</span></a>
+        <a class="row" href="/voitures/leapmotor-t03.html" data-q="leapmotor t03"><span class="m"><b>T03</b><small>37,3 kWh</small></span><span class="r"><i style="width:46%"></i></span><span class="k">162&nbsp;km</span><span class="p">74,37&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="mazda">
+        <div class="bh"><h3>Mazda</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/mazda-6e.html" data-q="mazda 6e"><span class="m"><b>6e</b><small>68,8 kWh</small></span><span class="r"><i style="width:71%"></i></span><span class="k">250&nbsp;km</span><span class="p">73,97&nbsp;€</span></a>
+        <a class="row" href="/voitures/mazda-6e-long-range.html" data-q="mazda 6e long range"><span class="m"><b>6e Long Range</b><small>80 kWh</small></span><span class="r"><i style="width:80%"></i></span><span class="k">282&nbsp;km</span><span class="p">63,62&nbsp;€</span></a>
+        <a class="row" href="/voitures/mazda-mx-30.html" data-q="mazda mx-30"><span class="m"><b>MX-30</b><small>30 kWh</small></span><span class="r"><i style="width:32%"></i></span><span class="k">112&nbsp;km</span><span class="p">80,78&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="mercedes">
+        <div class="bh"><h3>Mercedes</h3><span>2 modèles</span></div>
+        <a class="row" href="/voitures/mercedes-eqa-250.html" data-q="mercedes eqa 250"><span class="m"><b>EQA 250</b><small>66,5 kWh</small></span><span class="r"><i style="width:70%"></i></span><span class="k">246&nbsp;km</span><span class="p">74,17&nbsp;€</span></a>
+        <a class="row" href="/voitures/mercedes-eqb-300.html" data-q="mercedes eqb 300"><span class="m"><b>EQB 300</b><small>66,5 kWh</small></span><span class="r"><i style="width:63%"></i></span><span class="k">222&nbsp;km</span><span class="p">81,85&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="mg">
+        <div class="bh"><h3>MG</h3><span>11 modèles</span></div>
+        <a class="row" href="/voitures/mg-cyberster.html" data-q="mg cyberster"><span class="m"><b>Cyberster</b><small>74,4 kWh</small></span><span class="r"><i style="width:71%"></i></span><span class="k">250&nbsp;km</span><span class="p">75,65&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-marvel-r.html" data-q="mg marvel r"><span class="m"><b>Marvel R</b><small>70 kWh</small></span><span class="r"><i style="width:66%"></i></span><span class="k">234&nbsp;km</span><span class="p">76,04&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-mg4-51-kwh.html" data-q="mg mg4 51 kwh"><span class="m"><b>MG4 51 kWh</b><small>50,8 kWh</small></span><span class="r"><i style="width:57%"></i></span><span class="k">202&nbsp;km</span><span class="p">73,29&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-mg4-64-kwh.html" data-q="mg mg4 64 kwh"><span class="m"><b>MG4 64 kWh</b><small>61,7 kWh</small></span><span class="r"><i style="width:67%"></i></span><span class="k">237&nbsp;km</span><span class="p">72,98&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-mg4-77-kwh.html" data-q="mg mg4 77 kwh"><span class="m"><b>MG4 77 kWh</b><small>74,4 kWh</small></span><span class="r"><i style="width:80%"></i></span><span class="k">282&nbsp;km</span><span class="p">61,76&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-mg4-urban-54-kwh.html" data-q="mg mg4 urban 54 kwh"><span class="m"><b>MG4 Urban 54 kWh</b><small>52,8 kWh</small></span><span class="r"><i style="width:63%"></i></span><span class="k">224&nbsp;km</span><span class="p">70,17&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-mg5.html" data-q="mg mg5"><span class="m"><b>MG5</b><small>57,4 kWh</small></span><span class="r"><i style="width:60%"></i></span><span class="k">214&nbsp;km</span><span class="p">77,46&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-s5-ev-49-kwh.html" data-q="mg s5 ev 49 kwh"><span class="m"><b>S5 EV 49 kWh</b><small>49,1 kWh</small></span><span class="r"><i style="width:59%"></i></span><span class="k">210&nbsp;km</span><span class="p">69,64&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-s5-ev-64-kwh.html" data-q="mg s5 ev 64 kwh"><span class="m"><b>S5 EV 64 kWh</b><small>62,2 kWh</small></span><span class="r"><i style="width:72%"></i></span><span class="k">254&nbsp;km</span><span class="p">67,18&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-zs-ev.html" data-q="mg zs ev"><span class="m"><b>ZS EV</b><small>68,3 kWh</small></span><span class="r"><i style="width:68%"></i></span><span class="k">242&nbsp;km</span><span class="p">73,97&nbsp;€</span></a>
+        <a class="row" href="/voitures/mg-zs-ev-51-kwh.html" data-q="mg zs ev 51 kwh"><span class="m"><b>ZS EV 51 kWh</b><small>49,1 kWh</small></span><span class="r"><i style="width:53%"></i></span><span class="k">188&nbsp;km</span><span class="p">75,42&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="mini">
+        <div class="bh"><h3>Mini</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/mini-cooper-se.html" data-q="mini cooper se"><span class="m"><b>Cooper SE</b><small>49,2 kWh</small></span><span class="r"><i style="width:59%"></i></span><span class="k">207&nbsp;km</span><span class="p">71,50&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="nissan">
+        <div class="bh"><h3>Nissan</h3><span>2 modèles</span></div>
+        <a class="row" href="/voitures/nissan-ariya-87-kwh.html" data-q="nissan ariya 87 kwh"><span class="m"><b>Ariya 87 kWh</b><small>87 kWh</small></span><span class="r"><i style="width:86%"></i></span><span class="k">304&nbsp;km</span><span class="p">61,71&nbsp;€</span></a>
+        <a class="row" href="/voitures/nissan-leaf-e-plus-62-kwh.html" data-q="nissan leaf e+ 62 kwh"><span class="m"><b>Leaf e+ 62 kWh</b><small>59 kWh</small></span><span class="r"><i style="width:61%"></i></span><span class="k">214&nbsp;km</span><span class="p">78,65&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="opel">
+        <div class="bh"><h3>Opel</h3><span>4 modèles</span></div>
+        <a class="row" href="/voitures/opel-corsa-electric-54-kwh.html" data-q="opel corsa electric 54 kwh"><span class="m"><b>Corsa Electric 54 kWh</b><small>51 kWh</small></span><span class="r"><i style="width:57%"></i></span><span class="k">203&nbsp;km</span><span class="p">72,73&nbsp;€</span></a>
+        <a class="row" href="/voitures/opel-corsa-e-50-kwh.html" data-q="opel corsa-e 50 kwh"><span class="m"><b>Corsa-e 50 kWh</b><small>46,3 kWh</small></span><span class="r"><i style="width:52%"></i></span><span class="k">184&nbsp;km</span><span class="p">79,32&nbsp;€</span></a>
+        <a class="row" href="/voitures/opel-mokka-electric-54-kwh.html" data-q="opel mokka electric 54 kwh"><span class="m"><b>Mokka Electric 54 kWh</b><small>51 kWh</small></span><span class="r"><i style="width:55%"></i></span><span class="k">194&nbsp;km</span><span class="p">75,18&nbsp;€</span></a>
+        <a class="row" href="/voitures/opel-mokka-e-50-kwh.html" data-q="opel mokka-e 50 kwh"><span class="m"><b>Mokka-e 50 kWh</b><small>46,3 kWh</small></span><span class="r"><i style="width:50%"></i></span><span class="k">176&nbsp;km</span><span class="p">76,83&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="peugeot">
+        <div class="bh"><h3>Peugeot</h3><span>5 modèles</span></div>
+        <a class="row" href="/voitures/peugeot-e-2008-54-kwh.html" data-q="peugeot e-2008 54 kwh"><span class="m"><b>e-2008 54 kWh</b><small>51 kWh</small></span><span class="r"><i style="width:55%"></i></span><span class="k">196&nbsp;km</span><span class="p">74,59&nbsp;€</span></a>
+        <a class="row" href="/voitures/peugeot-e-208-51-kwh.html" data-q="peugeot e-208 51 kwh"><span class="m"><b>e-208 51 kWh</b><small>48,1 kWh</small></span><span class="r"><i style="width:57%"></i></span><span class="k">202&nbsp;km</span><span class="p">71,40&nbsp;€</span></a>
+        <a class="row" href="/voitures/peugeot-e-3008-73-kwh.html" data-q="peugeot e-3008 73 kwh"><span class="m"><b>e-3008 73 kWh</b><small>73 kWh</small></span><span class="r"><i style="width:76%"></i></span><span class="k">270&nbsp;km</span><span class="p">64,85&nbsp;€</span></a>
+        <a class="row" href="/voitures/peugeot-e-308.html" data-q="peugeot e-308"><span class="m"><b>e-308</b><small>51 kWh</small></span><span class="r"><i style="width:60%"></i></span><span class="k">213&nbsp;km</span><span class="p">74,80&nbsp;€</span></a>
+        <a class="row" href="/voitures/peugeot-e-5008-73-kwh.html" data-q="peugeot e-5008 73 kwh"><span class="m"><b>e-5008 73 kWh</b><small>73 kWh</small></span><span class="r"><i style="width:73%"></i></span><span class="k">258&nbsp;km</span><span class="p">68,67&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="polestar">
+        <div class="bh"><h3>Polestar</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/polestar-2-long-range.html" data-q="polestar 2 long range"><span class="m"><b>2 Long Range</b><small>78 kWh</small></span><span class="r"><i style="width:82%"></i></span><span class="k">290&nbsp;km</span><span class="p">61,99&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="renault">
+        <div class="bh"><h3>Renault</h3><span>6 modèles</span></div>
+        <a class="row" href="/voitures/renault-4-e-tech-52-kwh.html" data-q="renault 4 e-tech 52 kwh"><span class="m"><b>4 E-Tech 52 kWh</b><small>52 kWh</small></span><span class="r"><i style="width:60%"></i></span><span class="k">213&nbsp;km</span><span class="p">74,36&nbsp;€</span></a>
+        <a class="row" href="/voitures/renault-5-e-tech-52-kwh.html" data-q="renault 5 e-tech 52 kwh"><span class="m"><b>5 E-Tech 52 kWh</b><small>52 kWh</small></span><span class="r"><i style="width:64%"></i></span><span class="k">225&nbsp;km</span><span class="p">69,20&nbsp;€</span></a>
+        <a class="row" href="/voitures/renault-megane-e-tech-ev60.html" data-q="renault megane e-tech ev60"><span class="m"><b>Mégane E-Tech EV60</b><small>60 kWh</small></span><span class="r"><i style="width:67%"></i></span><span class="k">239&nbsp;km</span><span class="p">71,80&nbsp;€</span></a>
+        <a class="row" href="/voitures/renault-scenic-e-tech-87-kwh.html" data-q="renault scenic e-tech 87 kwh"><span class="m"><b>Scénic E-Tech 87 kWh</b><small>87 kWh</small></span><span class="r"><i style="width:92%"></i></span><span class="k">326&nbsp;km</span><span class="p">57,39&nbsp;€</span></a>
+        <a class="row" href="/voitures/renault-twingo-e-tech.html" data-q="renault twingo e-tech"><span class="m"><b>Twingo E-Tech</b><small>27,5 kWh</small></span><span class="r"><i style="width:38%"></i></span><span class="k">133&nbsp;km</span><span class="p">75,64&nbsp;€</span></a>
+        <a class="row" href="/voitures/renault-zoe-r135-52-kwh.html" data-q="renault zoe r135 52 kwh"><span class="m"><b>Zoe R135 52 kWh</b><small>52 kWh</small></span><span class="r"><i style="width:57%"></i></span><span class="k">200&nbsp;km</span><span class="p">73,78&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="skoda">
+        <div class="bh"><h3>Skoda</h3><span>4 modèles</span></div>
+        <a class="row" href="/voitures/skoda-elroq-60.html" data-q="skoda elroq 60"><span class="m"><b>Elroq 60</b><small>55 kWh</small></span><span class="r"><i style="width:61%"></i></span><span class="k">214&nbsp;km</span><span class="p">77,63&nbsp;€</span></a>
+        <a class="row" href="/voitures/skoda-elroq-85.html" data-q="skoda elroq 85"><span class="m"><b>Elroq 85</b><small>77 kWh</small></span><span class="r"><i style="width:82%"></i></span><span class="k">290&nbsp;km</span><span class="p">61,86&nbsp;€</span></a>
+        <a class="row" href="/voitures/skoda-enyaq-60.html" data-q="skoda enyaq 60"><span class="m"><b>Enyaq 60</b><small>58 kWh</small></span><span class="r"><i style="width:60%"></i></span><span class="k">213&nbsp;km</span><span class="p">79,70&nbsp;€</span></a>
+        <a class="row" href="/voitures/skoda-enyaq-85.html" data-q="skoda enyaq 85"><span class="m"><b>Enyaq 85</b><small>77 kWh</small></span><span class="r"><i style="width:79%"></i></span><span class="k">279&nbsp;km</span><span class="p">63,87&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="smart">
+        <div class="bh"><h3>Smart</h3><span>2 modèles</span></div>
+        <a class="row" href="/voitures/smart-1.html" data-q="smart #1"><span class="m"><b>#1</b><small>62 kWh</small></span><span class="r"><i style="width:64%"></i></span><span class="k">225&nbsp;km</span><span class="p">74,85&nbsp;€</span></a>
+        <a class="row" href="/voitures/smart-3.html" data-q="smart #3"><span class="m"><b>#3</b><small>62 kWh</small></span><span class="r"><i style="width:66%"></i></span><span class="k">232&nbsp;km</span><span class="p">72,95&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="tesla">
+        <div class="bh"><h3>Tesla</h3><span>6 modèles</span></div>
+        <a class="row" href="/voitures/tesla-model-3-grande-autonomie.html" data-q="tesla model 3 grande autonomie"><span class="m"><b>Model 3 Grande Autonomie</b><small>75 kWh</small></span><span class="r"><i style="width:91%"></i></span><span class="k">323&nbsp;km</span><span class="p">56,38&nbsp;€</span></a>
+        <a class="row" href="/voitures/tesla-model-3-propulsion.html" data-q="tesla model 3 propulsion"><span class="m"><b>Model 3 Propulsion</b><small>57,5 kWh</small></span><span class="r"><i style="width:73%"></i></span><span class="k">259&nbsp;km</span><span class="p">65,25&nbsp;€</span></a>
+        <a class="row" href="/voitures/tesla-model-s.html" data-q="tesla model s"><span class="m"><b>Model S</b><small>95 kWh</small></span><span class="r"><i style="width:100%"></i></span><span class="k">354&nbsp;km</span><span class="p">59,05&nbsp;€</span></a>
+        <a class="row" href="/voitures/tesla-model-x.html" data-q="tesla model x"><span class="m"><b>Model X</b><small>95 kWh</small></span><span class="r"><i style="width:88%"></i></span><span class="k">310&nbsp;km</span><span class="p">62,37&nbsp;€</span></a>
+        <a class="row" href="/voitures/tesla-model-y-grande-autonomie.html" data-q="tesla model y grande autonomie"><span class="m"><b>Model Y Grande Autonomie</b><small>75 kWh</small></span><span class="r"><i style="width:86%"></i></span><span class="k">302&nbsp;km</span><span class="p">59,59&nbsp;€</span></a>
+        <a class="row" href="/voitures/tesla-model-y-propulsion.html" data-q="tesla model y propulsion"><span class="m"><b>Model Y Propulsion</b><small>57,5 kWh</small></span><span class="r"><i style="width:68%"></i></span><span class="k">242&nbsp;km</span><span class="p">71,82&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="toyota">
+        <div class="bh"><h3>Toyota</h3><span>1 modèle</span></div>
+        <a class="row" href="/voitures/toyota-bz4x.html" data-q="toyota bz4x"><span class="m"><b>bZ4X</b><small>64 kWh</small></span><span class="r"><i style="width:68%"></i></span><span class="k">240&nbsp;km</span><span class="p">74,48&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="volkswagen">
+        <div class="bh"><h3>Volkswagen</h3><span>11 modèles</span></div>
+        <a class="row" href="/voitures/volkswagen-id-buzz-77-kwh.html" data-q="volkswagen id. buzz 77 kwh"><span class="m"><b>ID. Buzz 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:65%"></i></span><span class="k">229&nbsp;km</span><span class="p">82,25&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-3-pro-58-kwh.html" data-q="volkswagen id.3 pro 58 kwh"><span class="m"><b>ID.3 Pro 58 kWh</b><small>58 kWh</small></span><span class="r"><i style="width:64%"></i></span><span class="k">226&nbsp;km</span><span class="p">73,01&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-3-pro-s-77-kwh.html" data-q="volkswagen id.3 pro s 77 kwh"><span class="m"><b>ID.3 Pro S 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:82%"></i></span><span class="k">288&nbsp;km</span><span class="p">61,74&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-3-pure-45-kwh.html" data-q="volkswagen id.3 pure 45 kwh"><span class="m"><b>ID.3 Pure 45 kWh</b><small>45 kWh</small></span><span class="r"><i style="width:52%"></i></span><span class="k">183&nbsp;km</span><span class="p">79,68&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-4-gtx-77-kwh.html" data-q="volkswagen id.4 gtx 77 kwh"><span class="m"><b>ID.4 GTX 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:72%"></i></span><span class="k">254&nbsp;km</span><span class="p">76,71&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-4-pro-2023.html" data-q="volkswagen id.4 pro 2023"><span class="m"><b>ID.4 Pro 2023</b><small>77 kWh</small></span><span class="r"><i style="width:77%"></i></span><span class="k">271&nbsp;km</span><span class="p">65,31&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-4-pure-52-kwh.html" data-q="volkswagen id.4 pure 52 kwh"><span class="m"><b>ID.4 Pure 52 kWh</b><small>52 kWh</small></span><span class="r"><i style="width:53%"></i></span><span class="k">188&nbsp;km</span><span class="p">84,27&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-5-gtx-77-kwh.html" data-q="volkswagen id.5 gtx 77 kwh"><span class="m"><b>ID.5 GTX 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:74%"></i></span><span class="k">263&nbsp;km</span><span class="p">67,40&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-5-pro.html" data-q="volkswagen id.5 pro"><span class="m"><b>ID.5 Pro</b><small>77 kWh</small></span><span class="r"><i style="width:80%"></i></span><span class="k">281&nbsp;km</span><span class="p">63,61&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-7-pro-77-kwh.html" data-q="volkswagen id.7 pro 77 kwh"><span class="m"><b>ID.7 Pro 77 kWh</b><small>77 kWh</small></span><span class="r"><i style="width:86%"></i></span><span class="k">304&nbsp;km</span><span class="p">60,17&nbsp;€</span></a>
+        <a class="row" href="/voitures/volkswagen-id-7-pro-s-86-kwh.html" data-q="volkswagen id.7 pro s 86 kwh"><span class="m"><b>ID.7 Pro S 86 kWh</b><small>86 kWh</small></span><span class="r"><i style="width:97%"></i></span><span class="k">344&nbsp;km</span><span class="p">60,29&nbsp;€</span></a>
+      </div>
+      <div class="bcard" id="volvo">
+        <div class="bh"><h3>Volvo</h3><span>3 modèles</span></div>
+        <a class="row" href="/voitures/volvo-ex30-extended-range.html" data-q="volvo ex30 extended range"><span class="m"><b>EX30 Extended Range</b><small>64 kWh</small></span><span class="r"><i style="width:73%"></i></span><span class="k">258&nbsp;km</span><span class="p">63,49&nbsp;€</span></a>
+        <a class="row" href="/voitures/volvo-ex40-extended-range.html" data-q="volvo ex40 extended range"><span class="m"><b>EX40 Extended Range</b><small>79 kWh</small></span><span class="r"><i style="width:81%"></i></span><span class="k">287&nbsp;km</span><span class="p">62,88&nbsp;€</span></a>
+        <a class="row" href="/voitures/volvo-xc40-recharge-extended-range.html" data-q="volvo xc40 recharge extended range"><span class="m"><b>XC40 Recharge Extended Range</b><small>78 kWh</small></span><span class="r"><i style="width:78%"></i></span><span class="k">274&nbsp;km</span><span class="p">64,81&nbsp;€</span></a>
       </div>
     </div>
-    <div class="brand" id="audi">
-      <h3>Audi</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/audi-q4-40-e-tron.html"><b>Q4 40 e-tron</b><span>263 km à 130 km/h · 76,6 kWh · Paris → Lyon 66,72 €</span></a>
-        <a class="car" href="/voitures/audi-q4-45-e-tron.html"><b>Q4 45 e-tron</b><span>270 km à 130 km/h · 76,6 kWh · Paris → Lyon 65,58 €</span></a>
-        <a class="car" href="/voitures/audi-q6-e-tron.html"><b>Q6 e-tron</b><span>317 km à 130 km/h · 94,9 kWh · Paris → Lyon 61,24 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="bmw">
-      <h3>BMW</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/bmw-i4-edrive40.html"><b>i4 eDrive40</b><span>298 km à 130 km/h · 80,7 kWh · Paris → Lyon 61,48 €</span></a>
-        <a class="car" href="/voitures/bmw-ix1-xdrive30.html"><b>iX1 xDrive30</b><span>228 km à 130 km/h · 64,7 kWh · Paris → Lyon 76,02 €</span></a>
-        <a class="car" href="/voitures/bmw-ix3.html"><b>iX3</b><span>253 km à 130 km/h · 74 kWh · Paris → Lyon 75,95 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="byd">
-      <h3>BYD</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/byd-atto-3.html"><b>Atto 3</b><span>197 km à 130 km/h · 60,5 kWh · Paris → Lyon 79,70 €</span></a>
-        <a class="car" href="/voitures/byd-dolphin.html"><b>Dolphin</b><span>235 km à 130 km/h · 60,4 kWh · Paris → Lyon 72,81 €</span></a>
-        <a class="car" href="/voitures/byd-seal-awd.html"><b>Seal AWD</b><span>292 km à 130 km/h · 82,5 kWh · Paris → Lyon 62,99 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="citroen">
-      <h3>Citroën</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/citroen-e-c3.html"><b>ë-C3</b><span>170 km à 130 km/h · 44 kWh · Paris → Lyon 77,51 €</span></a>
-        <a class="car" href="/voitures/citroen-e-c4-50-kwh.html"><b>ë-C4 50 kWh</b><span>173 km à 130 km/h · 46,3 kWh · Paris → Lyon 77,61 €</span></a>
-        <a class="car" href="/voitures/citroen-e-c4-54-kwh.html"><b>ë-C4 54 kWh</b><span>191 km à 130 km/h · 51 kWh · Paris → Lyon 75,88 €</span></a>
-        <a class="car" href="/voitures/citroen-e-c4-x-50-kwh.html"><b>ë-C4 X 50 kWh</b><span>176 km à 130 km/h · 46,3 kWh · Paris → Lyon 77,00 €</span></a>
-        <a class="car" href="/voitures/citroen-e-c4-x-54-kwh.html"><b>ë-C4 X 54 kWh</b><span>194 km à 130 km/h · 51 kWh · Paris → Lyon 75,33 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="cupra">
-      <h3>Cupra</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/cupra-born-58-kwh.html"><b>Born 58 kWh</b><span>215 km à 130 km/h · 58 kWh · Paris → Lyon 78,23 €</span></a>
-        <a class="car" href="/voitures/cupra-born-77-kwh.html"><b>Born 77 kWh</b><span>279 km à 130 km/h · 77 kWh · Paris → Lyon 63,07 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="dacia">
-      <h3>Dacia</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/dacia-spring.html"><b>Spring</b><span>124 km à 130 km/h · 26,8 kWh · Paris → Lyon 77,26 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="fiat">
-      <h3>Fiat</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/fiat-500e-42-kwh.html"><b>500e 42 kWh</b><span>162 km à 130 km/h · 37,3 kWh · Paris → Lyon 70,49 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="ford">
-      <h3>Ford</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/ford-explorer-ev-extended-range.html"><b>Explorer EV Extended Range</b><span>283 km à 130 km/h · 77 kWh · Paris → Lyon 63,42 €</span></a>
-        <a class="car" href="/voitures/ford-mustang-mach-e-extended-range.html"><b>Mustang Mach-E Extended Range</b><span>304 km à 130 km/h · 91 kWh · Paris → Lyon 62,37 €</span></a>
-        <a class="car" href="/voitures/ford-puma-gen-e.html"><b>Puma Gen-E</b><span>188 km à 130 km/h · 43,6 kWh · Paris → Lyon 76,75 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="honda">
-      <h3>Honda</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/honda-e-ny1.html"><b>e:Ny1</b><span>219 km à 130 km/h · 61,9 kWh · Paris → Lyon 78,63 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="hyundai">
-      <h3>Hyundai</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/hyundai-ioniq-5-58-kwh.html"><b>Ioniq 5 58 kWh</b><span>213 km à 130 km/h · 58 kWh · Paris → Lyon 78,84 €</span></a>
-        <a class="car" href="/voitures/hyundai-ioniq-5-77-kwh.html"><b>Ioniq 5 77 kWh</b><span>274 km à 130 km/h · 77,4 kWh · Paris → Lyon 64,36 €</span></a>
-        <a class="car" href="/voitures/hyundai-ioniq-6-77-kwh.html"><b>Ioniq 6 77 kWh</b><span>323 km à 130 km/h · 77,4 kWh · Paris → Lyon 56,89 €</span></a>
-        <a class="car" href="/voitures/hyundai-kona-39-kwh-2018-2023.html"><b>Kona 39 kWh (2018-2023)</b><span>178 km à 130 km/h · 39,2 kWh · Paris → Lyon 48,59 €</span></a>
-        <a class="car" href="/voitures/hyundai-kona-48-kwh-2023-plus.html"><b>Kona 48 kWh (2023+)</b><span>207 km à 130 km/h · 48,4 kWh · Paris → Lyon 71,16 €</span></a>
-        <a class="car" href="/voitures/hyundai-kona-64-kwh-2018-2023.html"><b>Kona 64 kWh (2018-2023)</b><span>286 km à 130 km/h · 64 kWh · Paris → Lyon 59,02 €</span></a>
-        <a class="car" href="/voitures/hyundai-kona-65-kwh-2023-plus.html"><b>Kona 65 kWh (2023+)</b><span>275 km à 130 km/h · 65,4 kWh · Paris → Lyon 61,06 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="jeep">
-      <h3>Jeep</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/jeep-avenger-electric.html"><b>Avenger Electric</b><span>203 km à 130 km/h · 51 kWh · Paris → Lyon 72,77 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="kia">
-      <h3>Kia</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/kia-ev2-61-kwh.html"><b>EV2 61 kWh</b><span>232 km à 130 km/h · 58 kWh · Paris → Lyon 70,68 €</span></a>
-        <a class="car" href="/voitures/kia-ev3-81-kwh.html"><b>EV3 81 kWh</b><span>319 km à 130 km/h · 81,4 kWh · Paris → Lyon 57,71 €</span></a>
-        <a class="car" href="/voitures/kia-ev6-77-kwh.html"><b>EV6 77 kWh</b><span>284 km à 130 km/h · 77,4 kWh · Paris → Lyon 62,62 €</span></a>
-        <a class="car" href="/voitures/kia-ev9-99-kwh.html"><b>EV9 99 kWh</b><span>305 km à 130 km/h · 99,8 kWh · Paris → Lyon 64,77 €</span></a>
-        <a class="car" href="/voitures/kia-niro-ev.html"><b>Niro EV</b><span>253 km à 130 km/h · 64,8 kWh · Paris → Lyon 64,75 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="leapmotor">
-      <h3>Leapmotor</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/leapmotor-c10.html"><b>C10</b><span>236 km à 130 km/h · 69,9 kWh · Paris → Lyon 77,73 €</span></a>
-        <a class="car" href="/voitures/leapmotor-t03.html"><b>T03</b><span>162 km à 130 km/h · 37,3 kWh · Paris → Lyon 74,37 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="mazda">
-      <h3>Mazda</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/mazda-6e.html"><b>6e</b><span>250 km à 130 km/h · 68,8 kWh · Paris → Lyon 73,97 €</span></a>
-        <a class="car" href="/voitures/mazda-6e-long-range.html"><b>6e Long Range</b><span>282 km à 130 km/h · 80 kWh · Paris → Lyon 63,62 €</span></a>
-        <a class="car" href="/voitures/mazda-mx-30.html"><b>MX-30</b><span>112 km à 130 km/h · 30 kWh · Paris → Lyon 80,78 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="mercedes">
-      <h3>Mercedes</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/mercedes-eqa-250.html"><b>EQA 250</b><span>246 km à 130 km/h · 66,5 kWh · Paris → Lyon 74,17 €</span></a>
-        <a class="car" href="/voitures/mercedes-eqb-300.html"><b>EQB 300</b><span>222 km à 130 km/h · 66,5 kWh · Paris → Lyon 81,85 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="mg">
-      <h3>MG</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/mg-cyberster.html"><b>Cyberster</b><span>250 km à 130 km/h · 74,4 kWh · Paris → Lyon 75,65 €</span></a>
-        <a class="car" href="/voitures/mg-marvel-r.html"><b>Marvel R</b><span>234 km à 130 km/h · 70 kWh · Paris → Lyon 76,04 €</span></a>
-        <a class="car" href="/voitures/mg-mg4-51-kwh.html"><b>MG4 51 kWh</b><span>202 km à 130 km/h · 50,8 kWh · Paris → Lyon 73,29 €</span></a>
-        <a class="car" href="/voitures/mg-mg4-64-kwh.html"><b>MG4 64 kWh</b><span>237 km à 130 km/h · 61,7 kWh · Paris → Lyon 72,98 €</span></a>
-        <a class="car" href="/voitures/mg-mg4-77-kwh.html"><b>MG4 77 kWh</b><span>282 km à 130 km/h · 74,4 kWh · Paris → Lyon 61,76 €</span></a>
-        <a class="car" href="/voitures/mg-mg4-urban-54-kwh.html"><b>MG4 Urban 54 kWh</b><span>224 km à 130 km/h · 52,8 kWh · Paris → Lyon 70,17 €</span></a>
-        <a class="car" href="/voitures/mg-mg5.html"><b>MG5</b><span>214 km à 130 km/h · 57,4 kWh · Paris → Lyon 77,46 €</span></a>
-        <a class="car" href="/voitures/mg-s5-ev-49-kwh.html"><b>S5 EV 49 kWh</b><span>210 km à 130 km/h · 49,1 kWh · Paris → Lyon 69,64 €</span></a>
-        <a class="car" href="/voitures/mg-s5-ev-64-kwh.html"><b>S5 EV 64 kWh</b><span>254 km à 130 km/h · 62,2 kWh · Paris → Lyon 67,18 €</span></a>
-        <a class="car" href="/voitures/mg-zs-ev.html"><b>ZS EV</b><span>242 km à 130 km/h · 68,3 kWh · Paris → Lyon 73,97 €</span></a>
-        <a class="car" href="/voitures/mg-zs-ev-51-kwh.html"><b>ZS EV 51 kWh</b><span>188 km à 130 km/h · 49,1 kWh · Paris → Lyon 75,42 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="mini">
-      <h3>Mini</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/mini-cooper-se.html"><b>Cooper SE</b><span>207 km à 130 km/h · 49,2 kWh · Paris → Lyon 71,50 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="nissan">
-      <h3>Nissan</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/nissan-ariya-87-kwh.html"><b>Ariya 87 kWh</b><span>304 km à 130 km/h · 87 kWh · Paris → Lyon 61,71 €</span></a>
-        <a class="car" href="/voitures/nissan-leaf-e-plus-62-kwh.html"><b>Leaf e+ 62 kWh</b><span>214 km à 130 km/h · 59 kWh · Paris → Lyon 78,65 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="opel">
-      <h3>Opel</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/opel-corsa-electric-54-kwh.html"><b>Corsa Electric 54 kWh</b><span>203 km à 130 km/h · 51 kWh · Paris → Lyon 72,73 €</span></a>
-        <a class="car" href="/voitures/opel-corsa-e-50-kwh.html"><b>Corsa-e 50 kWh</b><span>184 km à 130 km/h · 46,3 kWh · Paris → Lyon 79,32 €</span></a>
-        <a class="car" href="/voitures/opel-mokka-electric-54-kwh.html"><b>Mokka Electric 54 kWh</b><span>194 km à 130 km/h · 51 kWh · Paris → Lyon 75,18 €</span></a>
-        <a class="car" href="/voitures/opel-mokka-e-50-kwh.html"><b>Mokka-e 50 kWh</b><span>176 km à 130 km/h · 46,3 kWh · Paris → Lyon 76,83 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="peugeot">
-      <h3>Peugeot</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/peugeot-e-2008-54-kwh.html"><b>e-2008 54 kWh</b><span>196 km à 130 km/h · 51 kWh · Paris → Lyon 74,59 €</span></a>
-        <a class="car" href="/voitures/peugeot-e-208-51-kwh.html"><b>e-208 51 kWh</b><span>202 km à 130 km/h · 48,1 kWh · Paris → Lyon 71,40 €</span></a>
-        <a class="car" href="/voitures/peugeot-e-3008-73-kwh.html"><b>e-3008 73 kWh</b><span>270 km à 130 km/h · 73 kWh · Paris → Lyon 64,85 €</span></a>
-        <a class="car" href="/voitures/peugeot-e-308.html"><b>e-308</b><span>213 km à 130 km/h · 51 kWh · Paris → Lyon 74,80 €</span></a>
-        <a class="car" href="/voitures/peugeot-e-5008-73-kwh.html"><b>e-5008 73 kWh</b><span>258 km à 130 km/h · 73 kWh · Paris → Lyon 68,67 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="polestar">
-      <h3>Polestar</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/polestar-2-long-range.html"><b>2 Long Range</b><span>290 km à 130 km/h · 78 kWh · Paris → Lyon 61,99 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="renault">
-      <h3>Renault</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/renault-4-e-tech-52-kwh.html"><b>4 E-Tech 52 kWh</b><span>213 km à 130 km/h · 52 kWh · Paris → Lyon 74,36 €</span></a>
-        <a class="car" href="/voitures/renault-5-e-tech-52-kwh.html"><b>5 E-Tech 52 kWh</b><span>225 km à 130 km/h · 52 kWh · Paris → Lyon 69,20 €</span></a>
-        <a class="car" href="/voitures/renault-megane-e-tech-ev60.html"><b>Mégane E-Tech EV60</b><span>239 km à 130 km/h · 60 kWh · Paris → Lyon 71,80 €</span></a>
-        <a class="car" href="/voitures/renault-scenic-e-tech-87-kwh.html"><b>Scénic E-Tech 87 kWh</b><span>326 km à 130 km/h · 87 kWh · Paris → Lyon 57,39 €</span></a>
-        <a class="car" href="/voitures/renault-twingo-e-tech.html"><b>Twingo E-Tech</b><span>133 km à 130 km/h · 27,5 kWh · Paris → Lyon 75,64 €</span></a>
-        <a class="car" href="/voitures/renault-zoe-r135-52-kwh.html"><b>Zoe R135 52 kWh</b><span>200 km à 130 km/h · 52 kWh · Paris → Lyon 73,78 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="skoda">
-      <h3>Skoda</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/skoda-elroq-60.html"><b>Elroq 60</b><span>214 km à 130 km/h · 55 kWh · Paris → Lyon 77,63 €</span></a>
-        <a class="car" href="/voitures/skoda-elroq-85.html"><b>Elroq 85</b><span>290 km à 130 km/h · 77 kWh · Paris → Lyon 61,86 €</span></a>
-        <a class="car" href="/voitures/skoda-enyaq-60.html"><b>Enyaq 60</b><span>213 km à 130 km/h · 58 kWh · Paris → Lyon 79,70 €</span></a>
-        <a class="car" href="/voitures/skoda-enyaq-85.html"><b>Enyaq 85</b><span>279 km à 130 km/h · 77 kWh · Paris → Lyon 63,87 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="smart">
-      <h3>Smart</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/smart-1.html"><b>#1</b><span>225 km à 130 km/h · 62 kWh · Paris → Lyon 74,85 €</span></a>
-        <a class="car" href="/voitures/smart-3.html"><b>#3</b><span>232 km à 130 km/h · 62 kWh · Paris → Lyon 72,95 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="tesla">
-      <h3>Tesla</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/tesla-model-3-grande-autonomie.html"><b>Model 3 Grande Autonomie</b><span>323 km à 130 km/h · 75 kWh · Paris → Lyon 56,38 €</span></a>
-        <a class="car" href="/voitures/tesla-model-3-propulsion.html"><b>Model 3 Propulsion</b><span>259 km à 130 km/h · 57,5 kWh · Paris → Lyon 65,25 €</span></a>
-        <a class="car" href="/voitures/tesla-model-s.html"><b>Model S</b><span>354 km à 130 km/h · 95 kWh · Paris → Lyon 59,05 €</span></a>
-        <a class="car" href="/voitures/tesla-model-x.html"><b>Model X</b><span>310 km à 130 km/h · 95 kWh · Paris → Lyon 62,37 €</span></a>
-        <a class="car" href="/voitures/tesla-model-y-grande-autonomie.html"><b>Model Y Grande Autonomie</b><span>302 km à 130 km/h · 75 kWh · Paris → Lyon 59,59 €</span></a>
-        <a class="car" href="/voitures/tesla-model-y-propulsion.html"><b>Model Y Propulsion</b><span>242 km à 130 km/h · 57,5 kWh · Paris → Lyon 71,82 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="toyota">
-      <h3>Toyota</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/toyota-bz4x.html"><b>bZ4X</b><span>240 km à 130 km/h · 64 kWh · Paris → Lyon 74,48 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="volkswagen">
-      <h3>Volkswagen</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/volkswagen-id-buzz-77-kwh.html"><b>ID. Buzz 77 kWh</b><span>229 km à 130 km/h · 77 kWh · Paris → Lyon 82,25 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-3-pro-58-kwh.html"><b>ID.3 Pro 58 kWh</b><span>226 km à 130 km/h · 58 kWh · Paris → Lyon 73,01 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-3-pro-s-77-kwh.html"><b>ID.3 Pro S 77 kWh</b><span>288 km à 130 km/h · 77 kWh · Paris → Lyon 61,74 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-3-pure-45-kwh.html"><b>ID.3 Pure 45 kWh</b><span>183 km à 130 km/h · 45 kWh · Paris → Lyon 79,68 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-4-gtx-77-kwh.html"><b>ID.4 GTX 77 kWh</b><span>254 km à 130 km/h · 77 kWh · Paris → Lyon 76,71 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-4-pro-2023.html"><b>ID.4 Pro 2023</b><span>271 km à 130 km/h · 77 kWh · Paris → Lyon 65,31 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-4-pure-52-kwh.html"><b>ID.4 Pure 52 kWh</b><span>188 km à 130 km/h · 52 kWh · Paris → Lyon 84,27 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-5-gtx-77-kwh.html"><b>ID.5 GTX 77 kWh</b><span>263 km à 130 km/h · 77 kWh · Paris → Lyon 67,40 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-5-pro.html"><b>ID.5 Pro</b><span>281 km à 130 km/h · 77 kWh · Paris → Lyon 63,61 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-7-pro-77-kwh.html"><b>ID.7 Pro 77 kWh</b><span>304 km à 130 km/h · 77 kWh · Paris → Lyon 60,17 €</span></a>
-        <a class="car" href="/voitures/volkswagen-id-7-pro-s-86-kwh.html"><b>ID.7 Pro S 86 kWh</b><span>344 km à 130 km/h · 86 kWh · Paris → Lyon 60,29 €</span></a>
-      </div>
-    </div>
-    <div class="brand" id="volvo">
-      <h3>Volvo</h3>
-      <div class="cars">
-        <a class="car" href="/voitures/volvo-ex30-extended-range.html"><b>EX30 Extended Range</b><span>258 km à 130 km/h · 64 kWh · Paris → Lyon 63,49 €</span></a>
-        <a class="car" href="/voitures/volvo-ex40-extended-range.html"><b>EX40 Extended Range</b><span>287 km à 130 km/h · 79 kWh · Paris → Lyon 62,88 €</span></a>
-        <a class="car" href="/voitures/volvo-xc40-recharge-extended-range.html"><b>XC40 Recharge Extended Range</b><span>274 km à 130 km/h · 78 kWh · Paris → Lyon 64,81 €</span></a>
-      </div>
-    </div>
+    <p class="none">Aucun modèle ne correspond. Essayez la marque seule.</p>
     <p class="note">Calcul du 31/10/2026 par le moteur de l'appli. Recharge au tarif public sans abonnement de chaque réseau (relevé du 10/10/2026), bornes de la base nationale des IRVE du 19/10/2026, péage selon les grilles 2026.</p>
   </div>
 </section>
+<script>
+(function(){
+  var q=document.querySelector('.search'),cards=[].slice.call(document.querySelectorAll('.bcard')),none=document.querySelector('.none');
+  function norm(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
+  q.addEventListener('input',function(){
+    var w=norm(q.value).split(' ').filter(Boolean),vis=0;
+    cards.forEach(function(c){
+      var n=0;[].forEach.call(c.querySelectorAll('.row'),function(r){
+        var t=norm(r.getAttribute('data-q')),t2=t.replace(/ /g,''),ok=w.every(function(x){return t.indexOf(x)>=0||t2.indexOf(x)>=0;});
+        r.style.display=ok?'':'none';if(ok)n++;});
+      c.style.display=n?'':'none';vis+=n;});
+    none.style.display=vis?'none':'block';
+  });
+})();
+</script>
 
 <footer>
   <div class="in">

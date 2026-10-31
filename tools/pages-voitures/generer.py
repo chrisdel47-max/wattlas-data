@@ -849,22 +849,29 @@ def rendre_index(pages: list[Page], meta: dict) -> str:
         par_marque.setdefault(p.brand, []).append(p)
     marques = sorted(par_marque, key=lambda b: sans_accents(b).lower())
     nav = "".join(f'<a href="#{slugify(b)}">{esc(b)}</a>' for b in marques)
+    km_max = max(p.a130["km100_10"] for p in pages)
     blocs = []
     for b in marques:
         lignes = []
         for p in sorted(par_marque[b], key=lambda p: sans_accents(p.mod).lower()):
             pl = autoroute(p.t["lyon"][0])
-            prix = f" · Paris → Lyon {eur(pl['total_eur'])}" if pl else ""
-            lignes.append(f'        <a class="car" href="/voitures/{p.slug}.html"><b>{esc(p.mod)}</b>'
-                          f'<span>{ent(p.a130["km100_10"])} km à 130 km/h · {kwh_txt(p.v["kwh"])} kWh{prix}</span></a>')
+            prix = eur(pl["total_eur"]).replace(" €", "&nbsp;€") if pl else "—"
+            km = p.a130["km100_10"]
+            cherche = sans_accents(f"{b} {p.mod}").lower()
+            lignes.append(
+                f'        <a class="row" href="/voitures/{p.slug}.html" data-q="{attr(cherche)}">'
+                f'<span class="m"><b>{esc(p.mod)}</b><small>{kwh_txt(p.v["kwh"])} kWh</small></span>'
+                f'<span class="r"><i style="width:{km / km_max * 100:.0f}%"></i></span>'
+                f'<span class="k">{ent(km)}&nbsp;km</span><span class="p">{prix}</span></a>')
+        n_b = len(par_marque[b])
         blocs.append(f"""
-    <div class="brand" id="{slugify(b)}">
-      <h3>{esc(b)}</h3>
-      <div class="cars">
+      <div class="bcard" id="{slugify(b)}">
+        <div class="bh"><h3>{esc(b)}</h3><span>{n_b} modèle{"s" if n_b > 1 else ""}</span></div>
 {chr(10).join(lignes)}
-      </div>
-    </div>""")
+      </div>""")
     n = len(pages)
+    kms = sorted(ent(p.a130["km100_10"]) for p in pages)
+    prix_min = min(o["total_eur"] for o in (autoroute(p.t["lyon"][0]) for p in pages) if o)
     desc = (f"Autonomie sur autoroute et coût d'un Paris–Lyon pour {n} voitures électriques, marque par marque. "
             f"Chiffres calculés par le moteur Wattlas.")
     url = f"{SITE}/voitures/"
@@ -888,15 +895,45 @@ def rendre_index(pages: list[Page], meta: dict) -> str:
 <meta name="twitter:card" content="summary_large_image">
 {STYLE}
 <style>
-  .brands{{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}}
-  .brands a{{text-decoration:none;font-weight:700;padding:7px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:14px}}
-  .brand{{margin-bottom:34px;scroll-margin-top:16px}}
-  .brand h3{{font-size:22px;letter-spacing:-.02em;margin:0 0 12px}}
-  .cars{{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}}
-  .car{{display:block;text-decoration:none;background:var(--t,rgba(47,91,255,.07));border:1px solid color-mix(in srgb,#2F5BFF 18%,transparent);border-radius:16px;padding:14px 16px}}
-  .car b{{display:block;font-size:16.5px;margin-bottom:2px}}
-  .car span{{color:var(--muted);font-size:14px}}
-  .car:hover{{border-color:var(--blue)}}
+  .list{{background:var(--s1)}}
+  .tools{{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--s1) 92%,transparent);backdrop-filter:blur(8px);
+         margin:0 -16px 22px;padding:12px 16px;border-bottom:1px solid var(--line)}}
+  .search{{width:100%;font:inherit;font-size:16px;padding:12px 16px 12px 44px;border-radius:14px;border:1px solid var(--line);
+          background:var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%235B6472' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Cpath d='m14 14 4 4'/%3E%3C/svg%3E") no-repeat 14px center;color:var(--text)}}
+  .search:focus{{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}}
+  .brands{{display:flex;gap:6px;overflow-x:auto;margin-top:10px;padding-bottom:2px;scrollbar-width:none}}
+  .brands::-webkit-scrollbar{{display:none}}
+  .brands a{{flex:none;text-decoration:none;font-weight:600;font-size:13.5px;padding:5px 11px;border-radius:999px;color:var(--muted);
+            background:var(--card);border:1px solid var(--line)}}
+  .brands a:hover{{color:var(--blue);border-color:var(--blue)}}
+  .legend{{display:flex;justify-content:flex-end;gap:18px;font-size:12.5px;color:var(--muted);margin:0 4px 10px;font-weight:600}}
+  .legend .lk{{display:inline-flex;align-items:center;gap:6px}}
+  .legend .lk::before{{content:"";width:18px;height:6px;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}}
+  .grid{{columns:2 440px;column-gap:18px}}
+  .bcard{{break-inside:avoid;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 6px 8px;margin-bottom:18px;
+         scroll-margin-top:130px;box-shadow:0 1px 2px rgba(14,17,22,.04)}}
+  .bh{{display:flex;align-items:baseline;justify-content:space-between;padding:12px 14px 8px}}
+  .bh h3{{margin:0;font-size:19px;letter-spacing:-.02em}}
+  .bh span{{font-size:12.5px;color:var(--muted);font-weight:600}}
+  .row{{display:grid;grid-template-columns:minmax(0,1fr) 72px 62px 78px;align-items:center;gap:12px;padding:10px 14px;
+       border-radius:13px;text-decoration:none;font-variant-numeric:tabular-nums}}
+  .row + .row{{box-shadow:inset 0 1px 0 var(--s2)}}
+  .row:hover{{background:var(--s1);box-shadow:none}}
+  .row:hover + .row{{box-shadow:none}}
+  .m{{min-width:0;display:flex;flex-direction:column;line-height:1.25}}
+  .m b{{font-size:15.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+  .m small{{color:var(--muted);font-size:12.5px}}
+  .r{{height:6px;background:var(--s2);border-radius:9px;overflow:hidden}}
+  .r i{{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--cyan),var(--blue))}}
+  .k{{text-align:right;font-weight:700;font-size:14.5px}}
+  .p{{text-align:right;font-weight:800;font-size:14.5px;color:var(--blue)}}
+  @media (prefers-color-scheme:dark){{.p{{color:var(--ice)}}}}
+  .none{{display:none;text-align:center;color:var(--muted);padding:30px 0}}
+  @media (max-width:520px){{
+    .row{{grid-template-columns:minmax(0,1fr) 58px 72px;gap:10px}}
+    .row .r{{display:none}}
+    .legend .lk::before{{display:none}}
+  }}
 </style>
 </head>
 <body>
@@ -912,19 +949,45 @@ def rendre_index(pages: list[Page], meta: dict) -> str:
     </div>
     <h1>Votre voiture, sur autoroute</h1>
     <p>Pour chaque modèle du catalogue Wattlas : autonomie à 110 et 130 km/h, temps de charge, et prix de trois trajets types, recharge et péage compris.</p>
+    <div class="kpis">
+      <div class="kpi"><b>{n}</b><span>voitures électriques, {len(marques)} marques</span></div>
+      <div class="kpi"><b>{kms[0]} à {kms[-1]} km</b><span>d'autonomie à 130 km/h, de 100 à 10 %</span></div>
+      <div class="kpi"><b>dès {eur(prix_min)}</b><span>Paris → Lyon par l'autoroute, recharge + péage</span></div>
+    </div>
     <a class="cta" href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer=utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dvoitures-index">▶ Calculer mon trajet, gratuit</a>
   </div>
 </header>
 
-<section>
+<section class="list">
   <div class="in">
-    <h2>Par marque</h2>
-    <p class="sub">Autonomie de 100 à 10 % à 130 km/h par temps doux, et coût d'un Paris → Lyon par l'autoroute au départ batterie pleine.</p>
-    <nav class="brands">{nav}</nav>
-{"".join(blocs)}
+    <h2>Trouvez votre modèle</h2>
+    <p class="sub">Autonomie de 100 à 10 % à 130 km/h par temps doux, et prix d'un Paris → Lyon par l'autoroute au départ batterie pleine.</p>
+    <div class="tools">
+      <input class="search" type="search" placeholder="Chercher : Megane, Model Y, ID.3…" aria-label="Chercher un modèle" autocomplete="off">
+      <nav class="brands" aria-label="Marques">{nav}</nav>
+    </div>
+    <div class="legend"><span class="lk">Autonomie à 130 km/h</span><span>Paris → Lyon</span></div>
+    <div class="grid">{"".join(blocs)}
+    </div>
+    <p class="none">Aucun modèle ne correspond. Essayez la marque seule.</p>
     <p class="note">Calcul du {date_fr(meta['calcule_le'])} par le moteur de l'appli. Recharge au tarif public sans abonnement de chaque réseau (relevé du {date_fr(meta['prix_generated'])}), bornes de la base nationale des IRVE du {date_fr(meta['irve_date'])}, péage selon les grilles 2026.</p>
   </div>
 </section>
+<script>
+(function(){{
+  var q=document.querySelector('.search'),cards=[].slice.call(document.querySelectorAll('.bcard')),none=document.querySelector('.none');
+  function norm(s){{return s.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}}
+  q.addEventListener('input',function(){{
+    var w=norm(q.value).split(' ').filter(Boolean),vis=0;
+    cards.forEach(function(c){{
+      var n=0;[].forEach.call(c.querySelectorAll('.row'),function(r){{
+        var t=norm(r.getAttribute('data-q')),t2=t.replace(/ /g,''),ok=w.every(function(x){{return t.indexOf(x)>=0||t2.indexOf(x)>=0;}});
+        r.style.display=ok?'':'none';if(ok)n++;}});
+      c.style.display=n?'':'none';vis+=n;}});
+    none.style.display=vis?'none':'block';
+  }});
+}})();
+</script>
 
 <footer>
   <div class="in">

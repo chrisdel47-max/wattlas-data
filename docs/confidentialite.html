@@ -86,7 +86,7 @@
       <a class="back" href="/">← Accueil</a>
     </div>
     <h1>Politique de confidentialité de Wattlas</h1>
-    <p class="maj">Dernière mise à jour : 24 septembre 2026</p>
+    <p class="maj">Dernière mise à jour : 11 novembre 2026</p>
   </div>
 </header>
 <main class="wrap">
@@ -120,15 +120,17 @@
 </p>
 <ul>
   <li>l'adresse que vous désignez comme votre domicile, et vos destinations enregistrées ;</li>
+  <li>vos dernières destinations recherchées, pour vous les reproposer ;</li>
+  <li>les trajets que vous choisissez de noter : la date, la destination et les pourcentages de batterie relevés ;</li>
   <li>les caractéristiques de votre véhicule (modèle, capacité de batterie, consommation) ;</li>
   <li>vos préférences : prix de l'électricité, marges de batterie, réseaux de recharge à éviter ou favorisés ;</li>
   <li>l'historique des consommations réelles que vous saisissez vous-même, qui sert à affiner les estimations ;</li>
-  <li>si vous l'avez téléchargée, la carte routière hors ligne.</li>
+  <li>si vous l'avez téléchargée, la carte routière hors ligne (elle ne contient que des données publiques, et peut être placée sur la carte SD si vous le choisissez).</li>
 </ul>
 <p>
   Une précision honnête : si la <strong>sauvegarde Android</strong> est activée
-  sur votre téléphone, ces réglages (domicile, destinations, véhicule,
-  historique de consommation) sont inclus dans la sauvegarde chiffrée que
+  sur votre téléphone, ces réglages (domicile, destinations enregistrées,
+  véhicule, trajets notés) sont inclus dans la sauvegarde chiffrée que
   votre téléphone envoie sur <em>votre</em> compte Google — comme pour la
   plupart des applications. C'est Android qui la gère, elle vous appartient,
   et Wattlas n'y a pas accès. Elle se désactive dans les réglages du
@@ -141,13 +143,20 @@
 
 <h2>La localisation</h2>
 <p>
-  L'application demande l'accès à votre position pour deux usages, et deux
-  seulement : déterminer votre point de départ sans vous le demander, et
-  afficher votre progression pendant le mode Suivi.
+  L'application demande l'accès à votre position pour trois usages, et trois
+  seulement : déterminer votre point de départ sans vous le demander, afficher
+  votre progression pendant le mode Suivi, et classer les résultats d'une
+  recherche d'adresse du plus proche au plus lointain.
+</p>
+<p>
+  Pour ce troisième usage, votre position accompagne le texte que vous tapez
+  vers les services de recherche d'adresses listés plus bas. Si la position
+  n'est pas disponible, c'est celle de votre domicile enregistré qui sert de
+  repère. Ces services ne reçoivent ni nom, ni identifiant.
 </p>
 <p>
   Votre position <strong>n'est jamais enregistrée</strong> ni conservée dans un
-  historique. Elle est lue au moment du calcul, puis oubliée. Refuser cette
+  historique. Elle est lue au moment du calcul ou de la recherche, puis oubliée. Refuser cette
   autorisation n'empêche pas d'utiliser Wattlas : les trajets partent alors de
   l'adresse de votre domicile, et l'application vous l'indique clairement.
 </p>
@@ -224,13 +233,18 @@
   <thead><tr><th>Service</th><th>Ce qu'il reçoit</th><th>Pourquoi</th></tr></thead>
   <tbody>
     <tr>
-      <td>Base Adresse Nationale<br>(data.gouv.fr, France)</td>
-      <td>Le texte de la destination que vous tapez</td>
-      <td>Convertir une adresse en coordonnées</td>
+      <td>Base Adresse Nationale<br>(service de géocodage de l'IGN, France)</td>
+      <td>Le texte que vous tapez, et votre position (à défaut, celle de votre domicile)</td>
+      <td>Convertir une adresse en coordonnées, en commençant par les plus proches</td>
+    </tr>
+    <tr>
+      <td>Photon<br>(komoot, Allemagne — données OpenStreetMap)</td>
+      <td>Le texte que vous tapez, et votre position arrondie à environ 1 km (à défaut, celle de votre domicile)</td>
+      <td>Trouver les commerces, les gares et les rues proches</td>
     </tr>
     <tr>
       <td>Open-Meteo<br>(Allemagne)</td>
-      <td>Les coordonnées de votre point de départ, arrondies</td>
+      <td>Les coordonnées de votre point de départ, à une dizaine de mètres près</td>
       <td>Connaître la température, qui change fortement la consommation</td>
     </tr>
     <tr>
@@ -246,7 +260,7 @@
     <tr>
       <td>GitHub<br>(fichiers publics)</td>
       <td>Rien de personnel</td>
-      <td>Trafic en cours, tarifs de recharge, catalogue de véhicules</td>
+      <td>Trafic en cours, tarifs et abonnements de recharge, bornes signalées hors service, catalogue de véhicules, téléchargement de la carte hors ligne</td>
     </tr>
     <tr>
       <td>GraphHopper ou OSRM</td>
@@ -255,8 +269,13 @@
     </tr>
     <tr>
       <td>Google Maps</td>
-      <td>Destination et arrêts recharge, si <em>vous</em> touchez « Partir avec Google Maps »</td>
-      <td>Passer le relais au guidage vocal</td>
+      <td>Destination, arrêts recharge et quelques points de passage de l'itinéraire, si <em>vous</em> touchez « Partir avec Google Maps »</td>
+      <td>Passer le relais au guidage vocal, sur le même itinéraire</td>
+    </tr>
+    <tr>
+      <td>Google Play</td>
+      <td>Rien de notre part — la fenêtre « Notez cette application » est affichée et gérée par Google Play</td>
+      <td>Vous proposer, rarement, de laisser un avis</td>
     </tr>
   </tbody>
 </table>
@@ -279,7 +298,7 @@
   <li>Aucune statistique d'usage, aucun outil de mesure d'audience.</li>
   <li>Aucune revente ni partage de données à des fins commerciales.</li>
   <li>Aucun identifiant publicitaire ni empreinte d'appareil.</li>
-  <li>Aucun suivi de vos déplacements : ni historique de trajets, ni carte de vos habitudes. La mesure du trafic décrite plus haut est la seule exception, elle est facultative, et elle est conçue pour qu'aucun trajet ne puisse être reconstitué.</li>
+  <li>Aucun suivi de vos déplacements : aucune trace GPS enregistrée, aucune carte de vos habitudes. Les seules destinations gardées sont celles que vous enregistrez, vos recherches récentes et les trajets que vous notez vous-même — sur votre téléphone, nulle part ailleurs. La mesure du trafic décrite plus haut est la seule exception, elle est facultative, et elle est conçue pour qu'aucun trajet ne puisse être reconstitué.</li>
 </ul>
 
 <h2>Vos droits</h2>

@@ -1,10 +1,14 @@
 name: refresh traffic
 
-# La source DATEX II (agrégation) se rafraîchit à l'heure : inutile de
-# tourner plus souvent. :17 pour éviter la ruée du top-heure sur GitHub.
+# La source DATEX II (agrégation) se rafraîchit à l'heure. On demande
+# pourtant un passage toutes les 10 minutes : le déclenchement programmé de
+# GitHub est « au mieux », et il sautait cinq passages sur six (mesuré le
+# 2026-11-11 sur 400 exécutions : 3 à 5 par jour pour 24 demandées, toutes
+# réussies). Demander plus souvent, c'est retrouver à peu près un passage
+# par heure. Sans effet de bord : le job ne publie que si le fichier change.
 on:
   schedule:
-    - cron: "17 * * * *"
+    - cron: "7-57/10 * * * *"
   workflow_dispatch: {}
 
 permissions:

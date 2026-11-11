@@ -150,7 +150,10 @@
 </p>
 <p>
   Pour ce troisième usage, votre position accompagne le texte que vous tapez
-  vers les services de recherche d'adresses listés plus bas. Si la position
+  vers deux des services de recherche listés plus bas (adresses françaises et
+  lieux). Comme l'application ne sait pas d'avance dans quel pays se trouve
+  ce que vous cherchez, le texte tapé est aussi envoyé, sans position, aux
+  services de recherche suisse et espagnol. Si la position
   n'est pas disponible, c'est celle de votre domicile enregistré qui sert de
   repère. Ces services ne reçoivent ni nom, ni identifiant.
 </p>
@@ -240,7 +243,17 @@
     <tr>
       <td>Photon<br>(komoot, Allemagne — données OpenStreetMap)</td>
       <td>Le texte que vous tapez, et votre position arrondie à environ 1 km (à défaut, celle de votre domicile)</td>
-      <td>Trouver les commerces, les gares et les rues proches</td>
+      <td>Trouver les commerces, les gares et les rues proches, ainsi que les villes et les rues d'Espagne</td>
+    </tr>
+    <tr>
+      <td>geo.admin.ch<br>(swisstopo, Suisse)</td>
+      <td>Le texte que vous tapez, dès trois lettres — sans votre position</td>
+      <td>Trouver les villes et les adresses de Suisse</td>
+    </tr>
+    <tr>
+      <td>CartoCiudad<br>(IGN-CNIG, Espagne)</td>
+      <td>Le texte que vous tapez, quand il contient un numéro — sans votre position</td>
+      <td>Trouver les adresses d'Espagne</td>
     </tr>
     <tr>
       <td>Open-Meteo<br>(Allemagne)</td>
@@ -264,7 +277,7 @@
     </tr>
     <tr>
       <td>GraphHopper ou OSRM</td>
-      <td>Départ, arrivée et étapes de recharge du trajet — <strong>uniquement si la carte hors ligne n'est pas installée</strong></td>
+      <td>Départ, arrivée et étapes de recharge du trajet — <strong>uniquement quand le trajet ne peut pas se calculer sur le téléphone</strong> : carte hors ligne du pays non installée, ou trajet passant par l'Espagne, qui n'a pas encore de carte hors ligne</td>
       <td>Calculer l'itinéraire</td>
     </tr>
     <tr>
@@ -287,8 +300,8 @@
 </p>
 <p>
   Chacun applique sa propre politique de confidentialité, sur laquelle nous
-  n'avons pas de prise. Installer la carte hors ligne supprime le recours au
-  calcul d'itinéraire distant.
+  n'avons pas de prise. Installer la carte hors ligne d'un pays supprime le
+  recours au calcul d'itinéraire distant pour les trajets dans ce pays.
 </p>
 
 <h2>Ce que Wattlas ne fait pas</h2>

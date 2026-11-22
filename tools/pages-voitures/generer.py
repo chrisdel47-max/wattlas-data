@@ -373,37 +373,67 @@ class Page:
         return self.v["base"] >= 17.5
 
     # ---- textes ----
-    def titre(self) -> str:
-        if self.c.fige:
-            return f"{self.court} : autonomie autoroute et coût trajet"
-        km = ent(self.a130["km100_10"])
+    # 22/11 — LA FACTURE D'ABORD. Le seul message qui ait porté (post
+    # Facebook du 27/09, l'addition d'un Bordeaux–Dijon : 1 358 vues) est
+    # « le péage, c'est x % de la note ». Les pages mettaient l'autonomie en
+    # tête, comme toutes les fiches de voitures du web ; elles ouvrent
+    # maintenant sur l'addition d'un Paris–Lyon, que personne d'autre ne
+    # donne. L'autonomie reste dans la description, les chiffres du haut et
+    # sa section.
+    def facture(self) -> dict | None:
+        """L'addition du Paris–Lyon par l'autoroute, temps doux ; None si le moteur l'a écartée."""
         pl = autoroute(self.t["lyon"][0])
-        cands = [
-            f"{self.nom} : autonomie sur autoroute et coût d'un trajet",
-            f"{self.nom} : {km} km à 130 km/h, coût d'un long trajet",
-            f"Autonomie {self.nom} sur autoroute : {km} km à 130 km/h",
-        ]
-        if pl:
-            cands.append(f"{self.nom} : autonomie autoroute et Paris–Lyon à {eur(pl['total_eur'])}")
-        cands = [t for t in cands if len(t) <= 66] or [f"{self.nom} : autonomie et coût trajet"]
-        return self.c("titre", cands)
+        if not pl or pl["total_eur"] <= 0:
+            return None
+        eco = option(self.t["lyon"][0], "ECO")
+        if eco and not (eco["total_eur"] < pl["total_eur"] and eco["total_min"] > pl["total_min"]):
+            eco = None
+        return {"pl": pl, "eco": eco, "pct": ent(pl["peage_eur"] / pl["total_eur"] * 100)}
+
+    def titre(self) -> str:
+        f = self.facture()
+        if not f:
+            return f"{self.nom} : autonomie et coût trajet"
+        tot, pea = f"{ent(f['pl']['total_eur'])} €", f"{ent(f['pl']['peage_eur'])} €"
+        cands = []
+        for nom in (self.nom, self.court):
+            cands += [
+                f"{nom} : Paris–Lyon {tot}, dont {pea} de péage",
+                f"Paris–Lyon en {nom} : {tot}, dont {pea} de péage",
+                f"{nom} : Paris–Lyon à {tot}, péage compris",
+            ]
+        ok = [t for t in cands[:3] if len(t) <= 66] or [t for t in cands[3:] if len(t) <= 66]
+        return self.c("titre", ok or [f"{self.court} : Paris–Lyon à {tot}, péage compris"])
 
     def description(self) -> str:
         km = ent(self.a130["km100_10"])
-        s = f"{self.court} sur autoroute : {km} km de 100 à 10 % à 130 km/h."
-        pl = autoroute(self.t["lyon"][0])
-        if pl:
-            s += f" Paris–Lyon : {arrets(pl['arrets'])}, {duree(pl['total_min'])}, {eur(pl['total_eur'])} de recharge et péage."
-        return s + " Calcul Wattlas."
+        f = self.facture()
+        if not f:
+            return f"{self.court} sur autoroute : {km} km de 100 à 10 % à 130 km/h. Calcul Wattlas."
+        pl = f["pl"]
+        debut = (f"En {self.court}, Paris–Lyon par l'autoroute coûte {eur(pl['total_eur'])} : "
+                 f"{eur(pl['recharge_eur'])} de recharge, {eur(pl['peage_eur'])} de péage.")
+        eco = f" {ent(f['eco']['total_eur'])} € par les nationales." if f["eco"] else ""
+        fin = f" Autonomie : {km} km à 130 km/h."
+        # Google coupe vers 160 caractères : on lâche d'abord les nationales.
+        for s in (debut + eco + fin, debut + fin, debut):
+            if len(s) <= 160:
+                return s
+        return debut
 
     def og_titre(self) -> str:
-        return self.c("og", [
-            f"{self.nom} : autonomie sur autoroute et coût réel d'un trajet",
-            f"{self.nom} : autonomie réelle et prix d'un long trajet",
-            f"{self.nom} sur autoroute : autonomie, recharges et facture",
-        ])
+        return self.titre()
 
     def h1(self) -> str:
+        fa = self.facture()
+        if fa:
+            # Espace insécable : sur téléphone, « 81 » finissait une ligne et « € » ouvrait la suivante.
+            tot, pea = f"{ent(fa['pl']['total_eur'])} €", f"{ent(fa['pl']['peage_eur'])} €"
+            return self.c("h1", [
+                f"{self.famille} : Paris–Lyon coûte {tot}, dont {pea} de péage",
+                f"Paris–Lyon en {self.famille} : {tot}, dont {pea} de péage",
+                f"{self.famille} : {tot} le Paris–Lyon, dont {pea} de péage",
+            ])
         f = self.famille
         km = ent(self.a130["km80_10"])
         if self.grande:
@@ -421,6 +451,22 @@ class Page:
         return self.c("h1", opts)
 
     def chapo(self) -> str:
+        fa = self.facture()
+        if fa:
+            pct = fa["pct"]
+            debut = self.c("chapo1", [
+                f"Sur ce trajet, le péage pèse {pct} % de la note.",
+                f"Le péage fait {pct} % de la facture, la recharge le reste.",
+                f"{pct} % de la note, c'est le péage, pas l'électricité.",
+            ])
+            milieu = ""
+            if fa["eco"]:
+                plus = duree(ent(fa["eco"]["total_min"]) - ent(fa["pl"]["total_min"]))
+                milieu = " " + self.c("chapo2", [
+                    f"Par les nationales, il revient à {ent(fa['eco']['total_eur'])} €, pour {plus} de plus.",
+                    f"En évitant le péage : {ent(fa['eco']['total_eur'])} €, et {plus} de route en plus.",
+                ])
+            return debut + milieu + " Trois trajets chiffrés, autonomie réelle et temps de charge."
         return self.c("chapo", [
             "Autonomie sur autoroute, arrêts recharge et facture complète, péage compris. Calculé par Wattlas sur de vrais trajets.",
             "Combien de kilomètres à 130 km/h, combien d'arrêts, combien d'euros, péage compris. Chiffres calculés par Wattlas sur trois trajets réels.",
@@ -503,12 +549,35 @@ class Page:
         return (f'<a class="cta"{st} href="https://play.google.com/store/apps/details?id=fr.wattlas&amp;referrer='
                 f'utm_source%3Dwattlas.fr%26utm_medium%3Dsite%26utm_content%3Dvoiture-{self.slug}{suffixe}">{texte}</a>')
 
+    def bloc_facture(self) -> str:
+        """L'addition du haut de page : alignée à droite, lisible d'un coup d'œil."""
+        f = self.facture()
+        if not f:
+            return ""
+        pl = f["pl"]
+        tete = (f"Paris → Lyon par l'autoroute · {ent(pl['km'])} km · {duree(pl['total_min'])} · "
+                + (arrets(pl["arrets"]) if pl["arrets"] else "sans arrêt"))
+        return f"""    <div class="bill">
+      <div class="bill-t">{esc(tete)}</div>
+      <div class="bill-l"><span>Recharge en route</span><b>{eur(pl['recharge_eur'])}</b></div>
+      <div class="bill-l"><span>Péage</span><b>{peage_txt(pl)}</b></div>
+      <div class="bill-l tot"><span>Total</span><b>{eur(pl['total_eur'])}</b></div>
+      <div class="bill-n">Le péage, c'est {f['pct']} % de la note.</div>
+    </div>
+"""
+
     def bloc_hero(self) -> str:
-        kpis = [(f"{ent(self.a130['km80_10'])} km", "entre deux recharges rapides à 130 km/h"),
-                (duree(self.ch["min20"]), "pour une charge de 10 à 80 %")]
-        pl = autoroute(self.t["lyon"][0])
-        if pl:
-            kpis.append((eur(pl["total_eur"]), "Paris → Lyon par l'autoroute, recharge + péage"))
+        f = self.facture()
+        kpis = []
+        if f and f["eco"]:
+            kpis.append((eur(f["eco"]["total_eur"]),
+                         f"le même trajet par les nationales, en {duree(f['eco']['total_min'])}"))
+        kpis += [(f"{ent(self.a130['km100_10'])} km", "d'autonomie à 130 km/h, de 100 à 10 %"),
+                 (duree(self.ch["min20"]), "pour une charge de 10 à 80 %")]
+        if not f:
+            pl = autoroute(self.t["lyon"][0])
+            if pl:
+                kpis.append((eur(pl["total_eur"]), "Paris → Lyon par l'autoroute, recharge + péage"))
         k = "\n".join(f'      <div class="kpi"><b>{a}</b><span>{esc(b)}</span></div>' for a, b in kpis)
         return f"""
 <header class="hero">
@@ -522,7 +591,7 @@ class Page:
     </div>
     <h1>{esc(self.h1())}</h1>
     <p>{esc(self.chapo())}</p>
-    <div class="kpis">
+{self.bloc_facture()}    <div class="kpis">
 {k}
     </div>
     {self.cta()}
@@ -827,7 +896,7 @@ class Page:
 """
 
     def rendre(self) -> str:
-        return (self.bloc_head() + self.bloc_hero() + self.bloc_autonomie() + self.bloc_trajets()
+        return (self.bloc_head() + self.bloc_hero() + self.bloc_trajets() + self.bloc_autonomie()
                 + self.bloc_hiver() + self.bloc_dl() + self.bloc_faq() + self.bloc_pied())
 
 
